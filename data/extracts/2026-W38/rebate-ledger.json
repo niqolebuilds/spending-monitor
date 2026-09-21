@@ -1,0 +1,68 @@
+[
+  {
+    "vendorId": "V-KEN",
+    "ytdPurchaseIDR": 3872000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-IND",
+    "ytdPurchaseIDR": 4435000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-GAR",
+    "ytdPurchaseIDR": 1609000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-LOM",
+    "ytdPurchaseIDR": 3270000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-BOR",
+    "ytdPurchaseIDR": 1869000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-DEL",
+    "ytdPurchaseIDR": 1036000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-CEN",
+    "ytdPurchaseIDR": 3207000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-ORC",
+    "ytdPurchaseIDR": 1547000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-JAT",
+    "ytdPurchaseIDR": 684000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-MER",
+    "ytdPurchaseIDR": 941000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  },
+  {
+    "vendorId": "V-SEM",
+    "ytdPurchaseIDR": 624000000,
+    "weeksElapsed": 37,
+    "weeksRemaining": 15
+  }
+]

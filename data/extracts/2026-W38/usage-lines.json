@@ -1,0 +1,2998 @@
+[
+  {
+    "unit": "U04",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 72,
+    "dispensedQty90d": 61,
+    "onHandQty": 11
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 2624,
+    "dispensedQty90d": 2236,
+    "onHandQty": 388
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-9002",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 39,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 2245,
+    "dispensedQty90d": 2078,
+    "onHandQty": 167
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 127,
+    "dispensedQty90d": 117,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 5238,
+    "dispensedQty90d": 4559,
+    "onHandQty": 679
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-6003",
+    "purchasedQty90d": 123,
+    "dispensedQty90d": 113,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 37,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 2372,
+    "dispensedQty90d": 2309,
+    "onHandQty": 63
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 38,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 106,
+    "dispensedQty90d": 102,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 78,
+    "dispensedQty90d": 76,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U30",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 3636,
+    "dispensedQty90d": 1266,
+    "onHandQty": 2370
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 1072,
+    "dispensedQty90d": 1086,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 25,
+    "dispensedQty90d": 25,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 2603,
+    "dispensedQty90d": 2419,
+    "onHandQty": 184
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 13319,
+    "dispensedQty90d": 5644,
+    "onHandQty": 7675
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 63,
+    "dispensedQty90d": 65,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 127,
+    "dispensedQty90d": 119,
+    "onHandQty": 8
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 117,
+    "dispensedQty90d": 110,
+    "onHandQty": 7
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 1542,
+    "dispensedQty90d": 1350,
+    "onHandQty": 192
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 2493,
+    "dispensedQty90d": 2350,
+    "onHandQty": 143
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 10132,
+    "dispensedQty90d": 9471,
+    "onHandQty": 661
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 27,
+    "dispensedQty90d": 26,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 584,
+    "dispensedQty90d": 606,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 820,
+    "dispensedQty90d": 824,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 5539,
+    "dispensedQty90d": 4868,
+    "onHandQty": 671
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 29621,
+    "dispensedQty90d": 11840,
+    "onHandQty": 17781
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 37,
+    "dispensedQty90d": 37,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U28",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 592,
+    "dispensedQty90d": 531,
+    "onHandQty": 61
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 13,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 2382,
+    "dispensedQty90d": 2404,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 1566,
+    "dispensedQty90d": 1409,
+    "onHandQty": 157
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 39,
+    "dispensedQty90d": 36,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U04",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 1071,
+    "dispensedQty90d": 1018,
+    "onHandQty": 53
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 12054,
+    "dispensedQty90d": 12228,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 9118,
+    "dispensedQty90d": 8783,
+    "onHandQty": 335
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 14076,
+    "dispensedQty90d": 11782,
+    "onHandQty": 2294
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 304,
+    "dispensedQty90d": 280,
+    "onHandQty": 24
+  },
+  {
+    "unit": "U30",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 389,
+    "dispensedQty90d": 383,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 13,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 506,
+    "dispensedQty90d": 436,
+    "onHandQty": 70
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 2158,
+    "dispensedQty90d": 1969,
+    "onHandQty": 189
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 776,
+    "dispensedQty90d": 686,
+    "onHandQty": 90
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 312,
+    "dispensedQty90d": 300,
+    "onHandQty": 12
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 13232,
+    "dispensedQty90d": 10980,
+    "onHandQty": 2252
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 2231,
+    "dispensedQty90d": 1974,
+    "onHandQty": 257
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 974,
+    "dispensedQty90d": 907,
+    "onHandQty": 67
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 1194,
+    "dispensedQty90d": 1199,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 104,
+    "dispensedQty90d": 104,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 2724,
+    "dispensedQty90d": 2337,
+    "onHandQty": 387
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 43,
+    "dispensedQty90d": 36,
+    "onHandQty": 7
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 932,
+    "dispensedQty90d": 379,
+    "onHandQty": 553
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 65,
+    "dispensedQty90d": 63,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 53,
+    "dispensedQty90d": 50,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U03",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 13,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U38",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 100,
+    "dispensedQty90d": 104,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 90,
+    "dispensedQty90d": 89,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 364,
+    "dispensedQty90d": 359,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 17938,
+    "dispensedQty90d": 6510,
+    "onHandQty": 11428
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 90,
+    "dispensedQty90d": 85,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 2375,
+    "dispensedQty90d": 2359,
+    "onHandQty": 16
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 1225,
+    "dispensedQty90d": 1164,
+    "onHandQty": 61
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 50,
+    "dispensedQty90d": 48,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 1352,
+    "dispensedQty90d": 1224,
+    "onHandQty": 128
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 53,
+    "dispensedQty90d": 51,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 1977,
+    "dispensedQty90d": 1652,
+    "onHandQty": 325
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 12581,
+    "dispensedQty90d": 11616,
+    "onHandQty": 965
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 1052,
+    "dispensedQty90d": 1003,
+    "onHandQty": 49
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 96,
+    "dispensedQty90d": 90,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 766,
+    "dispensedQty90d": 732,
+    "onHandQty": 34
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 247,
+    "dispensedQty90d": 224,
+    "onHandQty": 23
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 67,
+    "dispensedQty90d": 65,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 11344,
+    "dispensedQty90d": 10410,
+    "onHandQty": 934
+  },
+  {
+    "unit": "U27",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 511,
+    "dispensedQty90d": 515,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-8003",
+    "purchasedQty90d": 2314,
+    "dispensedQty90d": 2131,
+    "onHandQty": 183
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 1854,
+    "dispensedQty90d": 1677,
+    "onHandQty": 177
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 68,
+    "dispensedQty90d": 62,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 43,
+    "dispensedQty90d": 38,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 853,
+    "dispensedQty90d": 348,
+    "onHandQty": 505
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 378,
+    "dispensedQty90d": 317,
+    "onHandQty": 61
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 276,
+    "dispensedQty90d": 108,
+    "onHandQty": 168
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 2234,
+    "dispensedQty90d": 2020,
+    "onHandQty": 214
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 1412,
+    "dispensedQty90d": 1255,
+    "onHandQty": 157
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 1558,
+    "dispensedQty90d": 1401,
+    "onHandQty": 157
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 869,
+    "dispensedQty90d": 747,
+    "onHandQty": 122
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 94,
+    "dispensedQty90d": 85,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U11",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 100,
+    "dispensedQty90d": 90,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U27",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 25,
+    "dispensedQty90d": 24,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 145,
+    "dispensedQty90d": 66,
+    "onHandQty": 79
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 25,
+    "dispensedQty90d": 25,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 861,
+    "dispensedQty90d": 752,
+    "onHandQty": 109
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 1030,
+    "dispensedQty90d": 978,
+    "onHandQty": 52
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 198,
+    "dispensedQty90d": 164,
+    "onHandQty": 34
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 393,
+    "dispensedQty90d": 343,
+    "onHandQty": 50
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 807,
+    "dispensedQty90d": 831,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 153,
+    "dispensedQty90d": 153,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 130,
+    "dispensedQty90d": 129,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 603,
+    "dispensedQty90d": 588,
+    "onHandQty": 15
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 500,
+    "dispensedQty90d": 497,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 439,
+    "dispensedQty90d": 404,
+    "onHandQty": 35
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 79,
+    "dispensedQty90d": 73,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 596,
+    "dispensedQty90d": 603,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 38,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 57,
+    "dispensedQty90d": 47,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 1210,
+    "dispensedQty90d": 1166,
+    "onHandQty": 44
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 8295,
+    "dispensedQty90d": 7751,
+    "onHandQty": 544
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 8829,
+    "dispensedQty90d": 8130,
+    "onHandQty": 699
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 1759,
+    "dispensedQty90d": 1587,
+    "onHandQty": 172
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-7003",
+    "purchasedQty90d": 28,
+    "dispensedQty90d": 25,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 705,
+    "dispensedQty90d": 658,
+    "onHandQty": 47
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 483,
+    "dispensedQty90d": 435,
+    "onHandQty": 48
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 2773,
+    "dispensedQty90d": 2480,
+    "onHandQty": 293
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 13,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 111,
+    "dispensedQty90d": 103,
+    "onHandQty": 8
+  },
+  {
+    "unit": "U03",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 95,
+    "dispensedQty90d": 90,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 28,
+    "dispensedQty90d": 24,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-6003",
+    "purchasedQty90d": 76,
+    "dispensedQty90d": 71,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U03",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 26,
+    "dispensedQty90d": 25,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 311,
+    "dispensedQty90d": 281,
+    "onHandQty": 30
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 1351,
+    "dispensedQty90d": 1246,
+    "onHandQty": 105
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 26,
+    "dispensedQty90d": 24,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 8994,
+    "dispensedQty90d": 9414,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 703,
+    "dispensedQty90d": 628,
+    "onHandQty": 75
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 904,
+    "dispensedQty90d": 801,
+    "onHandQty": 103
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 137,
+    "dispensedQty90d": 119,
+    "onHandQty": 18
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 83,
+    "dispensedQty90d": 77,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U03",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 143,
+    "dispensedQty90d": 124,
+    "onHandQty": 19
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-1005",
+    "purchasedQty90d": 124,
+    "dispensedQty90d": 124,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 3653,
+    "dispensedQty90d": 3288,
+    "onHandQty": 365
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 55,
+    "dispensedQty90d": 52,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 1710,
+    "dispensedQty90d": 1644,
+    "onHandQty": 66
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 21250,
+    "dispensedQty90d": 9398,
+    "onHandQty": 11852
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 43,
+    "dispensedQty90d": 36,
+    "onHandQty": 7
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 1912,
+    "dispensedQty90d": 1666,
+    "onHandQty": 246
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 82,
+    "dispensedQty90d": 74,
+    "onHandQty": 8
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 42,
+    "dispensedQty90d": 37,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 1434,
+    "dispensedQty90d": 1406,
+    "onHandQty": 28
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 126,
+    "dispensedQty90d": 120,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 959,
+    "dispensedQty90d": 816,
+    "onHandQty": 143
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 12658,
+    "dispensedQty90d": 10968,
+    "onHandQty": 1690
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 138,
+    "dispensedQty90d": 133,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 134,
+    "dispensedQty90d": 118,
+    "onHandQty": 16
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 614,
+    "dispensedQty90d": 532,
+    "onHandQty": 82
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 309,
+    "dispensedQty90d": 271,
+    "onHandQty": 38
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 260,
+    "dispensedQty90d": 226,
+    "onHandQty": 34
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 2446,
+    "dispensedQty90d": 2463,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 4195,
+    "dispensedQty90d": 1509,
+    "onHandQty": 2686
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 2173,
+    "dispensedQty90d": 1970,
+    "onHandQty": 203
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 83,
+    "dispensedQty90d": 74,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 74,
+    "dispensedQty90d": 76,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 13,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 40,
+    "dispensedQty90d": 39,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 17626,
+    "dispensedQty90d": 7444,
+    "onHandQty": 10182
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 127,
+    "dispensedQty90d": 116,
+    "onHandQty": 11
+  },
+  {
+    "unit": "U38",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 6241,
+    "dispensedQty90d": 6059,
+    "onHandQty": 182
+  },
+  {
+    "unit": "U11",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 14217,
+    "dispensedQty90d": 4623,
+    "onHandQty": 9594
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 441,
+    "dispensedQty90d": 422,
+    "onHandQty": 19
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 7439,
+    "dispensedQty90d": 6948,
+    "onHandQty": 491
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 2355,
+    "dispensedQty90d": 2242,
+    "onHandQty": 113
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 2115,
+    "dispensedQty90d": 1923,
+    "onHandQty": 192
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 1326,
+    "dispensedQty90d": 1303,
+    "onHandQty": 23
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 213,
+    "dispensedQty90d": 192,
+    "onHandQty": 21
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 740,
+    "dispensedQty90d": 711,
+    "onHandQty": 29
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 346,
+    "dispensedQty90d": 331,
+    "onHandQty": 15
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 119,
+    "dispensedQty90d": 108,
+    "onHandQty": 11
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U38",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 863,
+    "dispensedQty90d": 801,
+    "onHandQty": 62
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 500,
+    "dispensedQty90d": 515,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U30",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 43,
+    "dispensedQty90d": 37,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 37,
+    "dispensedQty90d": 37,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 99,
+    "dispensedQty90d": 95,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 2092,
+    "dispensedQty90d": 2021,
+    "onHandQty": 71
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 67,
+    "dispensedQty90d": 59,
+    "onHandQty": 8
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 38,
+    "dispensedQty90d": 37,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 82,
+    "dispensedQty90d": 73,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 2027,
+    "dispensedQty90d": 1922,
+    "onHandQty": 105
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-9002",
+    "purchasedQty90d": 87,
+    "dispensedQty90d": 74,
+    "onHandQty": 13
+  },
+  {
+    "unit": "U04",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 2486,
+    "dispensedQty90d": 2289,
+    "onHandQty": 197
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 39,
+    "dispensedQty90d": 36,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 75,
+    "dispensedQty90d": 73,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U04",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 621,
+    "dispensedQty90d": 513,
+    "onHandQty": 108
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 1626,
+    "dispensedQty90d": 1529,
+    "onHandQty": 97
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 13,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-3003",
+    "purchasedQty90d": 714,
+    "dispensedQty90d": 284,
+    "onHandQty": 430
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 111,
+    "dispensedQty90d": 97,
+    "onHandQty": 14
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 114,
+    "dispensedQty90d": 115,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 39,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 130,
+    "dispensedQty90d": 128,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U38",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U03",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 117,
+    "dispensedQty90d": 109,
+    "onHandQty": 8
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 52,
+    "dispensedQty90d": 52,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 26,
+    "dispensedQty90d": 25,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 274,
+    "dispensedQty90d": 273,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 2105,
+    "dispensedQty90d": 1820,
+    "onHandQty": 285
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 109,
+    "dispensedQty90d": 98,
+    "onHandQty": 11
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 87,
+    "dispensedQty90d": 75,
+    "onHandQty": 12
+  },
+  {
+    "unit": "U11",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 80,
+    "dispensedQty90d": 78,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 84,
+    "dispensedQty90d": 74,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 42,
+    "dispensedQty90d": 37,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-9002",
+    "purchasedQty90d": 64,
+    "dispensedQty90d": 60,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 120,
+    "dispensedQty90d": 110,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-8003",
+    "purchasedQty90d": 1206,
+    "dispensedQty90d": 1136,
+    "onHandQty": 70
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 624,
+    "dispensedQty90d": 631,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 131,
+    "dispensedQty90d": 124,
+    "onHandQty": 7
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 25,
+    "dispensedQty90d": 25,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 13,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 25,
+    "dispensedQty90d": 25,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 107,
+    "dispensedQty90d": 104,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 2041,
+    "dispensedQty90d": 1760,
+    "onHandQty": 281
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 1331,
+    "dispensedQty90d": 1301,
+    "onHandQty": 30
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 2534,
+    "dispensedQty90d": 2231,
+    "onHandQty": 303
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 2057,
+    "dispensedQty90d": 1893,
+    "onHandQty": 164
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 1676,
+    "dispensedQty90d": 1551,
+    "onHandQty": 125
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 29,
+    "dispensedQty90d": 24,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 27,
+    "dispensedQty90d": 25,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U28",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 4587,
+    "dispensedQty90d": 1810,
+    "onHandQty": 2777
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 111,
+    "dispensedQty90d": 96,
+    "onHandQty": 15
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 489,
+    "dispensedQty90d": 447,
+    "onHandQty": 42
+  },
+  {
+    "unit": "U30",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 178,
+    "dispensedQty90d": 154,
+    "onHandQty": 24
+  },
+  {
+    "unit": "U27",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 2016,
+    "dispensedQty90d": 1906,
+    "onHandQty": 110
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 122,
+    "dispensedQty90d": 111,
+    "onHandQty": 11
+  },
+  {
+    "unit": "U05",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 2664,
+    "dispensedQty90d": 2485,
+    "onHandQty": 179
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 12129,
+    "dispensedQty90d": 11220,
+    "onHandQty": 909
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 1554,
+    "dispensedQty90d": 1441,
+    "onHandQty": 113
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 3159,
+    "dispensedQty90d": 1304,
+    "onHandQty": 1855
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 69,
+    "dispensedQty90d": 63,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 13461,
+    "dispensedQty90d": 11707,
+    "onHandQty": 1754
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 3520,
+    "dispensedQty90d": 3507,
+    "onHandQty": 13
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 357,
+    "dispensedQty90d": 328,
+    "onHandQty": 29
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-1003",
+    "purchasedQty90d": 38,
+    "dispensedQty90d": 35,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 2215,
+    "dispensedQty90d": 1922,
+    "onHandQty": 293
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 39,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 809,
+    "dispensedQty90d": 685,
+    "onHandQty": 124
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 42,
+    "dispensedQty90d": 39,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 548,
+    "dispensedQty90d": 470,
+    "onHandQty": 78
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 3772,
+    "dispensedQty90d": 3679,
+    "onHandQty": 93
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 2741,
+    "dispensedQty90d": 2408,
+    "onHandQty": 333
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 994,
+    "dispensedQty90d": 1017,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 100,
+    "dispensedQty90d": 94,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-4004",
+    "purchasedQty90d": 28,
+    "dispensedQty90d": 25,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U03",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 89,
+    "dispensedQty90d": 89,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 26,
+    "dispensedQty90d": 24,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 2376,
+    "dispensedQty90d": 2105,
+    "onHandQty": 271
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 113,
+    "dispensedQty90d": 117,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 40,
+    "dispensedQty90d": 38,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 260,
+    "dispensedQty90d": 266,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 222,
+    "dispensedQty90d": 233,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 37,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-8003",
+    "purchasedQty90d": 1154,
+    "dispensedQty90d": 1129,
+    "onHandQty": 25
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 1098,
+    "dispensedQty90d": 1045,
+    "onHandQty": 53
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 25,
+    "dispensedQty90d": 24,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 437,
+    "dispensedQty90d": 387,
+    "onHandQty": 50
+  },
+  {
+    "unit": "U30",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 25,
+    "dispensedQty90d": 23,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 2443,
+    "dispensedQty90d": 2167,
+    "onHandQty": 276
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 561,
+    "dispensedQty90d": 523,
+    "onHandQty": 38
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 1417,
+    "dispensedQty90d": 1397,
+    "onHandQty": 20
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 29,
+    "dispensedQty90d": 24,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 1299,
+    "dispensedQty90d": 1199,
+    "onHandQty": 100
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 1029,
+    "dispensedQty90d": 976,
+    "onHandQty": 53
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 9402,
+    "dispensedQty90d": 8599,
+    "onHandQty": 803
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 106,
+    "dispensedQty90d": 101,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 37,
+    "dispensedQty90d": 36,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U11",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 675,
+    "dispensedQty90d": 601,
+    "onHandQty": 74
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 2086,
+    "dispensedQty90d": 1822,
+    "onHandQty": 264
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 2179,
+    "dispensedQty90d": 1912,
+    "onHandQty": 267
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 426,
+    "dispensedQty90d": 380,
+    "onHandQty": 46
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 524,
+    "dispensedQty90d": 437,
+    "onHandQty": 87
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 159,
+    "dispensedQty90d": 134,
+    "onHandQty": 25
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 854,
+    "dispensedQty90d": 695,
+    "onHandQty": 159
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 95,
+    "dispensedQty90d": 86,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 2470,
+    "dispensedQty90d": 2172,
+    "onHandQty": 298
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-2002",
+    "purchasedQty90d": 102,
+    "dispensedQty90d": 89,
+    "onHandQty": 13
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 598,
+    "dispensedQty90d": 526,
+    "onHandQty": 72
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 191,
+    "dispensedQty90d": 166,
+    "onHandQty": 25
+  },
+  {
+    "unit": "U03",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 13,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 28,
+    "dispensedQty90d": 25,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 618,
+    "dispensedQty90d": 590,
+    "onHandQty": 28
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 1465,
+    "dispensedQty90d": 1388,
+    "onHandQty": 77
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 12,
+    "dispensedQty90d": 13,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-9002",
+    "purchasedQty90d": 50,
+    "dispensedQty90d": 48,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 52,
+    "dispensedQty90d": 48,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 105,
+    "dispensedQty90d": 99,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-3003",
+    "purchasedQty90d": 459,
+    "dispensedQty90d": 414,
+    "onHandQty": 45
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 5751,
+    "dispensedQty90d": 5223,
+    "onHandQty": 528
+  },
+  {
+    "unit": "U27",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 1170,
+    "dispensedQty90d": 1057,
+    "onHandQty": 113
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 1089,
+    "dispensedQty90d": 1067,
+    "onHandQty": 22
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 1502,
+    "dispensedQty90d": 1535,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 476,
+    "dispensedQty90d": 423,
+    "onHandQty": 53
+  },
+  {
+    "unit": "U28",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U31",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 114,
+    "dispensedQty90d": 99,
+    "onHandQty": 15
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 178,
+    "dispensedQty90d": 175,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 1800,
+    "dispensedQty90d": 1482,
+    "onHandQty": 318
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 2027,
+    "dispensedQty90d": 878,
+    "onHandQty": 1149
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 100,
+    "dispensedQty90d": 88,
+    "onHandQty": 12
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 519,
+    "dispensedQty90d": 469,
+    "onHandQty": 50
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-7001",
+    "purchasedQty90d": 38,
+    "dispensedQty90d": 36,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 82,
+    "dispensedQty90d": 73,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 13,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 6119,
+    "dispensedQty90d": 5784,
+    "onHandQty": 335
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 335,
+    "dispensedQty90d": 302,
+    "onHandQty": 33
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 28,
+    "dispensedQty90d": 25,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U28",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 224,
+    "dispensedQty90d": 88,
+    "onHandQty": 136
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 615,
+    "dispensedQty90d": 533,
+    "onHandQty": 82
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 38,
+    "dispensedQty90d": 38,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 354,
+    "dispensedQty90d": 329,
+    "onHandQty": 25
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 1704,
+    "dispensedQty90d": 1580,
+    "onHandQty": 124
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 3462,
+    "dispensedQty90d": 3109,
+    "onHandQty": 353
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 82,
+    "dispensedQty90d": 75,
+    "onHandQty": 7
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 99,
+    "dispensedQty90d": 98,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 1516,
+    "dispensedQty90d": 1358,
+    "onHandQty": 158
+  },
+  {
+    "unit": "U04",
+    "sku": "SKU-4004",
+    "purchasedQty90d": 38,
+    "dispensedQty90d": 38,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 252,
+    "dispensedQty90d": 251,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 537,
+    "dispensedQty90d": 488,
+    "onHandQty": 49
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 6547,
+    "dispensedQty90d": 5368,
+    "onHandQty": 1179
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-5005",
+    "purchasedQty90d": 2306,
+    "dispensedQty90d": 2119,
+    "onHandQty": 187
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 532,
+    "dispensedQty90d": 484,
+    "onHandQty": 48
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 42,
+    "dispensedQty90d": 36,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 462,
+    "dispensedQty90d": 444,
+    "onHandQty": 18
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 102,
+    "dispensedQty90d": 88,
+    "onHandQty": 14
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 576,
+    "dispensedQty90d": 576,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 100,
+    "dispensedQty90d": 85,
+    "onHandQty": 15
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 116,
+    "dispensedQty90d": 110,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U11",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 2420,
+    "dispensedQty90d": 2068,
+    "onHandQty": 352
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 55,
+    "dispensedQty90d": 50,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 1580,
+    "dispensedQty90d": 1376,
+    "onHandQty": 204
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-9001",
+    "purchasedQty90d": 274,
+    "dispensedQty90d": 255,
+    "onHandQty": 19
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 685,
+    "dispensedQty90d": 562,
+    "onHandQty": 123
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 6581,
+    "dispensedQty90d": 5894,
+    "onHandQty": 687
+  },
+  {
+    "unit": "U38",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 41,
+    "dispensedQty90d": 35,
+    "onHandQty": 6
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 53,
+    "dispensedQty90d": 52,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 145,
+    "dispensedQty90d": 122,
+    "onHandQty": 23
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 2622,
+    "dispensedQty90d": 2459,
+    "onHandQty": 163
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 40,
+    "dispensedQty90d": 37,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 558,
+    "dispensedQty90d": 514,
+    "onHandQty": 44
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 487,
+    "dispensedQty90d": 478,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 651,
+    "dispensedQty90d": 577,
+    "onHandQty": 74
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-2003",
+    "purchasedQty90d": 63,
+    "dispensedQty90d": 61,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-2001",
+    "purchasedQty90d": 101,
+    "dispensedQty90d": 85,
+    "onHandQty": 16
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 13,
+    "dispensedQty90d": 12,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 28,
+    "dispensedQty90d": 24,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 12562,
+    "dispensedQty90d": 10343,
+    "onHandQty": 2219
+  },
+  {
+    "unit": "U11",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 87,
+    "dispensedQty90d": 83,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U26",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 37,
+    "dispensedQty90d": 38,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 1491,
+    "dispensedQty90d": 1389,
+    "onHandQty": 102
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 71,
+    "dispensedQty90d": 62,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U38",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 4069,
+    "dispensedQty90d": 1662,
+    "onHandQty": 2407
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 479,
+    "dispensedQty90d": 445,
+    "onHandQty": 34
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 11191,
+    "dispensedQty90d": 9607,
+    "onHandQty": 1584
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 621,
+    "dispensedQty90d": 575,
+    "onHandQty": 46
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 1930,
+    "dispensedQty90d": 1729,
+    "onHandQty": 201
+  },
+  {
+    "unit": "U27",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 1543,
+    "dispensedQty90d": 1469,
+    "onHandQty": 74
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-9002",
+    "purchasedQty90d": 84,
+    "dispensedQty90d": 71,
+    "onHandQty": 13
+  },
+  {
+    "unit": "U24",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 1472,
+    "dispensedQty90d": 1512,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U38",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 2704,
+    "dispensedQty90d": 2373,
+    "onHandQty": 331
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 1671,
+    "dispensedQty90d": 1501,
+    "onHandQty": 170
+  },
+  {
+    "unit": "U15",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 449,
+    "dispensedQty90d": 442,
+    "onHandQty": 7
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 40,
+    "dispensedQty90d": 36,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 4390,
+    "dispensedQty90d": 1718,
+    "onHandQty": 2672
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 2317,
+    "dispensedQty90d": 2110,
+    "onHandQty": 207
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-7004",
+    "purchasedQty90d": 651,
+    "dispensedQty90d": 562,
+    "onHandQty": 89
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-6004",
+    "purchasedQty90d": 151,
+    "dispensedQty90d": 141,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 1599,
+    "dispensedQty90d": 1507,
+    "onHandQty": 92
+  },
+  {
+    "unit": "U02",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 7111,
+    "dispensedQty90d": 6676,
+    "onHandQty": 435
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-1001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 13,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U04",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 37,
+    "dispensedQty90d": 37,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 38,
+    "dispensedQty90d": 38,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-8003",
+    "purchasedQty90d": 512,
+    "dispensedQty90d": 466,
+    "onHandQty": 46
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 1093,
+    "dispensedQty90d": 441,
+    "onHandQty": 652
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-5004",
+    "purchasedQty90d": 821,
+    "dispensedQty90d": 731,
+    "onHandQty": 90
+  },
+  {
+    "unit": "U32",
+    "sku": "SKU-3002",
+    "purchasedQty90d": 1645,
+    "dispensedQty90d": 1549,
+    "onHandQty": 96
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-5002",
+    "purchasedQty90d": 20035,
+    "dispensedQty90d": 9777,
+    "onHandQty": 10258
+  },
+  {
+    "unit": "U28",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 1747,
+    "dispensedQty90d": 1512,
+    "onHandQty": 235
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 40,
+    "dispensedQty90d": 37,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U34",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 75,
+    "dispensedQty90d": 72,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 87,
+    "dispensedQty90d": 87,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 1907,
+    "dispensedQty90d": 1702,
+    "onHandQty": 205
+  },
+  {
+    "unit": "U41",
+    "sku": "SKU-4003",
+    "purchasedQty90d": 204,
+    "dispensedQty90d": 176,
+    "onHandQty": 28
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 3649,
+    "dispensedQty90d": 1282,
+    "onHandQty": 2367
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 1180,
+    "dispensedQty90d": 1099,
+    "onHandQty": 81
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 27,
+    "dispensedQty90d": 24,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U06",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 1133,
+    "dispensedQty90d": 1087,
+    "onHandQty": 46
+  },
+  {
+    "unit": "U17",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 26,
+    "dispensedQty90d": 24,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U30",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 9863,
+    "dispensedQty90d": 8587,
+    "onHandQty": 1276
+  },
+  {
+    "unit": "U16",
+    "sku": "SKU-5001",
+    "purchasedQty90d": 2457,
+    "dispensedQty90d": 2027,
+    "onHandQty": 430
+  },
+  {
+    "unit": "U01",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 2451,
+    "dispensedQty90d": 2491,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 1829,
+    "dispensedQty90d": 1631,
+    "onHandQty": 198
+  },
+  {
+    "unit": "U19",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 28,
+    "dispensedQty90d": 24,
+    "onHandQty": 4
+  },
+  {
+    "unit": "U09",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 87,
+    "dispensedQty90d": 76,
+    "onHandQty": 11
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 37,
+    "dispensedQty90d": 39,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U35",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 99,
+    "dispensedQty90d": 89,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-B002",
+    "purchasedQty90d": 1133,
+    "dispensedQty90d": 1069,
+    "onHandQty": 64
+  },
+  {
+    "unit": "U30",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 39,
+    "dispensedQty90d": 38,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U25",
+    "sku": "SKU-6003",
+    "purchasedQty90d": 119,
+    "dispensedQty90d": 110,
+    "onHandQty": 9
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-7002",
+    "purchasedQty90d": 86,
+    "dispensedQty90d": 89,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U23",
+    "sku": "SKU-1002",
+    "purchasedQty90d": 27,
+    "dispensedQty90d": 25,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U14",
+    "sku": "SKU-6001",
+    "purchasedQty90d": 39,
+    "dispensedQty90d": 38,
+    "onHandQty": 1
+  },
+  {
+    "unit": "U18",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 113,
+    "dispensedQty90d": 96,
+    "onHandQty": 17
+  },
+  {
+    "unit": "U13",
+    "sku": "SKU-3004",
+    "purchasedQty90d": 1036,
+    "dispensedQty90d": 899,
+    "onHandQty": 137
+  },
+  {
+    "unit": "U10",
+    "sku": "SKU-6002",
+    "purchasedQty90d": 2247,
+    "dispensedQty90d": 2188,
+    "onHandQty": 59
+  },
+  {
+    "unit": "U08",
+    "sku": "SKU-B001",
+    "purchasedQty90d": 56,
+    "dispensedQty90d": 49,
+    "onHandQty": 7
+  },
+  {
+    "unit": "U20",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 37,
+    "dispensedQty90d": 38,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U33",
+    "sku": "SKU-A002",
+    "purchasedQty90d": 589,
+    "dispensedQty90d": 501,
+    "onHandQty": 88
+  },
+  {
+    "unit": "U21",
+    "sku": "SKU-8001",
+    "purchasedQty90d": 10582,
+    "dispensedQty90d": 10506,
+    "onHandQty": 76
+  },
+  {
+    "unit": "U12",
+    "sku": "SKU-4002",
+    "purchasedQty90d": 43,
+    "dispensedQty90d": 38,
+    "onHandQty": 5
+  },
+  {
+    "unit": "U04",
+    "sku": "SKU-8004",
+    "purchasedQty90d": 2361,
+    "dispensedQty90d": 2280,
+    "onHandQty": 81
+  },
+  {
+    "unit": "U37",
+    "sku": "SKU-5003",
+    "purchasedQty90d": 2101,
+    "dispensedQty90d": 2170,
+    "onHandQty": 0
+  },
+  {
+    "unit": "U27",
+    "sku": "SKU-3001",
+    "purchasedQty90d": 225,
+    "dispensedQty90d": 214,
+    "onHandQty": 11
+  },
+  {
+    "unit": "U07",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 121,
+    "dispensedQty90d": 109,
+    "onHandQty": 12
+  },
+  {
+    "unit": "U22",
+    "sku": "SKU-1004",
+    "purchasedQty90d": 38,
+    "dispensedQty90d": 36,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U36",
+    "sku": "SKU-A001",
+    "purchasedQty90d": 68,
+    "dispensedQty90d": 65,
+    "onHandQty": 3
+  },
+  {
+    "unit": "U39",
+    "sku": "SKU-4001",
+    "purchasedQty90d": 14,
+    "dispensedQty90d": 12,
+    "onHandQty": 2
+  },
+  {
+    "unit": "U29",
+    "sku": "SKU-B003",
+    "purchasedQty90d": 72,
+    "dispensedQty90d": 62,
+    "onHandQty": 10
+  },
+  {
+    "unit": "U40",
+    "sku": "SKU-8002",
+    "purchasedQty90d": 4254,
+    "dispensedQty90d": 4372,
+    "onHandQty": 0
+  }
+]

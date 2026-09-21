@@ -1,0 +1,248 @@
+[
+  {
+    "unit": "U01",
+    "requestsSent": 42,
+    "requestsAnswered": 41,
+    "avgReplyDays": 1.3
+  },
+  {
+    "unit": "U02",
+    "requestsSent": 29,
+    "requestsAnswered": 23,
+    "avgReplyDays": 1.8
+  },
+  {
+    "unit": "U03",
+    "requestsSent": 41,
+    "requestsAnswered": 37,
+    "avgReplyDays": 7.5
+  },
+  {
+    "unit": "U04",
+    "requestsSent": 38,
+    "requestsAnswered": 34,
+    "avgReplyDays": 2.7
+  },
+  {
+    "unit": "U05",
+    "requestsSent": 22,
+    "requestsAnswered": 20,
+    "avgReplyDays": 1.8
+  },
+  {
+    "unit": "U06",
+    "requestsSent": 50,
+    "requestsAnswered": 50,
+    "avgReplyDays": 3.7
+  },
+  {
+    "unit": "U07",
+    "requestsSent": 19,
+    "requestsAnswered": 16,
+    "avgReplyDays": 7.3
+  },
+  {
+    "unit": "U08",
+    "requestsSent": 43,
+    "requestsAnswered": 39,
+    "avgReplyDays": 6.7
+  },
+  {
+    "unit": "U09",
+    "requestsSent": 19,
+    "requestsAnswered": 16,
+    "avgReplyDays": 9.9
+  },
+  {
+    "unit": "U10",
+    "requestsSent": 37,
+    "requestsAnswered": 30,
+    "avgReplyDays": 9.7
+  },
+  {
+    "unit": "U11",
+    "requestsSent": 37,
+    "requestsAnswered": 31,
+    "avgReplyDays": 3.5
+  },
+  {
+    "unit": "U12",
+    "requestsSent": 41,
+    "requestsAnswered": 37,
+    "avgReplyDays": 6.8
+  },
+  {
+    "unit": "U13",
+    "requestsSent": 53,
+    "requestsAnswered": 41,
+    "avgReplyDays": 4.2
+  },
+  {
+    "unit": "U14",
+    "requestsSent": 24,
+    "requestsAnswered": 22,
+    "avgReplyDays": 8.8
+  },
+  {
+    "unit": "U15",
+    "requestsSent": 40,
+    "requestsAnswered": 30,
+    "avgReplyDays": 8.8
+  },
+  {
+    "unit": "U16",
+    "requestsSent": 42,
+    "requestsAnswered": 39,
+    "avgReplyDays": 4.8
+  },
+  {
+    "unit": "U17",
+    "requestsSent": 19,
+    "requestsAnswered": 16,
+    "avgReplyDays": 7.1
+  },
+  {
+    "unit": "U18",
+    "requestsSent": 53,
+    "requestsAnswered": 48,
+    "avgReplyDays": 3.2
+  },
+  {
+    "unit": "U19",
+    "requestsSent": 50,
+    "requestsAnswered": 38,
+    "avgReplyDays": 11.4
+  },
+  {
+    "unit": "U20",
+    "requestsSent": 26,
+    "requestsAnswered": 20,
+    "avgReplyDays": 2.1
+  },
+  {
+    "unit": "U21",
+    "requestsSent": 45,
+    "requestsAnswered": 42,
+    "avgReplyDays": 6.8
+  },
+  {
+    "unit": "U22",
+    "requestsSent": 22,
+    "requestsAnswered": 19,
+    "avgReplyDays": 8.3
+  },
+  {
+    "unit": "U23",
+    "requestsSent": 46,
+    "requestsAnswered": 45,
+    "avgReplyDays": 10.2
+  },
+  {
+    "unit": "U24",
+    "requestsSent": 24,
+    "requestsAnswered": 21,
+    "avgReplyDays": 4
+  },
+  {
+    "unit": "U25",
+    "requestsSent": 53,
+    "requestsAnswered": 49,
+    "avgReplyDays": 5.5
+  },
+  {
+    "unit": "U26",
+    "requestsSent": 40,
+    "requestsAnswered": 31,
+    "avgReplyDays": 10.8
+  },
+  {
+    "unit": "U27",
+    "requestsSent": 43,
+    "requestsAnswered": 37,
+    "avgReplyDays": 7.6
+  },
+  {
+    "unit": "U28",
+    "requestsSent": 23,
+    "requestsAnswered": 19,
+    "avgReplyDays": 3.4
+  },
+  {
+    "unit": "U29",
+    "requestsSent": 48,
+    "requestsAnswered": 45,
+    "avgReplyDays": 10.1
+  },
+  {
+    "unit": "U30",
+    "requestsSent": 39,
+    "requestsAnswered": 35,
+    "avgReplyDays": 2.9
+  },
+  {
+    "unit": "U31",
+    "requestsSent": 19,
+    "requestsAnswered": 16,
+    "avgReplyDays": 2.7
+  },
+  {
+    "unit": "U32",
+    "requestsSent": 18,
+    "requestsAnswered": 14,
+    "avgReplyDays": 7.4
+  },
+  {
+    "unit": "U33",
+    "requestsSent": 35,
+    "requestsAnswered": 33,
+    "avgReplyDays": 3.2
+  },
+  {
+    "unit": "U34",
+    "requestsSent": 26,
+    "requestsAnswered": 21,
+    "avgReplyDays": 1.5
+  },
+  {
+    "unit": "U35",
+    "requestsSent": 46,
+    "requestsAnswered": 40,
+    "avgReplyDays": 3.9
+  },
+  {
+    "unit": "U36",
+    "requestsSent": 31,
+    "requestsAnswered": 26,
+    "avgReplyDays": 8.7
+  },
+  {
+    "unit": "U37",
+    "requestsSent": 50,
+    "requestsAnswered": 38,
+    "avgReplyDays": 4.6
+  },
+  {
+    "unit": "U38",
+    "requestsSent": 52,
+    "requestsAnswered": 46,
+    "avgReplyDays": 9.2
+  },
+  {
+    "unit": "U39",
+    "requestsSent": 40,
+    "requestsAnswered": 32,
+    "avgReplyDays": 9.4
+  },
+  {
+    "unit": "U40",
+    "requestsSent": 21,
+    "requestsAnswered": 17,
+    "avgReplyDays": 5.5
+  },
+  {
+    "unit": "U41",
+    "requestsSent": 43,
+    "requestsAnswered": 34,
+    "avgReplyDays": 11.4
+  }
+]

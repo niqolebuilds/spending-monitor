@@ -8,6 +8,7 @@
   <meta property="og:description" content="Operational reviewer workbench for PO line exception approvals and price validation.">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
 
@@ -17,11 +18,11 @@
       <div class="brand-icon">◆</div>
       <div>
         <div class="brand-title">Spend Compliance &amp; Savings Monitor</div>
-        <div class="brand-subtitle">Automated weekly scan · Week of 14–20 Sep 2026 · 41 Hospital Units</div>
+        <div class="brand-subtitle" id="brand-subtitle">Automated weekly scan</div>
       </div>
     </div>
     <div class="header-meta">
-      <span class="badge badge-amber">20 Pending Review</span>
+      <span class="badge badge-amber" id="header-status">Loading…</span>
       <span class="user-badge">Reviewer: Nicole Celia Wangga (HO Finance)</span>
     </div>
   </header>
@@ -29,7 +30,7 @@
   <!-- Simplified Navigation -->
   <nav class="app-nav">
     <a href="index.html" class="nav-item">Dashboard</a>
-    <a href="reviewer.html" class="nav-item active">Review Workbench <span class="nav-badge" id="pending-badge">20</span></a>
+    <a href="reviewer.html" class="nav-item active">Review Workbench <span class="nav-badge">–</span></a>
     <a href="unit-inbox.html" class="nav-item">Unit Inbox &amp; Scorecards</a>
     <a href="rebates.html" class="nav-item">Rebates &amp; Principals</a>
   </nav>
@@ -38,11 +39,11 @@
     <div class="page-header">
       <div>
         <h1 class="page-title">Reviewer Workbench</h1>
-        <p class="page-desc">Validate investigated PO exceptions, confirm price leakages, and dispatch automated revision requests to hospital units.</p>
+        <p class="page-desc">Validate flagged PO exceptions, confirm price leakage, and dispatch revision requests to hospital units. Every finding is analyst-confirmed before anything leaves this screen.</p>
       </div>
       <div style="display:flex;gap:8px;">
-        <button class="btn btn-secondary" onclick="markAllFalsePositives()">Filter Flagged (3)</button>
-        <button class="btn btn-primary" onclick="batchApproveValid()">Approve All Valid (20) →</button>
+        <button class="btn btn-secondary" onclick="rerunScan()">Re-run scan</button>
+        <button class="btn btn-primary" id="batch-btn" onclick="batchApproveRecoverable()">Approve all recoverable</button>
       </div>
     </div>
 
@@ -54,27 +55,31 @@
           <div class="card-title">Weekly Scan Summary</div>
           <div class="stat-row">
             <span>PO Lines Scanned</span>
-            <b>515 lines</b>
+            <b id="sum-lines">–</b>
           </div>
           <div class="stat-row">
             <span>Total Exceptions</span>
-            <span class="badge badge-rose">202 lines</span>
+            <span class="badge badge-rose" id="sum-exceptions">–</span>
           </div>
           <div class="stat-row">
-            <span>Total Leakage At Stake</span>
-            <b style="color:var(--rose-text);">Rp 369.2M</b>
+            <span>Value At Stake</span>
+            <b style="color:var(--rose-text);" id="sum-stake">–</b>
+          </div>
+          <div class="stat-row">
+            <span>Recoverable Savings</span>
+            <b style="color:var(--emerald-text);" id="sum-savings">–</b>
           </div>
           <div class="stat-row">
             <span>High Severity</span>
-            <b>23 lines</b>
+            <b id="sum-high">–</b>
           </div>
           <div class="stat-row">
-            <span>Recommended for Approval</span>
-            <b style="color:var(--emerald-text);">20 lines</b>
+            <span>Awaiting Review</span>
+            <b id="sum-pending">–</b>
           </div>
           <div class="stat-row">
-            <span>Suggested False Positives</span>
-            <span class="badge badge-slate">3 lines (UOM)</span>
+            <span>Dismissed</span>
+            <span class="badge badge-slate" id="sum-dismissed">–</span>
           </div>
         </div>
 
@@ -83,21 +88,34 @@
           <ul class="timeline">
             <li class="timeline-item active">
               <div class="timeline-time">Mon 07:00</div>
-              <div class="timeline-text">ERP extract ingested. 515 lines evaluated against master trade agreements.</div>
+              <div class="timeline-text" id="tl-ingest">ERP extract ingested.</div>
             </li>
             <li class="timeline-item active">
               <div class="timeline-time">Mon 07:04</div>
-              <div class="timeline-text">Automated deep investigation of 23 High findings: 90-day price trends and formulary stock checks.</div>
+              <div class="timeline-text" id="tl-benchmark">Peer and 12-week price benchmarking applied.</div>
             </li>
             <li class="timeline-item pending">
               <div class="timeline-time">Now · Awaiting Review</div>
-              <div class="timeline-text">HO analyst review approval required before unit notification.</div>
+              <div class="timeline-text" id="tl-review">HO analyst confirmation required before any unit is notified.</div>
             </li>
             <li class="timeline-item">
               <div class="timeline-time">After Approval</div>
-              <div class="timeline-text" style="color:var(--text-muted);">PO revision requests dispatch to unit purchasing leads with 5-day SLA.</div>
+              <div class="timeline-text" style="color:var(--text-muted);" id="tl-dispatch">Revision requests drafted for dispatch.</div>
             </li>
           </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Autonomy</div>
+          <div class="stat-row">
+            <span>Mode</span>
+            <span class="badge badge-indigo" id="mode-badge">L2</span>
+          </div>
+          <p style="font-size:11.5px;color:var(--text-muted);line-height:1.5;margin:8px 0 0;">
+            L2 Copilot: the scan tags every line, proposes root cause and savings category, and drafts the
+            request — an analyst confirms each one. Nothing dispatches on its own.
+            <span id="mode-note"></span>
+          </p>
         </div>
       </div>
 
@@ -106,22 +124,25 @@
         <div class="card">
           <div class="card-title">
             <span>Exception Review Queue</span>
-            <span style="font-size:12px;color:var(--text-muted);font-weight:normal;" id="queue-count">Showing 8 priority exceptions</span>
+            <span style="font-size:12px;color:var(--text-muted);font-weight:normal;" id="queue-count">Loading…</span>
           </div>
 
           <!-- Toolbar: Filter Pills and Search -->
           <div class="toolbar">
-            <div class="filter-group">
+            <div class="filter-group" id="filter-group">
               <button class="filter-pill active" onclick="filterCategory('all', this)">All</button>
               <button class="filter-pill" onclick="filterCategory('price', this)">Price Above TA</button>
               <button class="filter-pill" onclick="filterCategory('formulary', this)">Non-Formulary</button>
               <button class="filter-pill" onclick="filterCategory('bpjs', this)">BPJS</button>
+              <button class="filter-pill" onclick="filterCategory('expired', this)">Expired TA</button>
+              <button class="filter-pill" onclick="filterCategory('rebate', this)">Rebates</button>
+              <button class="filter-pill" onclick="filterCategory('usage', this)">Overstock</button>
               <button class="filter-pill" onclick="filterCategory('uom', this)">UOM Keying</button>
             </div>
             <input type="text" id="searchInput" class="search-input" placeholder="Search unit, item, vendor..." oninput="filterSearch()">
           </div>
 
-          <div class="table-wrapper">
+          <div class="table-wrapper scroll-y">
             <table id="exceptions-table">
               <thead>
                 <tr>
@@ -132,7 +153,6 @@
                 </tr>
               </thead>
               <tbody id="exceptions-tbody">
-                <!-- Dynamically populated or rendered -->
               </tbody>
             </table>
           </div>
@@ -144,7 +164,7 @@
         <div class="card" id="evidence-panel">
           <div class="card-title">Evidence &amp; Price Benchmark</div>
           <div id="evidence-content">
-            <!-- Rendered by JS -->
+            <p class="page-desc">Loading scan results…</p>
           </div>
         </div>
       </div>
@@ -154,181 +174,57 @@
   <div id="toast" class="toast">Action updated successfully</div>
 
   <script>
-    const exceptions = [
-      {
-        id: "EXP-01",
-        unit: "U21",
-        region: "Jakarta",
-        type: "price",
-        issue: "Price above TA",
-        badgeClass: "badge-rose",
-        item: "Drug-Eluting Stent (Kenari)",
-        vendor: "PT Kenari Distribusi",
-        poNumber: "PO-U21-2609-011482",
-        poLine: 2,
-        poDate: "16 Sep 2026",
-        amount: "Rp 40.8M",
-        amountRaw: 40800000,
-        status: "pending",
-        finding: "PO price Rp 20,890,000 vs trade agreement Rp 16,810,000 (+24.3%) × 10 pcs",
-        trendNote: "All 14 other units bought at agreed TA price (Rp 16.81M). U21 has no prior violation in 12 weeks.",
-        rootCause: "Trade agreement update from July was omitted from U21 unit master in D365, causing purchase to pull list price.",
-        suggestedAction: "Confirm finding and dispatch PO revision request to Unit 21 Purchasing."
-      },
-      {
-        id: "EXP-02",
-        unit: "U30",
-        region: "Nusa Tenggara",
-        type: "price",
-        issue: "Price above TA",
-        badgeClass: "badge-rose",
-        item: "Drug-Eluting Stent (Kenari)",
-        vendor: "PT Kenari Distribusi",
-        poNumber: "PO-U30-2609-008912",
-        poLine: 1,
-        poDate: "15 Sep 2026",
-        amount: "Rp 35.5M",
-        amountRaw: 35500000,
-        status: "pending",
-        finding: "PO price Rp 20,900,000 vs trade agreement Rp 16,810,000 (+24.3%) × 8 pcs",
-        trendNote: "Identical pattern to U21. Confirms systemic D365 vendor agreement sync failure for peripheral units.",
-        rootCause: "D365 mapping omission for remote units. Same vendor and catalog schedule.",
-        suggestedAction: "Confirm finding for revision and notify Group IT for batch D365 sync."
-      },
-      {
-        id: "EXP-03",
-        unit: "U36",
-        region: "Bali",
-        type: "price",
-        issue: "Price above TA",
-        badgeClass: "badge-rose",
-        item: "Albumin 20% 100ml (Indra)",
-        vendor: "PT Indra Medika",
-        poNumber: "PO-U36-2609-004410",
-        poLine: 4,
-        poDate: "17 Sep 2026",
-        amount: "Rp 22.7M",
-        amountRaw: 22700000,
-        status: "pending",
-        finding: "PO price Rp 2,350,000 vs trade agreement Rp 1,820,000 (+29.1%) × 40 bottles",
-        trendNote: "Second time in 6 weeks for Unit 36. Local buyer manual price override detected.",
-        rootCause: "Local buyer accepted vendor spot quote despite active binding master agreement.",
-        suggestedAction: "Dispatch revision request to U36 Purchasing Lead with contractual price schedule attached."
-      },
-      {
-        id: "EXP-04",
-        unit: "U08",
-        region: "Central Java",
-        type: "formulary",
-        issue: "Non-formulary",
-        badgeClass: "badge-amber",
-        item: "PTCA Balloon (Lombok)",
-        vendor: "PT Lombok Medika",
-        poNumber: "PO-U08-2609-006721",
-        poLine: 1,
-        poDate: "16 Sep 2026",
-        amount: "Rp 18.1M",
-        amountRaw: 18100000,
-        status: "pending",
-        finding: "Purchased off-formulary Lombok PTCA Balloon when Kenari formulary equivalent had 45 units in stock.",
-        trendNote: "Unit had 45 formulary units in central storage at time of order.",
-        rootCause: "Clinician preference override without clinical justification log.",
-        suggestedAction: "Route to Pharmacy Director for clinician review."
-      },
-      {
-        id: "EXP-05",
-        unit: "U14",
-        region: "Sumatra",
-        type: "bpjs",
-        issue: "BPJS non-formulary",
-        badgeClass: "badge-amber",
-        item: "Meropenem Inj 1g (Garuda)",
-        vendor: "PT Garuda Medika",
-        poNumber: "PO-U14-2609-002194",
-        poLine: 3,
-        poDate: "15 Sep 2026",
-        amount: "Rp 9.4M",
-        amountRaw: 9400000,
-        status: "pending",
-        finding: "Brand prescribed for BPJS cohort is outside national insurance formulary schedule.",
-        trendNote: "Carries 100% claim rejection risk upon BPJS verification audit.",
-        rootCause: "Generic BPJS SKU was available; non-formulary brand keyed during night shift.",
-        suggestedAction: "Confirm and alert Pharmacy Lead to substitute before goods administration."
-      },
-      {
-        id: "EXP-06",
-        unit: "U27",
-        region: "East Java",
-        type: "uom",
-        issue: "UOM mismatch",
-        badgeClass: "badge-slate",
-        item: "IV Catheter 20G (Borneo)",
-        vendor: "PT Borneo Medika",
-        poNumber: "PO-U27-2609-001099",
-        poLine: 2,
-        poDate: "14 Sep 2026",
-        amount: "Rp 6.2M",
-        amountRaw: 6200000,
-        status: "false_positive",
-        finding: "Unit of measure entered as BOX (50 pcs) but priced at individual unit rate.",
-        trendNote: "ERP price formula division discrepancy. Vendor invoice is expected to match unit price.",
-        rootCause: "Typographical keying error in UOM field by local clerk.",
-        suggestedAction: "Mark as false positive; notify clerk for UOM field correction in ERP."
-      },
-      {
-        id: "EXP-07",
-        unit: "U18",
-        region: "Kalimantan",
-        type: "price",
-        issue: "Price above TA",
-        badgeClass: "badge-rose",
-        item: "Cefotaxime 1g Inj (Indra)",
-        vendor: "PT Indra Medika",
-        poNumber: "PO-U18-2609-005118",
-        poLine: 1,
-        poDate: "17 Sep 2026",
-        amount: "Rp 5.4M",
-        amountRaw: 5400000,
-        status: "pending",
-        finding: "Unit billed at Rp 48,000 vs contracted group price Rp 41,500 (+15.6%).",
-        trendNote: "Contract renewal took effect 1 Sep; vendor invoiced previous pre-renewal tier.",
-        rootCause: "Vendor billing system lag.",
-        suggestedAction: "Request credit note / revised PO from unit."
-      },
-      {
-        id: "EXP-08",
-        unit: "U05",
-        region: "Yogyakarta",
-        type: "formulary",
-        issue: "Non-formulary",
-        badgeClass: "badge-amber",
-        item: "Disposable Syringe 5ml (Delta)",
-        vendor: "PT Delta Medika",
-        poNumber: "PO-U05-2609-003882",
-        poLine: 5,
-        poDate: "16 Sep 2026",
-        amount: "Rp 4.1M",
-        amountRaw: 4100000,
-        status: "pending",
-        finding: "Purchased non-contract syringe brand at 22% premium over group tier vendor.",
-        trendNote: "Group supplier had 10,000 units in central warehouse with 2-day delivery.",
-        rootCause: "Local spot purchase during minor stock reorder cycle.",
-        suggestedAction: "Route inquiry to Unit Purchasing."
-      }
-    ];
-
-    let selectedId = "EXP-01";
+    let exceptions = [];
+    let selectedId = null;
     let currentCategory = "all";
     let searchQuery = "";
+
+    async function loadScan() {
+      try {
+        const [data, kpis, settings] = await Promise.all([
+          fetchJSON('/api/exceptions'),
+          fetchJSON('/api/kpis'),
+          fetchJSON('/api/settings')
+        ]);
+        exceptions = data.items;
+        if (!exceptions.some(e => e.id === selectedId)) selectedId = exceptions[0]?.id ?? null;
+        hydrateSummary(kpis, settings);
+        renderTable();
+      } catch (err) {
+        renderError('evidence-content', err);
+      }
+    }
+
+    function hydrateSummary(kpis, settings) {
+      setText('brand-subtitle', `Automated weekly scan · ${kpis.weekId} · as of ${kpis.asOf} · ${kpis.unitCount} hospital units`);
+      setText('header-status', `${kpis.pendingCount} pending review`);
+      setText('sum-lines', `${kpis.linesScanned} lines`);
+      setText('sum-exceptions', `${kpis.exceptionCount} findings`);
+      setText('sum-stake', kpis.valueAtStake);
+      setText('sum-savings', kpis.potentialSavings);
+      setText('sum-high', `${kpis.highSeverityCount} findings`);
+      setText('sum-pending', `${kpis.pendingCount} findings`);
+      setText('sum-dismissed', `${kpis.dismissedCount} findings`);
+      setPendingBadge(kpis.pendingCount);
+
+      setText('tl-ingest', `${kpis.linesScanned} PO lines ingested and evaluated against trade agreements, formulary and BPJS coverage.`);
+      setText('tl-benchmark', `${kpis.exceptionCount} findings raised across ${kpis.unitsAffected} units · ${kpis.highSeverityCount} high severity.`);
+      setText('tl-review', `${kpis.pendingCount} findings await analyst confirmation before any unit is notified.`);
+      setText('tl-dispatch', `${kpis.approvedCount} confirmed · revision requests drafted with a ${settings.slaDays}-day SLA.`);
+
+      setText('mode-badge', settings.mode);
+      const recoverable = exceptions.filter(e => e.status === 'pending' && e.savingsRaw > 0).length;
+      document.getElementById('batch-btn').textContent = `Approve all recoverable (${recoverable})`;
+    }
 
     function renderTable() {
       const tbody = document.getElementById("exceptions-tbody");
       tbody.innerHTML = "";
 
+      const q = searchQuery.toLowerCase();
       const filtered = exceptions.filter(item => {
         const matchesCat = currentCategory === "all" || item.type === currentCategory;
-        const q = searchQuery.toLowerCase();
-        const matchesSearch = !q || 
+        const matchesSearch = !q ||
           item.unit.toLowerCase().includes(q) ||
           item.region.toLowerCase().includes(q) ||
           item.item.toLowerCase().includes(q) ||
@@ -337,7 +233,8 @@
         return matchesCat && matchesSearch;
       });
 
-      document.getElementById("queue-count").textContent = `Showing ${filtered.length} exceptions`;
+      document.getElementById("queue-count").textContent =
+        `Showing ${filtered.length} of ${exceptions.length} findings`;
 
       filtered.forEach(item => {
         const tr = document.createElement("tr");
@@ -347,17 +244,16 @@
           if (e.target.tagName !== 'BUTTON') {
             selectedId = item.id;
             renderTable();
-            renderEvidence();
           }
         };
 
         const statusHtml = item.status === "approved"
-          ? `<span class="badge badge-emerald">Approved</span>`
+          ? `<span class="badge badge-emerald">${item.closedAt ? 'Closed' : 'Confirmed'}</span>`
           : item.status === "false_positive"
-          ? `<span class="badge badge-slate">False Positive</span>`
+          ? `<span class="badge badge-slate">Dismissed</span>`
           : `<div style="display:flex;gap:4px;">
-               <button class="btn btn-primary btn-sm" onclick="approveItem('${item.id}', event)">Approve</button>
-               <button class="btn btn-secondary btn-sm" onclick="rejectItem('${item.id}', event)">Dismiss</button>
+               <button class="btn btn-primary btn-sm" onclick="decide('${item.id}', 'approved', event)">Confirm</button>
+               <button class="btn btn-secondary btn-sm" onclick="decide('${item.id}', 'false_positive', event)">Dismiss</button>
              </div>`;
 
         tr.innerHTML = `
@@ -374,6 +270,7 @@
           </td>
           <td class="num">
             <b style="color:${item.amountRaw > 10000000 ? 'var(--rose-text)' : 'inherit'};">${item.amount}</b>
+            <div style="font-size:11px;color:var(--text-muted);">${item.savingsRaw > 0 ? item.savings + ' recoverable' : 'no recovery'}</div>
           </td>
           <td>
             ${statusHtml}
@@ -393,16 +290,45 @@
         return;
       }
 
+      const bars = item.evidenceBars
+        ? `<div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:11px;font-weight:600;width:75px;">${item.unit} (This PO)</span>
+              <div class="bar-container" style="flex:1;"><div class="bar-fill rose" style="width:${item.evidenceBars.actualPct}%;"></div></div>
+              <span style="font-size:11.5px;font-weight:700;color:var(--rose-text);width:45px;text-align:right;">Paid</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:11px;color:var(--text-muted);width:75px;">Agreed</span>
+              <div class="bar-container" style="flex:1;"><div class="bar-fill emerald" style="width:${item.evidenceBars.targetPct}%;"></div></div>
+              <span style="font-size:11.5px;font-weight:600;color:var(--emerald-text);width:45px;text-align:right;">Target</span>
+            </div>`
+        : '';
+
+      const actions = item.status === 'pending'
+        ? `<div style="margin-top:16px;display:flex;gap:8px;">
+             <button class="btn btn-primary" style="flex:1;" onclick="decide('${item.id}', 'approved', event)">Confirm &amp; draft request</button>
+             <button class="btn btn-secondary" onclick="decide('${item.id}', 'false_positive', event)">Dismiss</button>
+           </div>`
+        : item.status === 'approved' && !item.closedAt
+        ? `<div style="margin-top:16px;">
+             <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Human gate · validate what was actually banked</div>
+             <div style="display:flex;gap:8px;">
+               <input type="number" id="achieved-input" class="search-input" style="flex:1;" placeholder="Achieved savings (Rp)" value="${item.savingsRaw}">
+               <button class="btn btn-success" onclick="closeException('${item.id}')">Verify closure</button>
+             </div>
+           </div>`
+        : `<div style="margin-top:16px;" class="badge badge-emerald">Closed · ${item.achievedSavingsRaw !== null ? 'verified ' + item.achievedSavingsRaw.toLocaleString('en-US') : ''}</div>`;
+
       panel.innerHTML = `
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
           <div>
             <span class="badge ${item.badgeClass}">${item.issue}</span>
             <div style="font-size:15px;font-weight:700;margin-top:6px;">${item.item}</div>
-            <div style="font-size:12px;color:var(--text-muted);">${item.unit} (${item.region}) · ${item.poNumber} (Line ${item.poLine})</div>
+            <div style="font-size:12px;color:var(--text-muted);">${item.unit} (${item.region}) · ${item.poNumber}${item.poLine ? ' (Line ' + item.poLine + ')' : ''}</div>
           </div>
           <div style="text-align:right;">
             <div style="font-size:11px;color:var(--text-muted);">At Stake</div>
             <div style="font-size:18px;font-weight:700;color:var(--rose-text);">${item.amount}</div>
+            <div style="font-size:11px;color:var(--emerald-text);font-weight:600;">${item.savingsRaw > 0 ? item.savings + ' recoverable' : 'exposure only'}</div>
           </div>
         </div>
 
@@ -414,19 +340,10 @@
             ${item.finding}
           </dd>
 
-          <dt>Cross-Unit Benchmark (Last 90 Days)</dt>
+          <dt>Cross-Unit Benchmark</dt>
           <dd>
             <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">${item.trendNote}</div>
-            <div style="display:flex;align-items:center;gap:6px;">
-              <span style="font-size:11px;font-weight:600;width:75px;">${item.unit} (This PO)</span>
-              <div class="bar-container" style="flex:1;"><div class="bar-fill rose" style="width:95%;"></div></div>
-              <span style="font-size:11.5px;font-weight:700;color:var(--rose-text);width:45px;text-align:right;">High</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px;">
-              <span style="font-size:11px;color:var(--text-muted);width:75px;">Group Agree</span>
-              <div class="bar-container" style="flex:1;"><div class="bar-fill emerald" style="width:75%;"></div></div>
-              <span style="font-size:11.5px;font-weight:600;color:var(--emerald-text);width:45px;text-align:right;">Target</span>
-            </div>
+            ${bars}
           </dd>
 
           <dt>Root Cause Analysis</dt>
@@ -436,54 +353,88 @@
           <dd style="line-height:1.45;font-size:12.5px;font-weight:500;color:var(--primary);">${item.suggestedAction}</dd>
         </dl>
 
-        <div style="margin-top:16px;display:flex;gap:8px;">
-          <button class="btn btn-primary" style="flex:1;" onclick="approveItem('${item.id}', event)">Confirm &amp; Send Request</button>
-          <button class="btn btn-secondary" onclick="rejectItem('${item.id}', event)">Mark False Positive</button>
-        </div>
+        ${actions}
+        <div id="request-preview"></div>
       `;
+
+      if (item.status === 'approved') showRequest(item.id);
     }
 
-    function approveItem(id, e) {
-      if (e) e.stopPropagation();
-      const item = exceptions.find(x => x.id === id);
-      if (item) {
-        item.status = "approved";
-        updateBadge();
-        renderTable();
-        showToast(`Approved ${item.item} (${item.unit}) — revision dispatched`);
+    async function showRequest(id) {
+      try {
+        const request = await fetchJSON(`/api/exceptions/${id}/request`);
+        const target = document.getElementById('request-preview');
+        if (!target) return;
+        target.innerHTML = `
+          <hr style="border:none;border-top:1px solid var(--border-light);margin:14px 0 10px;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);font-weight:700;margin-bottom:6px;">
+            Drafted revision request · ${request.status}
+          </div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:6px;">${request.subject}</div>
+          <div style="background:var(--bg-subtle);border:1px solid var(--border-light);border-radius:6px;padding:10px;font-size:11.5px;line-height:1.5;white-space:pre-wrap;max-height:260px;overflow:auto;">${request.body.replace(/</g, '&lt;')}</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Due ${request.dueDateDisplay} · ${request.channel}</div>
+        `;
+      } catch (err) {
+        renderError('request-preview', err);
       }
     }
 
-    function rejectItem(id, e) {
-      if (e) e.stopPropagation();
-      const item = exceptions.find(x => x.id === id);
-      if (item) {
-        item.status = "false_positive";
-        updateBadge();
-        renderTable();
-        showToast(`Marked ${item.unit} item as false positive`);
+    async function decide(id, decision, event) {
+      if (event) event.stopPropagation();
+      try {
+        const result = await fetchJSON(`/api/exceptions/${id}/decision`, {
+          method: 'POST',
+          body: { decision, actor: 'Nicole Celia Wangga' }
+        });
+        selectedId = id;
+        await loadScan();
+        showToast(decision === 'approved'
+          ? `Confirmed ${result.exception.item} (${result.exception.unit}) — revision request drafted`
+          : `Dismissed ${result.exception.item} (${result.exception.unit}) as a false positive`);
+      } catch (err) {
+        showToast(`Could not record decision: ${err.message}`);
       }
     }
 
-    function batchApproveValid() {
-      let count = 0;
-      exceptions.forEach(item => {
-        if (item.status === "pending" && item.type !== "uom") {
-          item.status = "approved";
-          count++;
-        }
-      });
-      updateBadge();
-      renderTable();
-      showToast(`Batch approved ${count} exceptions successfully`);
+    async function batchApproveRecoverable() {
+      const ids = exceptions.filter(e => e.status === 'pending' && e.savingsRaw > 0).map(e => e.id);
+      if (!ids.length) return showToast('No recoverable findings are awaiting confirmation');
+      try {
+        const result = await fetchJSON('/api/exceptions/decisions', {
+          method: 'POST',
+          body: { ids, decision: 'approved', actor: 'Nicole Celia Wangga' }
+        });
+        await loadScan();
+        showToast(`Confirmed ${result.updated} findings — revision requests drafted`);
+      } catch (err) {
+        showToast(`Batch confirmation failed: ${err.message}`);
+      }
     }
 
-    function markAllFalsePositives() {
-      currentCategory = "uom";
-      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
-      const uomBtn = Array.from(document.querySelectorAll(".filter-pill")).find(el => el.textContent.includes("UOM"));
-      if (uomBtn) uomBtn.classList.add("active");
-      renderTable();
+    async function closeException(id) {
+      const input = document.getElementById('achieved-input');
+      const achievedSavingsRaw = Number(input?.value ?? 0);
+      try {
+        await fetchJSON(`/api/exceptions/${id}/close`, {
+          method: 'POST',
+          body: { achievedSavingsRaw, actor: 'Nicole Celia Wangga', note: 'Verified against revised PO' }
+        });
+        await loadScan();
+        showToast('Achieved savings verified and booked');
+      } catch (err) {
+        showToast(`Could not close: ${err.message}`);
+      }
+    }
+
+    async function rerunScan() {
+      showToast('Re-running weekly scan…');
+      try {
+        await fetchJSON('/api/run', { method: 'POST' });
+        await loadScan();
+        showToast('Scan complete');
+      } catch (err) {
+        showToast(`Scan failed: ${err.message}`);
+      }
     }
 
     function filterCategory(cat, el) {
@@ -498,20 +449,7 @@
       renderTable();
     }
 
-    function updateBadge() {
-      const pendingCount = exceptions.filter(e => e.status === "pending").length;
-      document.getElementById("pending-badge").textContent = pendingCount;
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 2500);
-    }
-
-    // Initialize
-    renderTable();
+    document.addEventListener('DOMContentLoaded', loadScan);
   </script>
 </body>
 </html>

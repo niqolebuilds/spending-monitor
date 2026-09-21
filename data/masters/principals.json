@@ -1,0 +1,90 @@
+[
+  {
+    "vendorId": "V-KEN",
+    "name": "PT Kenari Distribusi",
+    "category": "Cardiology Devices",
+    "rebatePct": 4.5,
+    "tier1TargetIDR": 3200000000,
+    "tier2TargetIDR": 4800000000
+  },
+  {
+    "vendorId": "V-IND",
+    "name": "PT Indra Medika",
+    "category": "Plasma Derivatives",
+    "rebatePct": 3.0,
+    "tier1TargetIDR": 2400000000,
+    "tier2TargetIDR": 3600000000
+  },
+  {
+    "vendorId": "V-GAR",
+    "name": "PT Garuda Medika",
+    "category": "Antibiotics",
+    "rebatePct": 2.5,
+    "tier1TargetIDR": 1800000000,
+    "tier2TargetIDR": 2700000000
+  },
+  {
+    "vendorId": "V-LOM",
+    "name": "PT Lombok Medika",
+    "category": "Orthopaedic Implants",
+    "rebatePct": 5.0,
+    "tier1TargetIDR": 2100000000,
+    "tier2TargetIDR": 3150000000
+  },
+  {
+    "vendorId": "V-BOR",
+    "name": "PT Borneo Medika",
+    "category": "Consumables",
+    "rebatePct": 2.0,
+    "tier1TargetIDR": 1500000000,
+    "tier2TargetIDR": 2250000000
+  },
+  {
+    "vendorId": "V-DEL",
+    "name": "PT Delta Medika",
+    "category": "Anaesthesia",
+    "rebatePct": 3.5,
+    "tier1TargetIDR": 1200000000,
+    "tier2TargetIDR": 1800000000
+  },
+  {
+    "vendorId": "V-CEN",
+    "name": "PT Cendana Farma",
+    "category": "Oncology",
+    "rebatePct": 6.0,
+    "tier1TargetIDR": 4000000000,
+    "tier2TargetIDR": 6000000000
+  },
+  {
+    "vendorId": "V-ORC",
+    "name": "PT Orchid Pharma",
+    "category": "Cardiovascular Drugs",
+    "rebatePct": 3.0,
+    "tier1TargetIDR": 1600000000,
+    "tier2TargetIDR": 2400000000
+  },
+  {
+    "vendorId": "V-JAT",
+    "name": "PT Jatayu Diagnostics",
+    "category": "Radiology Contrast",
+    "rebatePct": 2.5,
+    "tier1TargetIDR": 900000000,
+    "tier2TargetIDR": 1350000000
+  },
+  {
+    "vendorId": "V-MER",
+    "name": "PT Merbabu Renal",
+    "category": "Renal",
+    "rebatePct": 4.0,
+    "tier1TargetIDR": 1100000000,
+    "tier2TargetIDR": 1650000000
+  },
+  {
+    "vendorId": "V-SEM",
+    "name": "PT Semeru Surgical",
+    "category": "Surgical Consumables",
+    "rebatePct": 2.0,
+    "tier1TargetIDR": 800000000,
+    "tier2TargetIDR": 1200000000
+  }
+]

@@ -7,7 +7,10 @@
     "dev": "node server.js",
     "start": "node server.js",
     "build": "mkdir -p dist && cp -r public/* dist/",
-    "lint": "node --check server.js"
+    "data": "node scripts/generate-data.js",
+    "seed": "node scripts/seed-decisions.js",
+    "test": "node --test \"test/*.test.js\"",
+    "lint": "node --check server.js && node --test test/rules.contract.test.js"
   },
   "dependencies": {
     "express": "^4.21.2"

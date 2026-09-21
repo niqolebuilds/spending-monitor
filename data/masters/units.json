@@ -1,0 +1,248 @@
+[
+  {
+    "id": "U01",
+    "name": "Unit 01 · Jakarta",
+    "region": "Jakarta",
+    "beds": 96
+  },
+  {
+    "id": "U02",
+    "name": "Unit 02 · Jakarta",
+    "region": "Jakarta",
+    "beds": 149
+  },
+  {
+    "id": "U03",
+    "name": "Unit 03 · Jakarta",
+    "region": "Jakarta",
+    "beds": 304
+  },
+  {
+    "id": "U04",
+    "name": "Unit 04 · Banten",
+    "region": "Banten",
+    "beds": 91
+  },
+  {
+    "id": "U05",
+    "name": "Unit 05 · Banten",
+    "region": "Banten",
+    "beds": 226
+  },
+  {
+    "id": "U06",
+    "name": "Unit 06 · West Java",
+    "region": "West Java",
+    "beds": 180
+  },
+  {
+    "id": "U07",
+    "name": "Unit 07 · West Java",
+    "region": "West Java",
+    "beds": 329
+  },
+  {
+    "id": "U08",
+    "name": "Unit 08 · West Java",
+    "region": "West Java",
+    "beds": 80
+  },
+  {
+    "id": "U09",
+    "name": "Unit 09 · Central Java",
+    "region": "Central Java",
+    "beds": 243
+  },
+  {
+    "id": "U10",
+    "name": "Unit 10 · Central Java",
+    "region": "Central Java",
+    "beds": 118
+  },
+  {
+    "id": "U11",
+    "name": "Unit 11 · Central Java",
+    "region": "Central Java",
+    "beds": 86
+  },
+  {
+    "id": "U12",
+    "name": "Unit 12 · East Java",
+    "region": "East Java",
+    "beds": 402
+  },
+  {
+    "id": "U13",
+    "name": "Unit 13 · East Java",
+    "region": "East Java",
+    "beds": 191
+  },
+  {
+    "id": "U14",
+    "name": "Unit 14 · East Java",
+    "region": "East Java",
+    "beds": 128
+  },
+  {
+    "id": "U15",
+    "name": "Unit 15 · Yogyakarta",
+    "region": "Yogyakarta",
+    "beds": 404
+  },
+  {
+    "id": "U16",
+    "name": "Unit 16 · Bali",
+    "region": "Bali",
+    "beds": 235
+  },
+  {
+    "id": "U17",
+    "name": "Unit 17 · Bali",
+    "region": "Bali",
+    "beds": 272
+  },
+  {
+    "id": "U18",
+    "name": "Unit 18 · North Sumatra",
+    "region": "North Sumatra",
+    "beds": 284
+  },
+  {
+    "id": "U19",
+    "name": "Unit 19 · North Sumatra",
+    "region": "North Sumatra",
+    "beds": 205
+  },
+  {
+    "id": "U20",
+    "name": "Unit 20 · South Sumatra",
+    "region": "South Sumatra",
+    "beds": 104
+  },
+  {
+    "id": "U21",
+    "name": "Unit 21 · South Sumatra",
+    "region": "South Sumatra",
+    "beds": 345
+  },
+  {
+    "id": "U22",
+    "name": "Unit 22 · Riau",
+    "region": "Riau",
+    "beds": 189
+  },
+  {
+    "id": "U23",
+    "name": "Unit 23 · Lampung",
+    "region": "Lampung",
+    "beds": 98
+  },
+  {
+    "id": "U24",
+    "name": "Unit 24 · West Kalimantan",
+    "region": "West Kalimantan",
+    "beds": 147
+  },
+  {
+    "id": "U25",
+    "name": "Unit 25 · East Kalimantan",
+    "region": "East Kalimantan",
+    "beds": 325
+  },
+  {
+    "id": "U26",
+    "name": "Unit 26 · South Kalimantan",
+    "region": "South Kalimantan",
+    "beds": 250
+  },
+  {
+    "id": "U27",
+    "name": "Unit 27 · North Sulawesi",
+    "region": "North Sulawesi",
+    "beds": 363
+  },
+  {
+    "id": "U28",
+    "name": "Unit 28 · South Sulawesi",
+    "region": "South Sulawesi",
+    "beds": 411
+  },
+  {
+    "id": "U29",
+    "name": "Unit 29 · South Sulawesi",
+    "region": "South Sulawesi",
+    "beds": 140
+  },
+  {
+    "id": "U30",
+    "name": "Unit 30 · Central Sulawesi",
+    "region": "Central Sulawesi",
+    "beds": 230
+  },
+  {
+    "id": "U31",
+    "name": "Unit 31 · Nusa Tenggara",
+    "region": "Nusa Tenggara",
+    "beds": 373
+  },
+  {
+    "id": "U32",
+    "name": "Unit 32 · Nusa Tenggara",
+    "region": "Nusa Tenggara",
+    "beds": 135
+  },
+  {
+    "id": "U33",
+    "name": "Unit 33 · Papua",
+    "region": "Papua",
+    "beds": 261
+  },
+  {
+    "id": "U34",
+    "name": "Unit 34 · West Papua",
+    "region": "West Papua",
+    "beds": 106
+  },
+  {
+    "id": "U35",
+    "name": "Unit 35 · Maluku",
+    "region": "Maluku",
+    "beds": 394
+  },
+  {
+    "id": "U36",
+    "name": "Unit 36 · Aceh",
+    "region": "Aceh",
+    "beds": 105
+  },
+  {
+    "id": "U37",
+    "name": "Unit 37 · Jambi",
+    "region": "Jambi",
+    "beds": 152
+  },
+  {
+    "id": "U38",
+    "name": "Unit 38 · Bengkulu",
+    "region": "Bengkulu",
+    "beds": 108
+  },
+  {
+    "id": "U39",
+    "name": "Unit 39 · West Sumatra",
+    "region": "West Sumatra",
+    "beds": 155
+  },
+  {
+    "id": "U40",
+    "name": "Unit 40 · Gorontalo",
+    "region": "Gorontalo",
+    "beds": 412
+  },
+  {
+    "id": "U41",
+    "name": "Unit 41 · East Java",
+    "region": "East Java",
+    "beds": 301
+  }
+]

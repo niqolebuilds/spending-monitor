@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Rebates &amp; Principals · Spend Compliance Monitor</title>
-  <meta name="description" content="Group-level rebate tier tracking and principal price compliance monitor.">
-  <meta property="og:title" content="Rebates &amp; Principals · Spend Compliance Monitor">
-  <meta property="og:description" content="Group-level rebate tier tracking and principal price compliance monitor.">
+  <title>Rebates &amp; Principals · Spend Compliance &amp; Savings Monitor</title>
+  <meta name="description" content="Principal rebate tier tracking and vendor overpayment leverage for sourcing reviews.">
+  <meta property="og:title" content="Rebates &amp; Principals">
+  <meta property="og:description" content="Principal rebate tier tracking and vendor overpayment leverage for sourcing reviews.">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
 
@@ -17,11 +18,11 @@
       <div class="brand-icon">◆</div>
       <div>
         <div class="brand-title">Spend Compliance &amp; Savings Monitor</div>
-        <div class="brand-subtitle">Automated weekly scan · Week of 14–20 Sep 2026 · 41 Hospital Units</div>
+        <div class="brand-subtitle" id="brand-subtitle">Automated weekly scan</div>
       </div>
     </div>
     <div class="header-meta">
-      <span class="badge badge-indigo">15 Weeks Remaining</span>
+      <span class="badge badge-indigo" id="weeks-badge">–</span>
       <span class="user-badge">Sourcing &amp; Procurement Team</span>
     </div>
   </header>
@@ -29,7 +30,7 @@
   <!-- Simplified Navigation -->
   <nav class="app-nav">
     <a href="index.html" class="nav-item">Dashboard</a>
-    <a href="reviewer.html" class="nav-item">Review Workbench <span class="nav-badge">20</span></a>
+    <a href="reviewer.html" class="nav-item">Review Workbench <span class="nav-badge">–</span></a>
     <a href="unit-inbox.html" class="nav-item">Unit Inbox &amp; Scorecards</a>
     <a href="rebates.html" class="nav-item active">Rebates &amp; Principals</a>
   </nav>
@@ -41,7 +42,7 @@
         <p class="page-desc">Track volume thresholds across principal contracts to secure top rebate tiers and review supplier pricing discrepancies.</p>
       </div>
       <div>
-        <button class="btn btn-secondary" onclick="showToast('Exported Rebate Summary (Q3 2026)')">Export Sourcing Sheet</button>
+        <button class="btn btn-secondary" onclick="exportSheet()">Export Sourcing Sheet</button>
       </div>
     </div>
 
@@ -49,23 +50,23 @@
     <div class="kpi-grid">
       <div class="kpi-card primary">
         <div class="kpi-label">Principals with Rebate Schemes</div>
-        <div class="kpi-value">15</div>
-        <div class="kpi-sub">2026 programme year</div>
+        <div class="kpi-value" id="kpi-total">–</div>
+        <div class="kpi-sub" id="kpi-total-sub">2026 programme year</div>
       </div>
       <div class="kpi-card emerald">
-        <div class="kpi-label">On Track for Top Tier (Tier 2)</div>
-        <div class="kpi-value">2</div>
-        <div class="kpi-sub up">Indra, Kenari (max rebates)</div>
+        <div class="kpi-label">Top Tier Secured (Tier 2)</div>
+        <div class="kpi-value" id="kpi-top">–</div>
+        <div class="kpi-sub up" id="kpi-top-sub">&nbsp;</div>
       </div>
       <div class="kpi-card amber">
         <div class="kpi-label">Tier 2 Within Reach</div>
-        <div class="kpi-value">3</div>
-        <div class="kpi-sub">Garuda, Orchid, Jatayu</div>
+        <div class="kpi-value" id="kpi-reach">–</div>
+        <div class="kpi-sub" id="kpi-reach-sub">&nbsp;</div>
       </div>
       <div class="kpi-card rose">
-        <div class="kpi-label">Projected Below Tier 1</div>
-        <div class="kpi-value">6</div>
-        <div class="kpi-sub alert">Closest gap: Cendana (Rp 141M)</div>
+        <div class="kpi-label">Below Tier 1</div>
+        <div class="kpi-value" id="kpi-risk">–</div>
+        <div class="kpi-sub alert" id="kpi-risk-sub">&nbsp;</div>
       </div>
     </div>
 
@@ -76,16 +77,11 @@
         <div class="card">
           <div class="card-title">
             <span>Principal Rebate Tier Tracking</span>
-            <span style="font-size:12px;color:var(--text-muted);font-weight:normal;">15 Weeks in Year</span>
+            <span style="font-size:12px;color:var(--text-muted);font-weight:normal;" id="weeks-note">&nbsp;</span>
           </div>
 
           <div class="toolbar">
-            <div class="filter-group">
-              <button class="filter-pill active" onclick="filterTier('all', this)">All (11)</button>
-              <button class="filter-pill" onclick="filterTier('top', this)">Top Tier (2)</button>
-              <button class="filter-pill" onclick="filterTier('reach', this)">Within Reach (3)</button>
-              <button class="filter-pill" onclick="filterTier('risk', this)">At Risk (6)</button>
-            </div>
+            <div class="filter-group" id="tier-filters"></div>
           </div>
 
           <div class="table-wrapper">
@@ -93,168 +89,158 @@
               <thead>
                 <tr>
                   <th>Principal Vendor</th>
-                  <th>Projected Tier</th>
-                  <th>Current Status</th>
+                  <th>Current Tier</th>
+                  <th>Status</th>
                   <th class="num">Gap to Next Tier</th>
-                  <th>Recommended Sourcing Strategy</th>
+                  <th class="num">Rebate at Stake</th>
                 </tr>
               </thead>
-              <tbody id="rebates-tbody">
-                <!-- Populated via JS -->
-              </tbody>
+              <tbody id="rebates-tbody"></tbody>
             </table>
           </div>
+          <p style="font-size:11.5px;color:var(--text-muted);margin:10px 0 0;line-height:1.5;">
+            Tier counts are computed from the same rows shown in this table, so the headline figures and the
+            list can never disagree.
+          </p>
         </div>
       </div>
 
-      <!-- Right: Overpayments and QBR Prep -->
+      <!-- Right: Overpayments and sourcing strategy -->
       <div>
         <div class="card">
-          <div class="card-title">Repeat Vendor Overpayments (Last 12 Weeks)</div>
+          <div class="card-title">Vendor Overpayments This Week</div>
           <p style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">
-            Cumulative amounts invoiced above master agreement prices. Use as leverage in vendor business reviews.
+            Amounts invoiced above master agreement prices, by principal. Use as leverage in vendor business reviews.
           </p>
-
-          <div class="stat-row">
-            <div style="flex:1;">
-              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                <b>PT Kenari Distribusi · Stents</b>
-                <span style="font-weight:700;color:var(--rose-text);">Rp 212M</span>
-              </div>
-              <div class="bar-container"><div class="bar-fill rose" style="width:100%;"></div></div>
-              <div style="font-size:11.5px;color:var(--text-muted);margin-top:3px;">
-                Invoiced list price rather than contractual rate for peripheral hospital units.
-              </div>
-            </div>
-          </div>
-
-          <div class="stat-row">
-            <div style="flex:1;">
-              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                <b>PT Indra Medika · Albumin</b>
-                <span style="font-weight:700;color:var(--rose-text);">Rp 101M</span>
-              </div>
-              <div class="bar-container"><div class="bar-fill rose" style="width:48%;"></div></div>
-              <div style="font-size:11.5px;color:var(--text-muted);margin-top:3px;">
-                Local buyer quote override during temporary packaging shortage.
-              </div>
-            </div>
-          </div>
-
-          <div class="stat-row">
-            <div style="flex:1;">
-              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                <b>PT Lombok Medika · PTCA Balloon</b>
-                <span style="font-weight:700;color:var(--amber-text);">Rp 70M</span>
-              </div>
-              <div class="bar-container"><div class="bar-fill amber" style="width:33%;"></div></div>
-              <div style="font-size:11.5px;color:var(--text-muted);margin-top:3px;">
-                Non-formulary catalog billing without contract rate.
-              </div>
-            </div>
-          </div>
-
-          <div class="stat-row">
-            <div style="flex:1;">
-              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                <b>PT Garuda Medika · Meropenem</b>
-                <span style="font-weight:700;color:var(--text-main);">Rp 44M</span>
-              </div>
-              <div class="bar-container"><div class="bar-fill blue" style="width:21%;"></div></div>
-              <div style="font-size:11.5px;color:var(--text-muted);margin-top:3px;">
-                Invoiced under expired contract rate prior to scheduled renewal.
-              </div>
-            </div>
-          </div>
+          <div id="overpayments"></div>
         </div>
 
         <div class="card">
-          <div class="card-title">Quarterly Sourcing Action Plan</div>
-          <div class="stat-row">
-            <div>
-              <b>Volume Steering to Garuda &amp; Orchid</b>
-              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
-                Only Rp 22M and Rp 42M needed over 15 weeks to unlock Tier 2 (+2.5% retrospective rebate).
-              </div>
-            </div>
-            <span class="badge badge-emerald">High ROI</span>
-          </div>
-          <div class="stat-row">
-            <div>
-              <b>Renegotiate Baseline for Flores &amp; Lombok</b>
-              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
-                Over Rp 1.2B shortfall; volume catch-up is impossible without lowering baseline targets in QBR.
-              </div>
-            </div>
-            <span class="badge badge-amber">QBR Item</span>
-          </div>
-          <div class="stat-row">
-            <div>
-              <b>Credit Note Reconciliation for Kenari</b>
-              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
-                Rp 212M overpayment invoice package assembled for Sourcing team reconciliation.
-              </div>
-            </div>
-            <span class="badge badge-rose">Credit Due</span>
-          </div>
+          <div class="card-title">Recommended Sourcing Strategy</div>
+          <div id="strategy"></div>
         </div>
       </div>
     </div>
   </main>
 
-  <div id="toast" class="toast">Notice</div>
+  <div id="toast" class="toast"></div>
 
   <script>
-    const principals = [
-      { name: "PT Indra Medika", tier: "Tier 2", tierClass: "badge-emerald", status: "On track for top tier", category: "top", gap: "—", weekly: "—", move: "Maintain steady purchasing volume" },
-      { name: "PT Kenari Medika", tier: "Tier 2", tierClass: "badge-emerald", status: "On track for top tier", category: "top", gap: "—", weekly: "—", move: "Maintain steady purchasing volume" },
-      { name: "PT Garuda Medika", tier: "Tier 1", tierClass: "badge-indigo", status: "Tier 2 within reach", category: "reach", gap: "Rp 22M", weekly: "Rp 1.5M / wk", move: "Shift 5% volume from off-contract substitutes" },
-      { name: "PT Orchid Medika", tier: "Tier 1", tierClass: "badge-indigo", status: "Tier 2 within reach", category: "reach", gap: "Rp 42M", weekly: "Rp 2.8M / wk", move: "Shift formulary volume from non-contract brands" },
-      { name: "PT Jatayu Medika", tier: "Tier 1", tierClass: "badge-indigo", status: "Tier 1 secured", category: "reach", gap: "Rp 214M", weekly: "Rp 14.5M / wk", move: "Consolidate regional catheter purchases" },
-      { name: "PT Cendana Medika", tier: "Tier 0", tierClass: "badge-rose", status: "At risk: below tier 1", category: "risk", gap: "Rp 141M", weekly: "Rp 9.5M / wk", move: "Shift eligible generic antibiotics volume" },
-      { name: "PT Aurora Medika", tier: "Tier 0", tierClass: "badge-rose", status: "At risk: below tier 1", category: "risk", gap: "Rp 402M", weekly: "Rp 27.2M / wk", move: "Renegotiate contract baseline at QBR" },
-      { name: "PT Delta Medika", tier: "Tier 0", tierClass: "badge-rose", status: "At risk: below tier 1", category: "risk", gap: "Rp 648M", weekly: "Rp 43.8M / wk", move: "Renegotiate contract baseline at QBR" },
-      { name: "PT Merapi Medika", tier: "Tier 0", tierClass: "badge-rose", status: "At risk: below tier 1", category: "risk", gap: "Rp 888M", weekly: "Rp 60.0M / wk", move: "Renegotiate baseline at QBR" },
-      { name: "PT Lombok Medika", tier: "Tier 0", tierClass: "badge-rose", status: "At risk: below tier 1", category: "risk", gap: "Rp 1,133M", weekly: "Rp 76.6M / wk", move: "Restructure tiered targets" },
-      { name: "PT Flores Medika", tier: "Tier 0", tierClass: "badge-rose", status: "At risk: below tier 1", category: "risk", gap: "Rp 1,215M", weekly: "Rp 82.1M / wk", move: "Restructure tiered targets" }
-    ];
+    let summary = null;
+    let currentTier = 'all';
 
-    let currentFilter = "all";
-
-    function renderTable() {
-      const tbody = document.getElementById("rebates-tbody");
-      tbody.innerHTML = "";
-
-      const filtered = principals.filter(p => currentFilter === "all" || p.category === currentFilter);
-
-      filtered.forEach(p => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td><b>${p.name}</b></td>
-          <td><span class="badge ${p.tierClass}">${p.tier}</span></td>
-          <td><span style="font-size:12px;color:var(--text-muted);">${p.status}</span></td>
-          <td class="num"><b style="color:${p.gap !== '—' ? 'var(--rose-text)' : 'inherit'};">${p.gap}</b></td>
-          <td style="font-size:12px;">${p.move}</td>
-        `;
-        tbody.appendChild(tr);
-      });
+    async function init() {
+      try {
+        const [kpis, rebates, { items }] = await Promise.all([
+          fetchJSON('/api/kpis'),
+          fetchJSON('/api/rebates'),
+          fetchJSON('/api/exceptions')
+        ]);
+        summary = rebates;
+        setText('brand-subtitle', `Automated weekly scan · ${kpis.weekId} · as of ${kpis.asOf} · ${kpis.unitCount} hospital units`);
+        setText('weeks-badge', `${rebates.weeksRemaining} weeks remaining`);
+        setText('weeks-note', `${rebates.weeksRemaining} weeks left in programme year`);
+        renderKpis(rebates);
+        renderFilters(rebates);
+        renderTable();
+        renderOverpayments(items);
+        renderStrategy(rebates);
+      } catch (err) {
+        renderError('rebates-tbody', err);
+      }
     }
 
-    function filterTier(cat, btn) {
-      currentFilter = cat;
-      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
-      btn.classList.add("active");
+    function nameList(principals, category) {
+      return principals.filter(p => p.category === category).map(p => p.name.replace('PT ', '')).join(', ') || '—';
+    }
+
+    function renderKpis(r) {
+      setText('kpi-total', r.counts.total);
+      setText('kpi-total-sub', `${r.atStake} of rebate at stake group-wide`);
+      setText('kpi-top', r.counts.top);
+      setText('kpi-top-sub', nameList(r.principals, 'top'));
+      setText('kpi-reach', r.counts.reach);
+      setText('kpi-reach-sub', nameList(r.principals, 'reach'));
+      setText('kpi-risk', r.counts.risk);
+      setText('kpi-risk-sub', r.closestGap ? `Closest gap: ${r.closestGap.name.replace('PT ', '')} (${r.closestGap.gap})` : 'No open gaps');
+    }
+
+    function renderFilters(r) {
+      const groups = [
+        ['all', 'All', r.counts.total],
+        ['top', 'Top Tier', r.counts.top],
+        ['reach', 'Within Reach', r.counts.reach],
+        ['risk', 'At Risk', r.counts.risk]
+      ];
+      document.getElementById('tier-filters').innerHTML = groups.map(([key, label, count], i) =>
+        `<button class="filter-pill${i === 0 ? ' active' : ''}" onclick="filterTier('${key}', this)">${label} (${count})</button>`
+      ).join('');
+    }
+
+    function renderTable() {
+      const rows = summary.principals.filter(p => currentTier === 'all' || p.category === currentTier);
+      document.getElementById('rebates-tbody').innerHTML = rows.map(p => `
+        <tr>
+          <td>
+            <b>${p.name}</b>
+            <div style="font-size:11.5px;color:var(--text-muted);">${p.ytdPurchase} YTD</div>
+          </td>
+          <td><span class="badge ${p.tierClass}">${p.tier}</span></td>
+          <td style="font-size:12px;">${p.status}</td>
+          <td class="num" style="${p.gapRaw ? 'color:var(--rose-text);font-weight:700;' : 'color:var(--text-muted);'}">${p.gap}</td>
+          <td class="num"><b>${p.rebateAtStake}</b></td>
+        </tr>
+      `).join('') || `<tr><td colspan="5" style="color:var(--text-muted);">No principals in this band.</td></tr>`;
+    }
+
+    function filterTier(category, btn) {
+      currentTier = category;
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
       renderTable();
     }
 
-    function showToast(msg) {
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 2500);
+    function renderOverpayments(items) {
+      const byVendor = new Map();
+      for (const e of items) {
+        if (e.status === 'false_positive') continue;
+        if (e.type !== 'price' && e.type !== 'expired') continue;
+        byVendor.set(e.vendor, (byVendor.get(e.vendor) ?? 0) + e.savingsRaw);
+      }
+      const rows = [...byVendor.entries()].filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+      const max = rows[0]?.[1] ?? 1;
+
+      document.getElementById('overpayments').innerHTML = rows.length
+        ? rows.map(([vendor, value]) => `
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+                <span style="font-weight:600;font-size:13px;">${vendor}</span>
+                <span style="font-weight:700;color:var(--rose-text);">Rp ${(value / 1e6).toFixed(1)}M</span>
+              </div>
+              <div class="bar-container"><div class="bar-fill rose" style="width:${Math.round((value / max) * 100)}%;"></div></div>
+            </div>`).join('')
+        : `<p style="font-size:12px;color:var(--text-muted);margin:0;">No price overpayments flagged against any principal this week.</p>`;
     }
 
-    renderTable();
+    function renderStrategy(r) {
+      const actionable = r.principals.filter(p => p.exceptionId).slice(0, 5);
+      document.getElementById('strategy').innerHTML = actionable.length
+        ? actionable.map(p => `
+            <div class="stat-row">
+              <div>
+                <b>${p.name}</b>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">${p.move}</div>
+              </div>
+              <span class="badge ${p.tierClass}">${p.rebateAtStake}</span>
+            </div>`).join('')
+        : `<p style="font-size:12px;color:var(--text-muted);margin:0;">Every principal has secured its top tier.</p>`;
+    }
+
+    function exportSheet() {
+      showToast(`Exported ${summary.counts.total} principals · ${summary.atStake} at stake`);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>

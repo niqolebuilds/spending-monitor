@@ -1,0 +1,56 @@
+[
+  { "sku": "SKU-1001", "name": "Drug-Eluting Stent 2.75x18mm", "category": "Cardiology Devices", "vendorId": "V-KEN", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 16810000 },
+  { "sku": "SKU-1002", "name": "Drug-Eluting Stent 3.0x23mm", "category": "Cardiology Devices", "vendorId": "V-KEN", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 17450000 },
+  { "sku": "SKU-1003", "name": "Bare-Metal Stent 3.0x20mm", "category": "Cardiology Devices", "vendorId": "V-KEN", "uom": "pcs", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-1002", "referencePrice": 9200000 },
+  { "sku": "SKU-1004", "name": "PTCA Balloon Catheter 2.5mm", "category": "Cardiology Devices", "vendorId": "V-KEN", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 3150000 },
+  { "sku": "SKU-1005", "name": "Guidewire Hydrophilic 0.014in", "category": "Cardiology Devices", "vendorId": "V-KEN", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": true, "equivalentSku": "SKU-1004", "referencePrice": 1240000 },
+
+  { "sku": "SKU-2001", "name": "Albumin 20% 100ml", "category": "Plasma Derivatives", "vendorId": "V-IND", "uom": "btl", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 1820000 },
+  { "sku": "SKU-2002", "name": "Albumin 25% 50ml", "category": "Plasma Derivatives", "vendorId": "V-IND", "uom": "btl", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-2001", "referencePrice": 1460000 },
+  { "sku": "SKU-2003", "name": "Immunoglobulin IV 5g", "category": "Plasma Derivatives", "vendorId": "V-IND", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 4850000 },
+  { "sku": "SKU-2004", "name": "Factor VIII Concentrate 500IU", "category": "Plasma Derivatives", "vendorId": "V-IND", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": false, "locked": false, "equivalentSku": null, "referencePrice": 2940000 },
+
+  { "sku": "SKU-3001", "name": "Meropenem 1g Injection", "category": "Antibiotics", "vendorId": "V-GAR", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 168000 },
+  { "sku": "SKU-3002", "name": "Ceftriaxone 1g Injection", "category": "Antibiotics", "vendorId": "V-GAR", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 42000 },
+  { "sku": "SKU-3003", "name": "Linezolid 600mg Infusion", "category": "Antibiotics", "vendorId": "V-GAR", "uom": "bag", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-3001", "referencePrice": 385000 },
+  { "sku": "SKU-3004", "name": "Vancomycin 500mg Injection", "category": "Antibiotics", "vendorId": "V-GAR", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 96000 },
+  { "sku": "SKU-3005", "name": "Colistin 2MIU Injection", "category": "Antibiotics", "vendorId": "V-GAR", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": false, "locked": true, "equivalentSku": "SKU-3004", "referencePrice": 310000 },
+
+  { "sku": "SKU-4001", "name": "Total Knee Implant System", "category": "Orthopaedic Implants", "vendorId": "V-LOM", "uom": "set", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 28400000 },
+  { "sku": "SKU-4002", "name": "Titanium Bone Plate 8-hole", "category": "Orthopaedic Implants", "vendorId": "V-LOM", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 2180000 },
+  { "sku": "SKU-4003", "name": "Cortical Screw 3.5mm", "category": "Orthopaedic Implants", "vendorId": "V-LOM", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 186000 },
+  { "sku": "SKU-4004", "name": "Bipolar Hip Prosthesis", "category": "Orthopaedic Implants", "vendorId": "V-LOM", "uom": "set", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-4001", "referencePrice": 19600000 },
+
+  { "sku": "SKU-5001", "name": "Surgical Gloves Sterile 7.5", "category": "Consumables", "vendorId": "V-BOR", "uom": "pair", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 13090 },
+  { "sku": "SKU-5002", "name": "IV Cannula 20G", "category": "Consumables", "vendorId": "V-BOR", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 8400 },
+  { "sku": "SKU-5003", "name": "Infusion Set Macro Drip", "category": "Consumables", "vendorId": "V-BOR", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 11200 },
+  { "sku": "SKU-5004", "name": "Nitrile Examination Gloves M", "category": "Consumables", "vendorId": "V-BOR", "uom": "box", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 92000 },
+  { "sku": "SKU-5005", "name": "Latex Examination Gloves M", "category": "Consumables", "vendorId": "V-BOR", "uom": "box", "formularyStatus": "non-formulary", "bpjsCovered": true, "locked": false, "equivalentSku": "SKU-5004", "referencePrice": 78000 },
+
+  { "sku": "SKU-6001", "name": "Sevoflurane 250ml", "category": "Anaesthesia", "vendorId": "V-DEL", "uom": "btl", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 1640000 },
+  { "sku": "SKU-6002", "name": "Propofol 1% 20ml", "category": "Anaesthesia", "vendorId": "V-DEL", "uom": "amp", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 64000 },
+  { "sku": "SKU-6003", "name": "Desflurane 240ml", "category": "Anaesthesia", "vendorId": "V-DEL", "uom": "btl", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-6001", "referencePrice": 2380000 },
+  { "sku": "SKU-6004", "name": "Rocuronium 50mg/5ml", "category": "Anaesthesia", "vendorId": "V-DEL", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 118000 },
+
+  { "sku": "SKU-7001", "name": "Trastuzumab 440mg", "category": "Oncology", "vendorId": "V-CEN", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 21400000 },
+  { "sku": "SKU-7002", "name": "Bevacizumab 100mg", "category": "Oncology", "vendorId": "V-CEN", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 5960000 },
+  { "sku": "SKU-7003", "name": "Pembrolizumab 100mg", "category": "Oncology", "vendorId": "V-CEN", "uom": "vial", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-7002", "referencePrice": 42800000 },
+  { "sku": "SKU-7004", "name": "Paclitaxel 100mg", "category": "Oncology", "vendorId": "V-CEN", "uom": "vial", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 840000 },
+
+  { "sku": "SKU-8001", "name": "Atorvastatin 20mg", "category": "Cardiovascular Drugs", "vendorId": "V-ORC", "uom": "tab", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 2400 },
+  { "sku": "SKU-8002", "name": "Clopidogrel 75mg", "category": "Cardiovascular Drugs", "vendorId": "V-ORC", "uom": "tab", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 3850 },
+  { "sku": "SKU-8003", "name": "Ticagrelor 90mg", "category": "Cardiovascular Drugs", "vendorId": "V-ORC", "uom": "tab", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-8002", "referencePrice": 14600 },
+  { "sku": "SKU-8004", "name": "Enoxaparin 0.4ml", "category": "Cardiovascular Drugs", "vendorId": "V-ORC", "uom": "syr", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 96500 },
+
+  { "sku": "SKU-9001", "name": "Iohexol 350mg/ml 100ml", "category": "Radiology Contrast", "vendorId": "V-JAT", "uom": "btl", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 410000 },
+  { "sku": "SKU-9002", "name": "Gadobutrol 7.5ml", "category": "Radiology Contrast", "vendorId": "V-JAT", "uom": "syr", "formularyStatus": "formulary", "bpjsCovered": false, "locked": false, "equivalentSku": null, "referencePrice": 1280000 },
+  { "sku": "SKU-9003", "name": "Iodixanol 320mg/ml 100ml", "category": "Radiology Contrast", "vendorId": "V-JAT", "uom": "btl", "formularyStatus": "non-formulary", "bpjsCovered": false, "locked": false, "equivalentSku": "SKU-9001", "referencePrice": 620000 },
+
+  { "sku": "SKU-A001", "name": "Haemodialysis Dialyser High-Flux", "category": "Renal", "vendorId": "V-MER", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 248000 },
+  { "sku": "SKU-A002", "name": "Bicarbonate Dialysate 5L", "category": "Renal", "vendorId": "V-MER", "uom": "can", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 74000 },
+  { "sku": "SKU-A003", "name": "CRRT Filter Set", "category": "Renal", "vendorId": "V-MER", "uom": "set", "formularyStatus": "formulary", "bpjsCovered": false, "locked": true, "equivalentSku": "SKU-A001", "referencePrice": 3420000 },
+
+  { "sku": "SKU-B001", "name": "Polypropylene Mesh 15x15cm", "category": "Surgical Consumables", "vendorId": "V-SEM", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 1120000 },
+  { "sku": "SKU-B002", "name": "Absorbable Suture 3-0", "category": "Surgical Consumables", "vendorId": "V-SEM", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 48000 },
+  { "sku": "SKU-B003", "name": "Linear Stapler 60mm", "category": "Surgical Consumables", "vendorId": "V-SEM", "uom": "pcs", "formularyStatus": "formulary", "bpjsCovered": true, "locked": false, "equivalentSku": null, "referencePrice": 2640000 }
+]

@@ -344,6 +344,12 @@ a:hover {
   overflow-x: auto;
 }
 
+/* Long result sets scroll inside the card instead of stretching the page. */
+.table-wrapper.scroll-y {
+  overflow-y: auto;
+  max-height: 68vh;
+}
+
 table {
   width: 100%;
   border-collapse: separate;

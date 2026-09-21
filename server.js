@@ -1,20 +1,26 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createApiRouter } from './src/api.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ?? 3000;
 
 const publicDir = path.join(__dirname, 'public');
+
+app.use(express.json());
 
 // Serve static assets with automatic .html extension resolution
 app.use(express.static(publicDir, { extensions: ['html'] }));
 
 // Also support paths prefixed with /spend-monitor-site
 app.use('/spend-monitor-site', express.static(publicDir, { extensions: ['html'] }));
+
+// Must precede the SPA fallback, which would otherwise answer /api with HTML.
+app.use('/api', createApiRouter());
 
 // SPA fallback to index.html
 app.get('*', (req, res) => {

@@ -1,0 +1,398 @@
+[
+  {
+    "agreementNo": "TA-2026-0001",
+    "vendorId": "V-KEN",
+    "sku": "SKU-1001",
+    "contractPrice": 16810000,
+    "toleranceIDR": 84050,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0002",
+    "vendorId": "V-KEN",
+    "sku": "SKU-1002",
+    "contractPrice": 17450000,
+    "toleranceIDR": 87250,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0003",
+    "vendorId": "V-KEN",
+    "sku": "SKU-1003",
+    "contractPrice": 9200000,
+    "toleranceIDR": 46000,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0004",
+    "vendorId": "V-KEN",
+    "sku": "SKU-1004",
+    "contractPrice": 3150000,
+    "toleranceIDR": 15750,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-08-31"
+  },
+  {
+    "agreementNo": "TA-2026-0005",
+    "vendorId": "V-KEN",
+    "sku": "SKU-1005",
+    "contractPrice": 1240000,
+    "toleranceIDR": 6200,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0006",
+    "vendorId": "V-IND",
+    "sku": "SKU-2001",
+    "contractPrice": 1820000,
+    "toleranceIDR": 9100,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0007",
+    "vendorId": "V-IND",
+    "sku": "SKU-2002",
+    "contractPrice": 1460000,
+    "toleranceIDR": 7300,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0008",
+    "vendorId": "V-IND",
+    "sku": "SKU-2003",
+    "contractPrice": 4850000,
+    "toleranceIDR": 24250,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0009",
+    "vendorId": "V-IND",
+    "sku": "SKU-2004",
+    "contractPrice": 2940000,
+    "toleranceIDR": 14700,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0010",
+    "vendorId": "V-GAR",
+    "sku": "SKU-3001",
+    "contractPrice": 168000,
+    "toleranceIDR": 840,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0011",
+    "vendorId": "V-GAR",
+    "sku": "SKU-3002",
+    "contractPrice": 42000,
+    "toleranceIDR": 500,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0012",
+    "vendorId": "V-GAR",
+    "sku": "SKU-3003",
+    "contractPrice": 385000,
+    "toleranceIDR": 1925,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0013",
+    "vendorId": "V-GAR",
+    "sku": "SKU-3004",
+    "contractPrice": 96000,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0014",
+    "vendorId": "V-GAR",
+    "sku": "SKU-3005",
+    "contractPrice": 310000,
+    "toleranceIDR": 1550,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0015",
+    "vendorId": "V-LOM",
+    "sku": "SKU-4001",
+    "contractPrice": 28400000,
+    "toleranceIDR": 142000,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0016",
+    "vendorId": "V-LOM",
+    "sku": "SKU-4002",
+    "contractPrice": 2180000,
+    "toleranceIDR": 10900,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0017",
+    "vendorId": "V-LOM",
+    "sku": "SKU-4003",
+    "contractPrice": 186000,
+    "toleranceIDR": 930,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0018",
+    "vendorId": "V-LOM",
+    "sku": "SKU-4004",
+    "contractPrice": 19600000,
+    "toleranceIDR": 98000,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0019",
+    "vendorId": "V-BOR",
+    "sku": "SKU-5001",
+    "contractPrice": 13090,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0020",
+    "vendorId": "V-BOR",
+    "sku": "SKU-5002",
+    "contractPrice": 8400,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0021",
+    "vendorId": "V-BOR",
+    "sku": "SKU-5003",
+    "contractPrice": 11200,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0022",
+    "vendorId": "V-BOR",
+    "sku": "SKU-5004",
+    "contractPrice": 92000,
+    "toleranceIDR": 500,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0023",
+    "vendorId": "V-BOR",
+    "sku": "SKU-5005",
+    "contractPrice": 78000,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0024",
+    "vendorId": "V-DEL",
+    "sku": "SKU-6001",
+    "contractPrice": 1640000,
+    "toleranceIDR": 8200,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0025",
+    "vendorId": "V-DEL",
+    "sku": "SKU-6002",
+    "contractPrice": 64000,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0026",
+    "vendorId": "V-DEL",
+    "sku": "SKU-6003",
+    "contractPrice": 2380000,
+    "toleranceIDR": 11900,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0027",
+    "vendorId": "V-DEL",
+    "sku": "SKU-6004",
+    "contractPrice": 118000,
+    "toleranceIDR": 590,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0028",
+    "vendorId": "V-CEN",
+    "sku": "SKU-7001",
+    "contractPrice": 21400000,
+    "toleranceIDR": 107000,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0029",
+    "vendorId": "V-CEN",
+    "sku": "SKU-7002",
+    "contractPrice": 5960000,
+    "toleranceIDR": 29800,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0030",
+    "vendorId": "V-CEN",
+    "sku": "SKU-7003",
+    "contractPrice": 42800000,
+    "toleranceIDR": 214000,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0031",
+    "vendorId": "V-CEN",
+    "sku": "SKU-7004",
+    "contractPrice": 840000,
+    "toleranceIDR": 4200,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0032",
+    "vendorId": "V-ORC",
+    "sku": "SKU-8001",
+    "contractPrice": 2400,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0033",
+    "vendorId": "V-ORC",
+    "sku": "SKU-8002",
+    "contractPrice": 3850,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0034",
+    "vendorId": "V-ORC",
+    "sku": "SKU-8003",
+    "contractPrice": 14600,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0035",
+    "vendorId": "V-ORC",
+    "sku": "SKU-8004",
+    "contractPrice": 96500,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0036",
+    "vendorId": "V-JAT",
+    "sku": "SKU-9001",
+    "contractPrice": 410000,
+    "toleranceIDR": 2050,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0037",
+    "vendorId": "V-JAT",
+    "sku": "SKU-9002",
+    "contractPrice": 1280000,
+    "toleranceIDR": 6400,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0038",
+    "vendorId": "V-JAT",
+    "sku": "SKU-9003",
+    "contractPrice": 620000,
+    "toleranceIDR": 3100,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0039",
+    "vendorId": "V-MER",
+    "sku": "SKU-A001",
+    "contractPrice": 248000,
+    "toleranceIDR": 1240,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0040",
+    "vendorId": "V-MER",
+    "sku": "SKU-A002",
+    "contractPrice": 74000,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0041",
+    "vendorId": "V-MER",
+    "sku": "SKU-A003",
+    "contractPrice": 3420000,
+    "toleranceIDR": 17100,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0042",
+    "vendorId": "V-SEM",
+    "sku": "SKU-B001",
+    "contractPrice": 1120000,
+    "toleranceIDR": 5600,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0043",
+    "vendorId": "V-SEM",
+    "sku": "SKU-B002",
+    "contractPrice": 48000,
+    "toleranceIDR": 500,
+    "validFrom": "2026-01-01",
+    "validTo": "2026-12-31"
+  },
+  {
+    "agreementNo": "TA-2026-0044",
+    "vendorId": "V-SEM",
+    "sku": "SKU-B003",
+    "contractPrice": 2640000,
+    "toleranceIDR": 13200,
+    "validFrom": "2026-07-01",
+    "validTo": "2026-12-31"
+  }
+]

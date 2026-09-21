@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Unit Inbox &amp; Scorecards · Spend Compliance Monitor</title>
-  <meta name="description" content="Unit-level compliance scorecard and PO revision requests inbox.">
-  <meta property="og:title" content="Unit Inbox &amp; Scorecards · Spend Compliance Monitor">
-  <meta property="og:description" content="Unit-level compliance scorecard and PO revision requests inbox.">
+  <title>Unit Inbox &amp; Scorecards · Spend Compliance &amp; Savings Monitor</title>
+  <meta name="description" content="Unit view of open PO revision requests and weekly compliance scorecards.">
+  <meta property="og:title" content="Unit Inbox &amp; Scorecards">
+  <meta property="og:description" content="Unit view of open PO revision requests and weekly compliance scorecards.">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
 
@@ -17,11 +18,11 @@
       <div class="brand-icon">◆</div>
       <div>
         <div class="brand-title">Spend Compliance &amp; Savings Monitor</div>
-        <div class="brand-subtitle">Automated weekly scan · Week of 14–20 Sep 2026 · 41 Hospital Units</div>
+        <div class="brand-subtitle" id="brand-subtitle">Automated weekly scan</div>
       </div>
     </div>
     <div class="header-meta">
-      <span class="badge badge-amber" id="unit-badge">3 Open Requests</span>
+      <span class="badge badge-amber" id="unit-badge">–</span>
       <span class="user-badge">Unit View: Purchasing &amp; Pharmacy Team</span>
     </div>
   </header>
@@ -29,7 +30,7 @@
   <!-- Simplified Navigation -->
   <nav class="app-nav">
     <a href="index.html" class="nav-item">Dashboard</a>
-    <a href="reviewer.html" class="nav-item">Review Workbench <span class="nav-badge">20</span></a>
+    <a href="reviewer.html" class="nav-item">Review Workbench <span class="nav-badge">–</span></a>
     <a href="unit-inbox.html" class="nav-item active">Unit Inbox &amp; Scorecards</a>
     <a href="rebates.html" class="nav-item">Rebates &amp; Principals</a>
   </nav>
@@ -42,13 +43,7 @@
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
         <label for="unitSelect" style="font-size:12.5px;font-weight:600;color:var(--text-muted);">Switch Unit:</label>
-        <select id="unitSelect" class="search-input" style="min-width:180px;padding:6px 10px;" onchange="changeUnit()">
-          <option value="U21" selected>Unit 21 · Jakarta</option>
-          <option value="U30">Unit 30 · Nusa Tenggara</option>
-          <option value="U36">Unit 36 · Bali</option>
-          <option value="U08">Unit 08 · Central Java</option>
-          <option value="U07">Unit 07 · Central Java (Rank 1)</option>
-        </select>
+        <select id="unitSelect" class="search-input" style="min-width:220px;padding:6px 10px;" onchange="changeUnit()"></select>
       </div>
     </div>
 
@@ -58,233 +53,217 @@
       <div>
         <div class="card" id="scorecard-card">
           <div class="card-title">Unit Performance Scorecard</div>
-          <div style="font-size:12px;color:var(--text-muted);">12-Week Rolling PO Compliance</div>
+          <div style="font-size:12px;color:var(--text-muted);" id="unit-name">&nbsp;</div>
           <div style="display:flex;align-items:baseline;gap:8px;margin:6px 0;">
-            <div class="kpi-value" style="font-size:32px;color:var(--primary);" id="unit-compliance">94.1%</div>
-            <span class="badge badge-emerald">Ranked 14 of 41</span>
+            <div class="kpi-value" style="font-size:32px;color:var(--primary);" id="unit-compliance">–</div>
+            <span class="badge badge-emerald" id="unit-rank">–</span>
           </div>
-          <div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">
-            Group Median: 92.3% · <span style="color:var(--emerald-text);font-weight:500;">↑ from 88.0% in June</span>
-          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;" id="unit-vs-group">&nbsp;</div>
 
-          <!-- Progress visualization -->
           <div class="bar-container" style="height:10px;margin-bottom:16px;">
-            <div class="bar-fill emerald" id="unit-bar" style="width:94.1%;"></div>
+            <div class="bar-fill emerald" id="unit-bar" style="width:0%;"></div>
           </div>
 
           <div class="stat-row">
-            <span>Savings Achieved YTD</span>
-            <b style="color:var(--emerald-text);" id="unit-savings">Rp 186.4M</b>
+            <span>PO Lines Scanned</span>
+            <b id="unit-lines">–</b>
+          </div>
+          <div class="stat-row">
+            <span>Findings This Week</span>
+            <b id="unit-findings">–</b>
+          </div>
+          <div class="stat-row">
+            <span>Recoverable Savings</span>
+            <b style="color:var(--emerald-text);" id="unit-savings">–</b>
           </div>
           <div class="stat-row">
             <span>Requests Answered</span>
-            <b id="unit-answered">41 of 44 (93%)</b>
+            <b id="unit-answered">–</b>
           </div>
           <div class="stat-row">
             <span>Average Reply Time</span>
-            <b id="unit-reply">2.8 days</b>
-          </div>
-          <div class="stat-row">
-            <span>Formulary Clean Streak</span>
-            <b style="color:var(--emerald-text);">12 weeks in a row</b>
+            <b id="unit-reply">–</b>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-title">Recently Closed Savings</div>
-          <div class="stat-row">
-            <div>
-              <div style="font-weight:600;">Albumin 20% 100ml</div>
-              <div style="font-size:11.5px;color:var(--text-muted);">Revised to group TA price in D365</div>
-            </div>
-            <span class="badge badge-emerald">+Rp 8.1M</span>
-          </div>
-          <div class="stat-row">
-            <div>
-              <div style="font-weight:600;">Suture Synthetic</div>
-              <div style="font-size:11.5px;color:var(--text-muted);">Substituted to formulary brand</div>
-            </div>
-            <span class="badge badge-emerald">+Rp 3.4M</span>
-          </div>
-          <div class="stat-row">
-            <div>
-              <div style="font-weight:600;">Guide Wire 0.035</div>
-              <div style="font-size:11.5px;color:var(--text-muted);">Stock-out justification approved</div>
-            </div>
-            <span class="badge badge-slate">Justified</span>
-          </div>
+          <div class="card-title">Verified Closures</div>
+          <div id="unit-closures"></div>
         </div>
       </div>
 
       <!-- Right Column: Open Requests & Actions -->
       <div>
-        <div class="alert-banner" style="margin-bottom:16px;">
+        <div class="alert-banner" id="inbox-banner" style="margin-bottom:16px;">
           <div class="alert-banner-content">
-            <span class="badge badge-amber">Reply Due: Fri 25 Sep</span>
+            <span class="badge badge-amber" id="inbox-due">–</span>
             <div>
-              <div class="alert-banner-title">Action Required on 3 PO Lines from Week 38</div>
+              <div class="alert-banner-title" id="inbox-title">&nbsp;</div>
               <div class="alert-banner-sub">Please revise the PO in D365 or provide clinical/operational justification. Justified exceptions do not penalize your unit.</div>
             </div>
           </div>
         </div>
 
-        <!-- Request 1 -->
-        <div class="card" id="req-1" style="border-left:4px solid var(--rose-bar);">
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-            <div>
-              <div style="display:flex;align-items:center;gap:6px;">
-                <span class="badge badge-rose">Price Above Agreement</span>
-                <span style="font-size:15px;font-weight:700;">Drug-Eluting Stent (Kenari)</span>
-              </div>
-              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
-                PO-U21-2609-011482 · Line 2 · 10 pcs · PT Kenari Distribusi
-              </div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:11px;color:var(--text-muted);">Variance</div>
-              <div style="font-size:17px;font-weight:700;color:var(--rose-text);">Rp 40.8M</div>
-            </div>
-          </div>
-
-          <p style="font-size:13px;line-height:1.5;color:var(--text-main);background:var(--bg-subtle);padding:10px 12px;border-radius:6px;">
-            Billed at <b>Rp 20,890,000</b> per piece vs group contract price <b>Rp 16,810,000</b> (+24.3%).
-            All 14 other hospital units buying this item paid the agreement price this month.
-          </p>
-
-          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-primary btn-sm" onclick="respondRequest('req-1', 'PO revised to Rp 16.81M in D365')">Mark as Revised in D365</button>
-            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-1', 'Submitted justification: emergency spot order')">Submit Clinical Justification</button>
-            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-1', 'Flagged to Head Office: goods already received & invoiced')">Goods Already Received</button>
-          </div>
-        </div>
-
-        <!-- Request 2 -->
-        <div class="card" id="req-2" style="border-left:4px solid var(--amber-bar);">
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-            <div>
-              <div style="display:flex;align-items:center;gap:6px;">
-                <span class="badge badge-amber">Price Above Agreement</span>
-                <span style="font-size:15px;font-weight:700;">Infusion Set Adult (Aurora)</span>
-              </div>
-              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
-                PO-U21-2609-011507 · 400 pcs · PT Aurora Medika
-              </div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:11px;color:var(--text-muted);">Variance</div>
-              <div style="font-size:17px;font-weight:700;color:var(--amber-text);">Rp 1.2M</div>
-            </div>
-          </div>
-
-          <p style="font-size:13px;line-height:1.5;color:var(--text-main);background:var(--bg-subtle);padding:10px 12px;border-radius:6px;">
-            Billed at <b>Rp 16,100</b> vs group agreement <b>Rp 13,090</b> (+23.0%).
-          </p>
-
-          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn btn-primary btn-sm" onclick="respondRequest('req-2', 'PO revised in D365')">Mark as Revised in D365</button>
-            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-2', 'Submitted justification: urgent weekend requirement')">Submit Justification</button>
-          </div>
-        </div>
-
-        <!-- Request 3 -->
-        <div class="card" id="req-3" style="border-left:4px solid var(--primary);">
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-            <div>
-              <div style="display:flex;align-items:center;gap:6px;">
-                <span class="badge badge-indigo">Informational Notice</span>
-                <span style="font-size:15px;font-weight:700;">Ceftriaxone Inj 1g (Garuda)</span>
-              </div>
-              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
-                Contract renewal in progress · Head Office lead
-              </div>
-            </div>
-            <div style="text-align:right;">
-              <span class="badge badge-slate">No Action Needed</span>
-            </div>
-          </div>
-
-          <p style="font-size:13px;line-height:1.5;color:var(--text-main);background:var(--bg-subtle);padding:10px 12px;border-radius:6px;">
-            The previous trade agreement expired 30 June and this PO defaulted to catalog list price. Head Office Procurement is actively renewing terms. No revision needed from unit.
-          </p>
-
-          <div style="margin-top:12px;display:flex;gap:8px;">
-            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-3', 'Notice acknowledged')">Acknowledge Notice</button>
-          </div>
-        </div>
-
-        <!-- Clarification Card -->
-        <div class="card">
-          <div class="card-title">Direct Inquiry to Head Office Sourcing</div>
-          <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:10px;">
-            Need help or disagree with a finding? Submit an inquiry directly to the Head Office review analyst.
-          </p>
-          <div style="display:flex;gap:8px;">
-            <input type="text" id="inquiryInput" class="search-input" style="flex:1;" placeholder="Ask about an exception, vendor discrepancy, or formulary status...">
-            <button class="btn btn-primary" onclick="sendInquiry()">Send Inquiry</button>
-          </div>
-        </div>
+        <div id="requests"></div>
       </div>
     </div>
   </main>
 
-  <div id="toast" class="toast">Action updated</div>
+  <div id="toast" class="toast"></div>
 
   <script>
-    const unitData = {
-      "U21": { name: "Unit 21 · Jakarta", compliance: "94.1%", rank: "Ranked 14 of 41", savings: "Rp 186.4M", answered: "41 of 44 (93%)", reply: "2.8 days", requests: 3 },
-      "U30": { name: "Unit 30 · Nusa Tenggara", compliance: "84.3%", rank: "Ranked 39 of 41", savings: "Rp 38.2M", answered: "28 of 39 (72%)", reply: "7.9 days", requests: 4 },
-      "U36": { name: "Unit 36 · Bali", compliance: "91.8%", rank: "Ranked 22 of 41", savings: "Rp 112.0M", answered: "38 of 42 (90%)", reply: "3.5 days", requests: 2 },
-      "U08": { name: "Unit 08 · Central Java", compliance: "95.6%", rank: "Ranked 8 of 41", savings: "Rp 144.5M", answered: "45 of 46 (98%)", reply: "1.9 days", requests: 1 },
-      "U07": { name: "Unit 07 · Central Java (Rank 1)", compliance: "98.2%", rank: "Ranked 1 of 41", savings: "Rp 94.0M", answered: "40 of 40 (100%)", reply: "1.2 days", requests: 0 }
+    let units = [];
+    let current = null;
+
+    const BORDER = {
+      price: 'var(--rose-bar)', expired: 'var(--rose-bar)', formulary: 'var(--amber-bar)',
+      bpjs: 'var(--amber-bar)', usage: 'var(--amber-bar)', uom: 'var(--border-focus)', rebate: 'var(--primary)'
     };
 
-    function changeUnit() {
-      const select = document.getElementById("unitSelect");
-      const unit = unitData[select.value];
-      if (unit) {
-        document.getElementById("unit-compliance").textContent = unit.compliance;
-        document.getElementById("unit-bar").style.width = unit.compliance;
-        document.getElementById("unit-savings").textContent = unit.savings;
-        document.getElementById("unit-answered").textContent = unit.answered;
-        document.getElementById("unit-reply").textContent = unit.reply;
-        document.getElementById("unit-badge").textContent = `${unit.requests} Open Requests`;
-        showToast(`Loaded scorecard for ${unit.name}`);
+    async function init() {
+      try {
+        const [kpis, list] = await Promise.all([fetchJSON('/api/kpis'), fetchJSON('/api/units')]);
+        units = list.units;
+        setText('brand-subtitle', `Automated weekly scan · ${kpis.weekId} · as of ${kpis.asOf} · ${kpis.unitCount} hospital units`);
+
+        const select = document.getElementById('unitSelect');
+        select.innerHTML = units.map(u =>
+          `<option value="${u.unit}">${u.name} — #${u.rank} of ${u.rankOf}</option>`).join('');
+
+        const requested = new URLSearchParams(location.search).get('unit');
+        const busiest = [...units].sort((a, b) => b.exceptionCount - a.exceptionCount)[0];
+        const initial = units.find(u => u.unit === requested) ?? busiest ?? units[0];
+        select.value = initial.unit;
+        await changeUnit();
+      } catch (err) {
+        renderError('requests', err);
       }
     }
 
-    function respondRequest(cardId, actionMsg) {
-      const card = document.getElementById(cardId);
-      if (card) {
-        card.style.opacity = "0.7";
-        card.style.borderLeftColor = "var(--emerald-bar)";
-        const btns = card.querySelectorAll("button");
-        btns.forEach(b => b.disabled = true);
-        
-        const note = document.createElement("div");
-        note.style.marginTop = "10px";
-        note.style.color = "var(--emerald-text)";
-        note.style.fontWeight = "600";
-        note.style.fontSize = "12px";
-        note.textContent = `✓ Response recorded: ${actionMsg}`;
-        card.appendChild(note);
-
-        showToast(actionMsg);
+    async function changeUnit() {
+      const unitId = document.getElementById('unitSelect').value;
+      try {
+        current = await fetchJSON(`/api/units/${unitId}`);
+        renderScorecard(current);
+        renderRequests(current);
+      } catch (err) {
+        renderError('requests', err);
       }
     }
 
-    function sendInquiry() {
-      const input = document.getElementById("inquiryInput");
-      if (!input.value.trim()) return;
-      showToast(`Inquiry dispatched to Head Office Finance: "${input.value}"`);
-      input.value = "";
+    function renderScorecard(u) {
+      setText('unit-name', `${u.name} · 12-week rolling PO compliance`);
+      setText('unit-compliance', `${u.compliancePct}%`);
+      setText('unit-rank', `Ranked ${u.rank} of ${u.rankOf}`);
+      setText('unit-vs-group', `Group median: ${u.groupCompliancePct}%`);
+
+      const bar = document.getElementById('unit-bar');
+      bar.style.width = `${u.compliancePct}%`;
+      bar.className = `bar-fill ${u.barClass}`;
+
+      setText('unit-lines', `${u.linesScanned} lines`);
+      setText('unit-findings', `${u.exceptionCount} flagged`);
+      setText('unit-savings', u.savings);
+      setText('unit-answered', `${u.requestsAnswered} of ${u.requestsSent} (${u.answeredPct}%)`);
+      setText('unit-reply', `${u.avgReplyDays} days`);
+      setText('unit-badge', `${u.exceptions.filter(e => e.status === 'approved' && !e.closedAt).length} open requests`);
+
+      const closures = u.exceptions.filter(e => e.closedAt);
+      document.getElementById('unit-closures').innerHTML = closures.length
+        ? closures.map(e => `
+            <div class="stat-row">
+              <div>
+                <div style="font-weight:600;">${e.item}</div>
+                <div style="font-size:11.5px;color:var(--text-muted);">${e.issue} · verified by ${e.decidedBy ?? 'HO Finance'}</div>
+              </div>
+              <span class="badge badge-emerald">+${(e.achievedSavingsRaw ?? 0).toLocaleString('en-US')}</span>
+            </div>`).join('')
+        : `<p style="font-size:12px;color:var(--text-muted);margin:0;">Nothing verified as banked for this unit yet. Closures appear here once Head Office Finance signs off the achieved savings.</p>`;
     }
 
-    function showToast(msg) {
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 2500);
+    function renderRequests(u) {
+      // Only confirmed findings have been dispatched; pending ones are still with HO.
+      const dispatched = u.exceptions.filter(e => e.status === 'approved');
+      const open = dispatched.filter(e => !e.response && !e.closedAt);
+      const due = u.requests.find(r => dispatched.some(e => e.id === r.exceptionId));
+
+      setText('inbox-due', due ? `Reply due: ${due.dueDateDisplay}` : 'No open deadline');
+      setText('inbox-title', dispatched.length
+        ? `Action required on ${open.length} of ${dispatched.length} dispatched request${dispatched.length === 1 ? '' : 's'}`
+        : 'No requests dispatched to this unit yet');
+
+      const banner = document.getElementById('inbox-banner');
+      banner.style.display = dispatched.length ? '' : 'none';
+
+      const pending = u.exceptions.filter(e => e.status === 'pending');
+      const requestById = new Map(u.requests.map(r => [r.exceptionId, r]));
+
+      const cards = dispatched.map(e => {
+        const request = requestById.get(e.id);
+        const answered = e.response || e.closedAt;
+        return `
+          <div class="card" id="card-${e.id}" style="border-left:4px solid ${answered ? 'var(--emerald-bar)' : (BORDER[e.type] ?? 'var(--border-focus)')};${answered ? 'opacity:.72;' : ''}">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+              <div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <span class="badge ${e.badgeClass}">${e.issue}</span>
+                  <span style="font-size:15px;font-weight:700;">${e.item}</span>
+                </div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
+                  ${e.poNumber}${e.poLine ? ' · Line ' + e.poLine : ''} · ${e.vendor}
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:11px;color:var(--text-muted);">${e.savingsRaw > 0 ? 'Recoverable' : 'At stake'}</div>
+                <div style="font-size:17px;font-weight:700;color:var(--rose-text);">${e.savingsRaw > 0 ? e.savings : e.amount}</div>
+              </div>
+            </div>
+
+            <p style="font-size:13px;line-height:1.5;color:var(--text-main);background:var(--bg-subtle);padding:10px 12px;border-radius:6px;">
+              ${e.finding}
+            </p>
+            <p style="font-size:12px;line-height:1.5;color:var(--text-muted);margin:8px 0 0;">${e.suggestedAction}</p>
+            ${request ? `<div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Request ${request.id} · to ${request.to} · due ${request.dueDateDisplay}</div>` : ''}
+
+            ${answered
+              ? `<div style="margin-top:12px;font-size:12px;font-weight:600;color:var(--emerald-text);">✓ ${e.closedAt ? 'Closed and verified by Head Office' : 'Response recorded: ' + e.response.action}</div>`
+              : `<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+                   <button class="btn btn-primary btn-sm" onclick="respond('${e.id}', 'PO revised in D365')">Mark as revised in D365</button>
+                   <button class="btn btn-secondary btn-sm" onclick="respond('${e.id}', 'Clinical justification submitted')">Submit clinical justification</button>
+                   <button class="btn btn-secondary btn-sm" onclick="respond('${e.id}', 'Goods already received and invoiced')">Goods already received</button>
+                 </div>`}
+          </div>`;
+      }).join('');
+
+      const pendingNote = pending.length
+        ? `<div class="card" style="border-left:4px solid var(--border-focus);">
+             <div class="card-title">Still with Head Office</div>
+             <p style="font-size:12.5px;color:var(--text-muted);line-height:1.5;margin:0;">
+               ${pending.length} further finding${pending.length === 1 ? ' for this unit is' : 's for this unit are'} awaiting
+               analyst confirmation and ${pending.length === 1 ? 'has' : 'have'} not been dispatched.
+               Nothing reaches your inbox until a person confirms it.
+             </p>
+           </div>`
+        : '';
+
+      document.getElementById('requests').innerHTML = (cards || '') + pendingNote
+        || `<div class="card"><p style="font-size:12.5px;color:var(--text-muted);margin:0;">No findings for this unit this week.</p></div>`;
     }
+
+    async function respond(id, action) {
+      try {
+        await fetchJSON(`/api/exceptions/${id}/respond`, {
+          method: 'POST',
+          body: { action, actor: `${current.unit} Purchasing` }
+        });
+        await changeUnit();
+        showToast(action);
+      } catch (err) {
+        showToast(`Could not record response: ${err.message}`);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
