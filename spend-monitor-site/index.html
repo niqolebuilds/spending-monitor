@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Spend Monitor · Overview</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="styles.css"></head><body>
+
+<nav><a class="brand" href="index.html">◆ Spend Monitor</a><a href="index.html" class="on">Overview</a><a href="reviewer.html">A · Reviewer workbench</a><a href="unit-inbox.html">B · Unit inbox</a><a href="leadership.html">C · Leadership digest</a><a href="governance.html">D · Governance console</a><a href="assistant.html">E · Assistant</a><a href="rebates.html">F · Rebates</a></nav>
+
+<div class="hero"><h1>Spend Compliance &amp; Savings Monitor</h1>
+<p>Blueprint AI · Wave 1 agentic product. Each week the agent checks every PO line at every unit against the formulary and trade agreements. It investigates what it finds, gets a named reviewer's approval, asks units to fix their POs, follows up, and confirms the saving once the PO is revised. People approve; the agent does the chasing.</p></div>
+<div class="page">
+<h3 style="margin-top:6px">One weekly loop, six screens</h3>
+<div class="loop">
+<a href="reviewer.html"><span class="k">Mon 07:00 · agent</span><b>1. Scan &amp; investigate</b>515 PO lines checked, 202 exceptions found, the 23 HIGH ones investigated.<div class="xref">Reviewer workbench →</div></a>
+<a class="h" href="reviewer.html"><span class="k">Mon · reviewer</span><b>2. Approve</b>A named reviewer confirms or rejects the agent's suggestions.<div class="xref">Reviewer workbench →</div></a>
+<a href="unit-inbox.html"><span class="k">Mon · agent → unit</span><b>3. Request</b>Each unit gets its own requests, with the evidence behind them.<div class="xref">Unit inbox →</div></a>
+<a class="h" href="unit-inbox.html"><span class="k">Mon–Fri · unit</span><b>4. Revise or justify</b>Units revise the PO in D365, give a reason, or push back.<div class="xref">Unit inbox →</div></a>
+<a href="assistant.html"><span class="k">Thu–Sun · agent</span><b>5. Follow up</b>Reminds units that haven't replied, escalates to the Finance Controller, and answers units' questions.<div class="xref">Assistant →</div></a>
+<a href="leadership.html"><span class="k">Next Mon · agent</span><b>6. Verify &amp; report</b>Checks the next export, closes items that were fixed, and books the saving achieved.<div class="xref">Leadership digest →</div></a>
+</div>
+
+<h3 style="margin-top:22px">Who uses which screen</h3>
+<div class="roles">
+<a href="reviewer.html"><div class="card"><span class="tag q">A</span> <b>Reviewer workbench</b><div class="why">HO Finance analyst · weekly, about 15 minutes</div><p>Approve or reject the agent's findings and see the evidence behind each one.</p><div class="go">Open →</div></div></a>
+<a href="unit-inbox.html"><div class="card"><span class="tag q">B</span> <b>Unit inbox</b><div class="why">Unit Purchasing, Pharmacy and Finance Controllers · 41 units</div><p>Requests in plain language, a scorecard with credit for good work, and a way to push back.</p><div class="go">Open →</div></div></a>
+<a href="leadership.html"><div class="card"><span class="tag q">C</span> <b>Leadership digest</b><div class="why">CFO, Head of Procurement · weekly, about 2 minutes</div><p>Savings found vs achieved, a unit league table, and the decisions that need them.</p><div class="go">Open →</div></div></a>
+<a href="governance.html"><div class="card"><span class="tag q">D</span> <b>Governance console</b><div class="why">Process owner, Internal Audit</div><p>Rules, thresholds, which rules may run on autopilot, false-positive rates and the audit trail.</p><div class="go">Open →</div></div></a>
+<a href="assistant.html"><div class="card"><span class="tag q">E</span> <b>Assistant</b><div class="why">Anyone, in Claude or Teams</div><p>Ask questions in plain language, answered with the same tools and data as the screens.</p><div class="go">Open →</div></div></a>
+<a href="rebates.html"><div class="card"><span class="tag q">F</span> <b>Rebates</b><div class="why">Sourcing team · before principal reviews</div><p>Rebate tier progress by principal and repeat overpayments, feeding the next product (Sourcing Copilot).</p><div class="go">Open →</div></div></a>
+</div>
+
+<div class="grid2">
+<div class="card"><h3>What sits underneath every screen</h3>
+<div class="stat"><span>1. Data: read-only AX / D365 extracts</span><span class="tag ok">Built (CSV)</span></div>
+<div class="stat"><span>2. Rules: decide what's an exception and its value</span><span class="tag ok">Built</span></div>
+<div class="stat"><span>3. Tools: MCP server with 11 tools</span><span class="tag ok">Built</span></div>
+<div class="stat"><span>4. Agent runtime: schedule, loop, follow-up, verification</span><span class="tag me">Next</span></div>
+<div class="stat"><span>5. Approvals and audit log</span><span class="tag ok">Built (no screen yet)</span></div>
+<div class="stat"><span>6. These screens</span><span class="tag gr">Mockup</span></div></div>
+<div class="card"><h3>Autonomy levels</h3>
+<div class="stat"><span><span class="lvl l2">L2</span> Copilot: the AI suggests, a person approves every item</span><span class="muted">today</span></div>
+<div class="stat"><span><span class="lvl l3">L3</span> Supervised agent: small, clear-cut items auto-approved; people review exceptions</span><span class="muted">per rule, via <a href="governance.html">governance</a></span></div>
+<div class="stat"><span><span class="lvl l4">L4</span> Orchestrated: hands findings to other agents (e.g. Sourcing Copilot)</span><span class="muted">2027</span></div>
+<p class="muted" style="margin-top:10px">The rules decide what counts as an exception and what it's worth. The AI explains it and does the follow-up. A named person approves. The monitor never writes to the ERP.</p></div>
+</div></div><div class="note">Static mockup: no live data and no working buttons. Numbers come from the prototype run on synthetic data or are illustrative.</div></body></html>

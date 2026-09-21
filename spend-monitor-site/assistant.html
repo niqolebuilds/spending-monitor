@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>E · Assistant</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="styles.css"></head><body>
+<header><div><b>Assistant</b><div class="sub">Ask the Spend Monitor anything · works in Claude, Cowork or Teams · same tools and data as the screens</div></div><div class="who">Viewing as: HO Finance analyst · scope ALL units</div></header>
+<nav><a class="brand" href="index.html">◆ Spend Monitor</a><a href="index.html">Overview</a><a href="reviewer.html">A · Reviewer workbench</a><a href="unit-inbox.html">B · Unit inbox</a><a href="leadership.html">C · Leadership digest</a><a href="governance.html">D · Governance console</a><a href="assistant.html" class="on">E · Assistant</a><a href="rebates.html">F · Rebates</a></nav>
+
+<div class="wrap" style="grid-template-columns:1fr 320px">
+<div class="card chat"><h3>Conversation</h3>
+<div class="n">You · Mon 08:10</div><div class="m u">What happened this week? Keep it short.</div>
+<div class="n">Assistant</div><div class="m a"><span class="tool">run_weekly_scan</span><span class="tool">get_scan_summary</span><br>Week of 14–20 Sep: <b>515 PO lines, 202 exceptions, Rp 369M potential saving</b>. 23 are HIGH. Most of the value is prices above the trade agreement (Rp 145M), then non-formulary items (Rp 94M). The top 3 units are U21, U30 and U36, and two of those are the same stent problem. 20 items are waiting for your approval in the <a href="reviewer.html">workbench</a>.</div>
+<div class="n">You</div><div class="m u">Why do U21 and U30 keep paying more for the Kenari stent?</div>
+<div class="n">Assistant</div><div class="m a"><span class="tool">get_exception_evidence ×2</span><br>Both paid about Rp 20.9M against a TA price of Rp 16.8M, and the other 14 units paid the TA price. Both buy from the same vendor and neither has been flagged for this before. That points to the TA not being loaded for these two units in D365 after the July update, rather than buyer error. I'd confirm both and ask ICT to check the TA upload for U21 and U30.</div>
+<div class="n">You</div><div class="m u">Confirm both, reviewer Nicole. Then draft the Purchasing emails in Bahasa.</div>
+<div class="n">Assistant</div><div class="m a"><span class="tool">record_review_decision</span><span class="tool">draft_revision_requests(language=id)</span><br>Done. Both are confirmed and logged under your name. 2 drafts are ready: <i>"[Revisi PO] Unit 21 – Jakarta — 3 temuan kepatuhan…"</i> and one for Unit 30. They'll appear in each unit's <a href="unit-inbox.html">inbox</a> once sent.</div>
+<div class="n">You</div><div class="m u">Which principals are at risk on rebates?</div>
+<div class="n">Assistant</div><div class="m a"><span class="tool">get_rebate_achievement</span><br>6 of 15 are projected below tier 1. The closest to it is Cendana, which needs about Rp 9.5M a week more over the remaining 15 weeks. Flores and Lombok are more than Rp 1B short, so it's more realistic to renegotiate their baselines. Details are on the <a href="rebates.html">rebates page</a>.</div>
+<div class="m" style="border:1px solid var(--line);color:var(--grey);margin-top:14px">Ask a question…</div></div>
+<div>
+<div class="card"><h3>Try asking</h3>
+<div class="stat"><span>"Which units haven't replied in 5 days?"</span></div>
+<div class="stat"><span>"Show me everything for Unit 09 this month"</span></div>
+<div class="stat"><span>"How much did we actually save in August?"</span></div>
+<div class="stat"><span>"Which rules have the most false positives?"</span></div>
+<div class="stat"><span>"Prepare the rebate talking points for Kenari"</span></div></div>
+<div class="card"><h3>What the assistant can and can't do</h3>
+<div class="stat"><span>Explain, summarise, draft</span><span class="tag ok">Yes</span></div>
+<div class="stat"><span>Record a decision you tell it to</span><span class="tag ok">Yes, in your name</span></div>
+<div class="stat"><span>Change a rule's finding or amount</span><span class="tag hi">No</span></div>
+<div class="stat"><span>Send emails on its own</span><span class="tag hi">No (L2)</span></div>
+<div class="stat"><span>Write to D365 / AX</span><span class="tag hi">Never</span></div>
+<div class="why">Units only see their own data (scoped by unit).</div></div>
+</div></div><div class="note">Static mockup: no live data and no working buttons. Numbers come from the prototype run on synthetic data or are illustrative.</div></body></html>

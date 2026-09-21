@@ -1,0 +1,8 @@
+{
+  "name": "Spend Compliance & Savings Monitor",
+  "description": "Weekly compliance and savings monitor tracking PO lines against formulary and trade agreements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
