@@ -1,76 +1,290 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>B · Unit inbox</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="styles.css"></head><body>
-<header><div><b>Unit Inbox · Unit 21 – Jakarta</b><div class="sub">Spend Compliance &amp; Savings Monitor · requests from Head Office Finance</div></div>
-<span class="tag" style="background:var(--gold);color:var(--dark)">3 open requests</span>
-<div class="who">Signed in: Purchasing Lead, Unit 21 · EN | ID</div></header>
-<nav><a class="brand" href="index.html">◆ Spend Monitor</a><a href="index.html">Overview</a><a href="reviewer.html">A · Reviewer workbench</a><a href="unit-inbox.html" class="on">B · Unit inbox</a><a href="leadership.html">C · Leadership digest</a><a href="governance.html">D · Governance console</a><a href="assistant.html">E · Assistant</a><a href="rebates.html">F · Rebates</a></nav>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Unit Inbox &amp; Scorecards · Spend Compliance Monitor</title>
+  <meta name="description" content="Unit-level compliance scorecard and PO revision requests inbox.">
+  <meta property="og:title" content="Unit Inbox &amp; Scorecards · Spend Compliance Monitor">
+  <meta property="og:description" content="Unit-level compliance scorecard and PO revision requests inbox.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-<div class="wrap">
-<!-- LEFT: scorecard -->
-<div>
-<div class="card"><h3>Your unit's scorecard</h3>
-<div class="muted">Compliance rate (PO lines with no finding), last 12 weeks</div>
-<div class="big">94.1%</div><div class="muted">Group median 92.3% · <b style="color:var(--green)">ranked 14 of 41</b></div>
-<div class="spark"><span style="height:55%"></span><span style="height:60%"></span><span style="height:58%"></span><span style="height:66%"></span><span style="height:70%"></span><span style="height:68%"></span><span style="height:74%"></span><span style="height:78%"></span><span style="height:76%"></span><span style="height:82%"></span><span style="height:85%"></span><span class="now" style="height:80%"></span></div>
-<div class="muted">↑ from 88.0% in June</div></div>
-<div class="card"><h3>This year</h3>
-<div class="stat"><span>Savings achieved by your unit</span><b>Rp 186M</b></div>
-<div class="stat"><span>Requests answered</span><b>41 of 44</b></div>
-<div class="stat"><span>Average reply time</span><b>2.8 days</b></div>
-<div class="stat"><span>Justifications accepted</span><b>9</b></div>
-<div class="stat"><span>Weeks clean on formulary</span><b style="color:var(--green)">12 in a row</b></div></div>
-<div class="card"><h3>Recently closed</h3>
-<table><tbody>
-<tr><td>Albumin 20% · revised to TA price</td><td class="num"><span class="tag ok">+Rp 8.1M</span></td></tr>
-<tr><td>Suture (Merapi) · switched to formulary</td><td class="num"><span class="tag ok">+Rp 3.4M</span></td></tr>
-<tr><td>Guide Wire · justified (stock-out)</td><td class="num"><span class="tag q">Accepted</span></td></tr>
-</tbody></table></div>
-</div>
+  <!-- Top Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-icon">◆</div>
+      <div>
+        <div class="brand-title">Spend Compliance &amp; Savings Monitor</div>
+        <div class="brand-subtitle">Automated weekly scan · Week of 14–20 Sep 2026 · 41 Hospital Units</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="badge badge-amber" id="unit-badge">3 Open Requests</span>
+      <span class="user-badge">Unit View: Purchasing &amp; Pharmacy Team</span>
+    </div>
+  </header>
 
-<!-- CENTER: requests -->
-<div>
-<div class="banner"><div><b>Head Office Finance needs a reply on 3 PO lines from 14–20 Sep.</b><br><span class="muted">For each line, revise the PO or tell us why it's justified. There's no penalty for a justified exception.</span></div>
-<div class="due"><div class="muted">Reply by</div><b>Fri 25 Sep</b><div class="muted">6 days left</div></div></div>
+  <!-- Simplified Navigation -->
+  <nav class="app-nav">
+    <a href="index.html" class="nav-item">Dashboard</a>
+    <a href="reviewer.html" class="nav-item">Review Workbench <span class="nav-badge">20</span></a>
+    <a href="unit-inbox.html" class="nav-item active">Unit Inbox &amp; Scorecards</a>
+    <a href="rebates.html" class="nav-item">Rebates &amp; Principals</a>
+  </nav>
 
-<div class="card"><h3>Open requests</h3>
-<div class="req sel"><div class="top"><span class="tag hi">Price above agreement</span><b>Drug-Eluting Stent (Kenari)</b><span class="amt">Rp 40.8M</span></div>
-<div class="body">PO-U21-2609-011482 · line 2 · 10 pcs · PT Kenari Distribusi<br>You paid <b>Rp 20,890,000</b> per piece. The group trade agreement price is <b>Rp 16,810,000</b>. The other 14 units buying this stent paid the agreement price this month.</div>
-<div class="need">What we need: revise the PO to the agreement price, or tell us why the higher price applied.</div>
-<div class="opts"><span class="opt">Revised: enter new price</span><span class="opt">Justified: give reason</span><span class="opt">Goods already received</span><span class="opt">I think this is wrong</span></div></div>
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Unit Inbox &amp; Scorecard</h1>
+        <p class="page-desc">Review open PO revision requests from Head Office Finance and monitor your unit's compliance metrics.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <label for="unitSelect" style="font-size:12.5px;font-weight:600;color:var(--text-muted);">Switch Unit:</label>
+        <select id="unitSelect" class="search-input" style="min-width:180px;padding:6px 10px;" onchange="changeUnit()">
+          <option value="U21" selected>Unit 21 · Jakarta</option>
+          <option value="U30">Unit 30 · Nusa Tenggara</option>
+          <option value="U36">Unit 36 · Bali</option>
+          <option value="U08">Unit 08 · Central Java</option>
+          <option value="U07">Unit 07 · Central Java (Rank 1)</option>
+        </select>
+      </div>
+    </div>
 
-<div class="req"><div class="top"><span class="tag me">Price above agreement</span><b>Infusion Set (Aurora)</b><span class="amt">Rp 1.2M</span></div>
-<div class="body">PO-U21-2609-011507 · 400 pcs · Rp 16,100 vs agreement Rp 13,090 (+23%).</div>
-<div class="opts"><span class="opt">Revised</span><span class="opt">Justified</span><span class="opt">Goods already received</span><span class="opt">I think this is wrong</span></div></div>
+    <!-- Layout: Scorecard on Left, Inbox Requests on Right -->
+    <div class="grid-unit">
+      <!-- Left Column: Unit Scorecard -->
+      <div>
+        <div class="card" id="scorecard-card">
+          <div class="card-title">Unit Performance Scorecard</div>
+          <div style="font-size:12px;color:var(--text-muted);">12-Week Rolling PO Compliance</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin:6px 0;">
+            <div class="kpi-value" style="font-size:32px;color:var(--primary);" id="unit-compliance">94.1%</div>
+            <span class="badge badge-emerald">Ranked 14 of 41</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">
+            Group Median: 92.3% · <span style="color:var(--emerald-text);font-weight:500;">↑ from 88.0% in June</span>
+          </div>
 
-<div class="req"><div class="top"><span class="tag me">Agreement expired</span><b>Ceftriaxone Inj 1g (Garuda)</b><span class="amt">Rp 0.9M</span></div>
-<div class="body">The trade agreement expired on 30 Jun, so this was bought at list price. <b>Nothing to fix on your side:</b> Head Office is renewing the agreement with the principal. This is for your information only.</div>
-<div class="opts"><span class="opt">Noted</span></div></div>
-</div>
+          <!-- Progress visualization -->
+          <div class="bar-container" style="height:10px;margin-bottom:16px;">
+            <div class="bar-fill emerald" id="unit-bar" style="width:94.1%;"></div>
+          </div>
 
-<div class="card"><h3>What happens next</h3>
-<div class="steps"><div class="done">Flagged<br>Mon</div><div class="done">Reviewed by HO<br>Mon</div><div class="now">Your reply<br>by Fri</div><div>Reminder<br>Thu (if needed)</div><div>Checked in next export<br>Mon 28 Sep</div></div>
-<div class="muted" style="margin-top:10px">Approved by the Head Office reviewer in the <a href="reviewer.html">Reviewer workbench</a>. Once you revise a PO in D365, the monitor confirms it automatically in the next data load, so you don't need to send proof. It's then credited to your unit's savings.</div></div>
-</div>
+          <div class="stat-row">
+            <span>Savings Achieved YTD</span>
+            <b style="color:var(--emerald-text);" id="unit-savings">Rp 186.4M</b>
+          </div>
+          <div class="stat-row">
+            <span>Requests Answered</span>
+            <b id="unit-answered">41 of 44 (93%)</b>
+          </div>
+          <div class="stat-row">
+            <span>Average Reply Time</span>
+            <b id="unit-reply">2.8 days</b>
+          </div>
+          <div class="stat-row">
+            <span>Formulary Clean Streak</span>
+            <b style="color:var(--emerald-text);">12 weeks in a row</b>
+          </div>
+        </div>
 
-<!-- RIGHT: why + ask -->
-<div>
-<div class="card"><h3>Why this was flagged</h3>
-<b>Drug-Eluting Stent (Kenari)</b>
-<div class="muted" style="margin:6px 0 4px">Price per piece this month, by unit (Rp million)</div>
-<div class="cmp"><span><b>Unit 21 (you)</b></span><div class="bar"><i class="you" style="width:100%"></i></div><b>20.9</b></div>
-<div class="cmp"><span>Unit 30</span><div class="bar"><i class="you" style="width:98%"></i></div>20.5</div>
-<div class="cmp"><span>Unit 04</span><div class="bar"><i style="width:80%"></i></div>16.8</div>
-<div class="cmp"><span>Unit 11</span><div class="bar"><i style="width:80%"></i></div>16.8</div>
-<div class="cmp"><span>12 others</span><div class="bar"><i style="width:80%"></i></div>16.8</div>
-<div class="muted" style="margin-top:10px;line-height:1.45"><b>Most likely cause:</b> the agreement price may not be loaded for Unit 21 in D365, so the PO defaulted to list price. Head Office has asked ICT to check. If that's the cause, it isn't a buyer error.</div></div>
+        <div class="card">
+          <div class="card-title">Recently Closed Savings</div>
+          <div class="stat-row">
+            <div>
+              <div style="font-weight:600;">Albumin 20% 100ml</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">Revised to group TA price in D365</div>
+            </div>
+            <span class="badge badge-emerald">+Rp 8.1M</span>
+          </div>
+          <div class="stat-row">
+            <div>
+              <div style="font-weight:600;">Suture Synthetic</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">Substituted to formulary brand</div>
+            </div>
+            <span class="badge badge-emerald">+Rp 3.4M</span>
+          </div>
+          <div class="stat-row">
+            <div>
+              <div style="font-weight:600;">Guide Wire 0.035</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">Stock-out justification approved</div>
+            </div>
+            <span class="badge badge-slate">Justified</span>
+          </div>
+        </div>
+      </div>
 
-<div class="card chat"><h3>Ask about this request</h3>
-<div class="n">You · 09:12</div><div class="m u">The vendor told us prices went up in August. Isn't the new price correct?</div>
-<div class="n">Monitor assistant · 09:12</div><div class="m a">The group agreement with Kenari is still valid until 31 Dec 2026 at Rp 16,810,000 and hasn't been amended. The other 14 units were invoiced at that price in September. If the vendor has quoted you a new price in writing, choose <b>"I think this is wrong"</b> and attach it. Head Office Procurement will take it up with the principal.</div>
-<div class="n">Type a question…</div><div class="m" style="border:1px solid var(--line);color:var(--grey)">e.g. "Which of our POs are affected by the expired agreements?"</div></div>
-</div>
-</div>
-<div class="note">Mockup only: no working buttons or live data. Unit figures, prices and chat content are illustrative, based on the prototype's synthetic data.</div>
-</body></html>
+      <!-- Right Column: Open Requests & Actions -->
+      <div>
+        <div class="alert-banner" style="margin-bottom:16px;">
+          <div class="alert-banner-content">
+            <span class="badge badge-amber">Reply Due: Fri 25 Sep</span>
+            <div>
+              <div class="alert-banner-title">Action Required on 3 PO Lines from Week 38</div>
+              <div class="alert-banner-sub">Please revise the PO in D365 or provide clinical/operational justification. Justified exceptions do not penalize your unit.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Request 1 -->
+        <div class="card" id="req-1" style="border-left:4px solid var(--rose-bar);">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="badge badge-rose">Price Above Agreement</span>
+                <span style="font-size:15px;font-weight:700;">Drug-Eluting Stent (Kenari)</span>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
+                PO-U21-2609-011482 · Line 2 · 10 pcs · PT Kenari Distribusi
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:var(--text-muted);">Variance</div>
+              <div style="font-size:17px;font-weight:700;color:var(--rose-text);">Rp 40.8M</div>
+            </div>
+          </div>
+
+          <p style="font-size:13px;line-height:1.5;color:var(--text-main);background:var(--bg-subtle);padding:10px 12px;border-radius:6px;">
+            Billed at <b>Rp 20,890,000</b> per piece vs group contract price <b>Rp 16,810,000</b> (+24.3%).
+            All 14 other hospital units buying this item paid the agreement price this month.
+          </p>
+
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-primary btn-sm" onclick="respondRequest('req-1', 'PO revised to Rp 16.81M in D365')">Mark as Revised in D365</button>
+            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-1', 'Submitted justification: emergency spot order')">Submit Clinical Justification</button>
+            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-1', 'Flagged to Head Office: goods already received & invoiced')">Goods Already Received</button>
+          </div>
+        </div>
+
+        <!-- Request 2 -->
+        <div class="card" id="req-2" style="border-left:4px solid var(--amber-bar);">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="badge badge-amber">Price Above Agreement</span>
+                <span style="font-size:15px;font-weight:700;">Infusion Set Adult (Aurora)</span>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
+                PO-U21-2609-011507 · 400 pcs · PT Aurora Medika
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:var(--text-muted);">Variance</div>
+              <div style="font-size:17px;font-weight:700;color:var(--amber-text);">Rp 1.2M</div>
+            </div>
+          </div>
+
+          <p style="font-size:13px;line-height:1.5;color:var(--text-main);background:var(--bg-subtle);padding:10px 12px;border-radius:6px;">
+            Billed at <b>Rp 16,100</b> vs group agreement <b>Rp 13,090</b> (+23.0%).
+          </p>
+
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-primary btn-sm" onclick="respondRequest('req-2', 'PO revised in D365')">Mark as Revised in D365</button>
+            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-2', 'Submitted justification: urgent weekend requirement')">Submit Justification</button>
+          </div>
+        </div>
+
+        <!-- Request 3 -->
+        <div class="card" id="req-3" style="border-left:4px solid var(--primary);">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="badge badge-indigo">Informational Notice</span>
+                <span style="font-size:15px;font-weight:700;">Ceftriaxone Inj 1g (Garuda)</span>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">
+                Contract renewal in progress · Head Office lead
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <span class="badge badge-slate">No Action Needed</span>
+            </div>
+          </div>
+
+          <p style="font-size:13px;line-height:1.5;color:var(--text-main);background:var(--bg-subtle);padding:10px 12px;border-radius:6px;">
+            The previous trade agreement expired 30 June and this PO defaulted to catalog list price. Head Office Procurement is actively renewing terms. No revision needed from unit.
+          </p>
+
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <button class="btn btn-secondary btn-sm" onclick="respondRequest('req-3', 'Notice acknowledged')">Acknowledge Notice</button>
+          </div>
+        </div>
+
+        <!-- Clarification Card -->
+        <div class="card">
+          <div class="card-title">Direct Inquiry to Head Office Sourcing</div>
+          <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:10px;">
+            Need help or disagree with a finding? Submit an inquiry directly to the Head Office review analyst.
+          </p>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="inquiryInput" class="search-input" style="flex:1;" placeholder="Ask about an exception, vendor discrepancy, or formulary status...">
+            <button class="btn btn-primary" onclick="sendInquiry()">Send Inquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast">Action updated</div>
+
+  <script>
+    const unitData = {
+      "U21": { name: "Unit 21 · Jakarta", compliance: "94.1%", rank: "Ranked 14 of 41", savings: "Rp 186.4M", answered: "41 of 44 (93%)", reply: "2.8 days", requests: 3 },
+      "U30": { name: "Unit 30 · Nusa Tenggara", compliance: "84.3%", rank: "Ranked 39 of 41", savings: "Rp 38.2M", answered: "28 of 39 (72%)", reply: "7.9 days", requests: 4 },
+      "U36": { name: "Unit 36 · Bali", compliance: "91.8%", rank: "Ranked 22 of 41", savings: "Rp 112.0M", answered: "38 of 42 (90%)", reply: "3.5 days", requests: 2 },
+      "U08": { name: "Unit 08 · Central Java", compliance: "95.6%", rank: "Ranked 8 of 41", savings: "Rp 144.5M", answered: "45 of 46 (98%)", reply: "1.9 days", requests: 1 },
+      "U07": { name: "Unit 07 · Central Java (Rank 1)", compliance: "98.2%", rank: "Ranked 1 of 41", savings: "Rp 94.0M", answered: "40 of 40 (100%)", reply: "1.2 days", requests: 0 }
+    };
+
+    function changeUnit() {
+      const select = document.getElementById("unitSelect");
+      const unit = unitData[select.value];
+      if (unit) {
+        document.getElementById("unit-compliance").textContent = unit.compliance;
+        document.getElementById("unit-bar").style.width = unit.compliance;
+        document.getElementById("unit-savings").textContent = unit.savings;
+        document.getElementById("unit-answered").textContent = unit.answered;
+        document.getElementById("unit-reply").textContent = unit.reply;
+        document.getElementById("unit-badge").textContent = `${unit.requests} Open Requests`;
+        showToast(`Loaded scorecard for ${unit.name}`);
+      }
+    }
+
+    function respondRequest(cardId, actionMsg) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.style.opacity = "0.7";
+        card.style.borderLeftColor = "var(--emerald-bar)";
+        const btns = card.querySelectorAll("button");
+        btns.forEach(b => b.disabled = true);
+        
+        const note = document.createElement("div");
+        note.style.marginTop = "10px";
+        note.style.color = "var(--emerald-text)";
+        note.style.fontWeight = "600";
+        note.style.fontSize = "12px";
+        note.textContent = `✓ Response recorded: ${actionMsg}`;
+        card.appendChild(note);
+
+        showToast(actionMsg);
+      }
+    }
+
+    function sendInquiry() {
+      const input = document.getElementById("inquiryInput");
+      if (!input.value.trim()) return;
+      showToast(`Inquiry dispatched to Head Office Finance: "${input.value}"`);
+      input.value = "";
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2500);
+    }
+  </script>
+</body>
+</html>

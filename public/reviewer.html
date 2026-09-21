@@ -1,78 +1,517 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>A · Reviewer workbench</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="styles.css"></head><body>
-<header><div><b>Spend Compliance &amp; Savings Monitor</b><div class="sub">Blueprint AI · Agent run · Week of 14–20 Sep 2026 · All 41 units</div></div>
-<span class="tag" style="background:var(--gold);color:var(--dark)">Agent status: waiting for your approval</span>
-<div class="who">Reviewer: Nicole Celia Wangga · Head Office scope</div></header>
-<nav><a class="brand" href="index.html">◆ Spend Monitor</a><a href="index.html">Overview</a><a href="reviewer.html" class="on">A · Reviewer workbench</a><a href="unit-inbox.html">B · Unit inbox</a><a href="leadership.html">C · Leadership digest</a><a href="governance.html">D · Governance console</a><a href="assistant.html">E · Assistant</a><a href="rebates.html">F · Rebates</a></nav>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Review Workbench · Spend Compliance &amp; Savings Monitor</title>
+  <meta name="description" content="Operational reviewer workbench for PO line exception approvals and price validation.">
+  <meta property="og:title" content="Review Workbench · Spend Compliance &amp; Savings Monitor">
+  <meta property="og:description" content="Operational reviewer workbench for PO line exception approvals and price validation.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-<div class="wrap">
-<!-- LEFT: agent activity -->
-<div class="card"><h3>What the agent did</h3>
-<ul class="tl">
-<li><div class="t">Mon 07:00</div><div class="x">New PO export found (AX + D365). Scanned <b>515 PO lines</b> against 9 rules.</div></li>
-<li><div class="t">Mon 07:02</div><div class="x">Found <b>202 exceptions</b>, Rp 369M potential saving. 23 are HIGH.</div></li>
-<li><div class="t">Mon 07:04</div><div class="x">Investigated all 23 HIGH ones: price history, trade agreements, substitutes.</div></li>
-<li class="wait"><div class="t">Mon 07:05 · needs you</div><div class="ask">20 look real. 3 look like UOM keying errors, so I'd mark them false positives. <b>Approve the 20 so I can send revision requests to 12 units?</b></div></li>
-<li class="future"><div class="t">After approval</div><div class="x">Send Purchasing and Pharmacy requests (Bahasa Indonesia).</div></li>
-<li class="future"><div class="t">Thu 24 Sep</div><div class="x">Remind units that haven't replied.</div></li>
-<li class="future"><div class="t">Sun 27 Sep</div><div class="x">Escalate anything still open to the Finance Controller.</div></li>
-<li class="future"><div class="t">Mon 28 Sep</div><div class="x">Check the next export to see whether the POs were revised; close them and record the saving achieved.</div></li>
-</ul></div>
+  <!-- Top Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-icon">◆</div>
+      <div>
+        <div class="brand-title">Spend Compliance &amp; Savings Monitor</div>
+        <div class="brand-subtitle">Automated weekly scan · Week of 14–20 Sep 2026 · 41 Hospital Units</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="badge badge-amber">20 Pending Review</span>
+      <span class="user-badge">Reviewer: Nicole Celia Wangga (HO Finance)</span>
+    </div>
+  </header>
 
-<!-- CENTER -->
-<div>
-<div class="kpis">
-<div class="card kpi"><div class="l">PO lines scanned</div><div class="v">515</div><div class="s">41 units · 14–20 Sep</div></div>
-<div class="card kpi"><div class="l">Exceptions</div><div class="v">202</div><div class="s">23 HIGH · 179 medium / low</div></div>
-<div class="card kpi"><div class="l">Potential saving</div><div class="v">Rp 369M</div><div class="s">counted once per PO line</div></div>
-<div class="card kpi"><div class="l">Waiting for approval</div><div class="v">20</div><div class="s">+3 suggested false positives</div></div>
-</div>
+  <!-- Simplified Navigation -->
+  <nav class="app-nav">
+    <a href="index.html" class="nav-item">Dashboard</a>
+    <a href="reviewer.html" class="nav-item active">Review Workbench <span class="nav-badge" id="pending-badge">20</span></a>
+    <a href="unit-inbox.html" class="nav-item">Unit Inbox &amp; Scorecards</a>
+    <a href="rebates.html" class="nav-item">Rebates &amp; Principals</a>
+  </nav>
 
-<div class="card"><h3>Review queue — HIGH exceptions, investigated by the agent</h3>
-<table><thead><tr><th>Unit</th><th>Issue</th><th>Item</th><th class="num">At stake</th><th>Agent's suggestion</th></tr></thead><tbody>
-<tr class="sel"><td><a href="unit-inbox.html">U21</a><br><span class="why">Jakarta</span></td><td><span class="tag hi">Price above TA</span></td><td>Drug-Eluting Stent (Kenari)<div class="why">Bought at Rp 20.9M vs TA Rp 16.8M. The other 14 units buy at the TA price, so the TA probably isn't loaded for this unit.</div></td><td class="num"><b>Rp 40.8M</b></td><td><span class="tag q">Confirm → Purchasing</span></td></tr>
-<tr><td>U30<br><span class="why">Nusa Tenggara</span></td><td><span class="tag hi">Price above TA</span></td><td>Drug-Eluting Stent (Kenari)<div class="why">Same item and gap as U21. Same vendor, so likely the same TA mapping problem.</div></td><td class="num"><b>Rp 35.5M</b></td><td><span class="tag q">Confirm → Purchasing</span></td></tr>
-<tr><td>U36<br><span class="why">Bali</span></td><td><span class="tag hi">Price above TA</span></td><td>Albumin 20% 100ml (Indra)<div class="why">29% above TA, and the second time in 6 weeks for this unit. Possibly a buyer override.</div></td><td class="num"><b>Rp 22.7M</b></td><td><span class="tag q">Confirm → Purchasing</span></td></tr>
-<tr><td>U08<br><span class="why">Central Java</span></td><td><span class="tag hi">Non-formulary</span></td><td>PTCA Balloon (Lombok)<div class="why">A formulary substitute exists and this unit bought it last month, so this looks like clinician preference, not a supply gap.</div></td><td class="num"><b>Rp 18.1M</b></td><td><span class="tag q">Confirm → Pharmacy</span></td></tr>
-<tr><td>U14<br><span class="why">Sumatra</span></td><td><span class="tag hi">BPJS non-formulary</span></td><td>Meropenem Inj 1g (Garuda)<div class="why">Given to a BPJS patient but not on the BPJS formulary, so there's a claim risk. The substitute was in stock.</div></td><td class="num"><b>Rp 9.4M</b></td><td><span class="tag q">Confirm → Pharmacy</span></td></tr>
-<tr><td>U27<br><span class="why">East Java</span></td><td><span class="tag me">UOM mismatch</span></td><td>IV Catheter (Borneo)<div class="why">Ordered in BOX but priced per piece. It's a keying error, not an overcharge.</div></td><td class="num">Rp 6.2M</td><td><span class="tag ok">False positive</span></td></tr>
-</tbody></table>
-<div class="why" style="margin-top:8px">Showing 6 of 23 HIGH exceptions · each is ordered by value at stake</div><div class="xref">→ See what Unit 21 receives after approval: <a href="unit-inbox.html">Unit inbox</a> · Rules and thresholds: <a href="governance.html">Governance console</a></div></div>
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Reviewer Workbench</h1>
+        <p class="page-desc">Validate investigated PO exceptions, confirm price leakages, and dispatch automated revision requests to hospital units.</p>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary" onclick="markAllFalsePositives()">Filter Flagged (3)</button>
+        <button class="btn btn-primary" onclick="batchApproveValid()">Approve All Valid (20) →</button>
+      </div>
+    </div>
 
-<div class="grid2">
-<div class="card"><h3>Where the saving is (this week)</h3>
-<div class="rule"><span>Price above TA · 43</span><div class="bar"><i style="width:100%"></i></div><b>145.4M</b></div>
-<div class="rule"><span>Non-formulary · 35</span><div class="bar"><i style="width:65%"></i></div><b>93.9M</b></div>
-<div class="rule"><span>BPJS non-formulary · 44</span><div class="bar"><i style="width:50%"></i></div><b>72.8M</b></div>
-<div class="rule"><span>Locked item · 10</span><div class="bar"><i style="width:25%"></i></div><b>36.0M</b></div>
-<div class="rule"><span>Expired TA · 55</span><div class="bar"><i style="width:14%"></i></div><b>21.0M</b></div>
-<div class="rule"><span>One-time vendor · 12</span><div class="bar"><i style="width:1%"></i></div><b>—</b></div>
-<div class="rule"><span>UOM mismatch · 3</span><div class="bar"><i style="width:1%"></i></div><b>—</b></div>
-</div>
-<div class="card"><h3>Savings funnel (year to date, illustrative)</h3>
-<div class="funnel">
-<div style="background:#8FA3D6;width:100%"><span>Potential (found)</span><b>Rp 4.1B</b></div>
-<div style="background:#5A76C2;width:78%"><span>Confirmed</span><b>Rp 3.2B</b></div>
-<div style="background:var(--navy);width:61%"><span>Sent to units</span><b>Rp 2.5B</b></div>
-<div style="background:var(--gold);color:var(--dark);width:38%"><span>Achieved</span><b>Rp 1.6B</b></div>
-</div><div class="why">False-positive rate 6% · median 4 days to a unit's reply · <a href="leadership.html">Leadership view →</a></div></div>
-</div>
-</div>
+    <!-- Review 3-Column Layout -->
+    <div class="grid-review">
+      <!-- Left Column: Scan Overview & Breakdown -->
+      <div>
+        <div class="card">
+          <div class="card-title">Weekly Scan Summary</div>
+          <div class="stat-row">
+            <span>PO Lines Scanned</span>
+            <b>515 lines</b>
+          </div>
+          <div class="stat-row">
+            <span>Total Exceptions</span>
+            <span class="badge badge-rose">202 lines</span>
+          </div>
+          <div class="stat-row">
+            <span>Total Leakage At Stake</span>
+            <b style="color:var(--rose-text);">Rp 369.2M</b>
+          </div>
+          <div class="stat-row">
+            <span>High Severity</span>
+            <b>23 lines</b>
+          </div>
+          <div class="stat-row">
+            <span>Recommended for Approval</span>
+            <b style="color:var(--emerald-text);">20 lines</b>
+          </div>
+          <div class="stat-row">
+            <span>Suggested False Positives</span>
+            <span class="badge badge-slate">3 lines (UOM)</span>
+          </div>
+        </div>
 
-<!-- RIGHT: evidence -->
-<div class="card ev"><h3>Evidence · selected exception</h3>
-<b>U21 · Drug-Eluting Stent (Kenari)</b><div class="why">PO-U21-2609-011482 · line 2 · 16 Sep 2026</div>
-<dl>
-<dt>Finding (from the rules, not AI)</dt><dd>PO price Rp 20,890,000 vs trade agreement Rp 16,810,000 (+24%) × 10 pcs</dd>
-<dt>Potential saving</dt><dd><b>Rp 40,794,300</b></dd>
-<dt>Price paid across units, last 90 days</dt><dd><div class="spark"><span style="height:62%"></span><span style="height:63%"></span><span style="height:61%"></span><span style="height:62%"></span><span style="height:64%"></span><span style="height:62%"></span><span class="me" style="height:95%"></span><span style="height:63%"></span><span style="height:61%"></span><span class="me" style="height:92%"></span><span style="height:62%"></span><span style="height:63%"></span></div><div class="why">Red = units paying above the TA (U21, U30)</div></dd>
-<dt>Trade agreement</dt><dd>PT Kenari Distribusi · Net binding · valid to 31 Dec 2026</dd>
-<dt>Unit history, same rule</dt><dd>First time in 12 weeks</dd>
-<dt>Agent's explanation</dt><dd style="line-height:1.45">Every other unit buys this stent at the TA price from the same vendor, and U21 has never been flagged for this before. The TA was most likely never loaded for U21 in D365 after the July price update, so the PO defaulted to list price.<br><b>Recommended:</b> ask U21 Purchasing to revise the PO, and ask ICT to check the TA upload for U21 and U30.</dd>
-<dt>Draft email (Bahasa Indonesia)</dt><dd class="why" style="border:1px solid var(--line);border-radius:4px;padding:8px;background:var(--bg)">[Revisi PO] Unit 21 – Jakarta — 3 temuan kepatuhan, minggu 2026-09-14<br>Yth. Tim Purchasing Unit 21, dari monitoring mingguan PO…</dd>
-</dl></div>
-</div>
-<div class="note">Mockup only: no buttons or live data. Figures for this week come from the prototype's run on synthetic data; unit, item and email details are illustrative, and the year-to-date funnel is invented for illustration.</div>
-</body></html>
+        <div class="card">
+          <div class="card-title">Automated Timeline</div>
+          <ul class="timeline">
+            <li class="timeline-item active">
+              <div class="timeline-time">Mon 07:00</div>
+              <div class="timeline-text">ERP extract ingested. 515 lines evaluated against master trade agreements.</div>
+            </li>
+            <li class="timeline-item active">
+              <div class="timeline-time">Mon 07:04</div>
+              <div class="timeline-text">Automated deep investigation of 23 High findings: 90-day price trends and formulary stock checks.</div>
+            </li>
+            <li class="timeline-item pending">
+              <div class="timeline-time">Now · Awaiting Review</div>
+              <div class="timeline-text">HO analyst review approval required before unit notification.</div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-time">After Approval</div>
+              <div class="timeline-text" style="color:var(--text-muted);">PO revision requests dispatch to unit purchasing leads with 5-day SLA.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Center Column: Interactive Exception Queue -->
+      <div>
+        <div class="card">
+          <div class="card-title">
+            <span>Exception Review Queue</span>
+            <span style="font-size:12px;color:var(--text-muted);font-weight:normal;" id="queue-count">Showing 8 priority exceptions</span>
+          </div>
+
+          <!-- Toolbar: Filter Pills and Search -->
+          <div class="toolbar">
+            <div class="filter-group">
+              <button class="filter-pill active" onclick="filterCategory('all', this)">All</button>
+              <button class="filter-pill" onclick="filterCategory('price', this)">Price Above TA</button>
+              <button class="filter-pill" onclick="filterCategory('formulary', this)">Non-Formulary</button>
+              <button class="filter-pill" onclick="filterCategory('bpjs', this)">BPJS</button>
+              <button class="filter-pill" onclick="filterCategory('uom', this)">UOM Keying</button>
+            </div>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search unit, item, vendor..." oninput="filterSearch()">
+          </div>
+
+          <div class="table-wrapper">
+            <table id="exceptions-table">
+              <thead>
+                <tr>
+                  <th>Unit</th>
+                  <th>Issue &amp; Item Details</th>
+                  <th class="num">Value At Stake</th>
+                  <th>Status / Action</th>
+                </tr>
+              </thead>
+              <tbody id="exceptions-tbody">
+                <!-- Dynamically populated or rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Evidence Inspection Panel -->
+      <div>
+        <div class="card" id="evidence-panel">
+          <div class="card-title">Evidence &amp; Price Benchmark</div>
+          <div id="evidence-content">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast">Action updated successfully</div>
+
+  <script>
+    const exceptions = [
+      {
+        id: "EXP-01",
+        unit: "U21",
+        region: "Jakarta",
+        type: "price",
+        issue: "Price above TA",
+        badgeClass: "badge-rose",
+        item: "Drug-Eluting Stent (Kenari)",
+        vendor: "PT Kenari Distribusi",
+        poNumber: "PO-U21-2609-011482",
+        poLine: 2,
+        poDate: "16 Sep 2026",
+        amount: "Rp 40.8M",
+        amountRaw: 40800000,
+        status: "pending",
+        finding: "PO price Rp 20,890,000 vs trade agreement Rp 16,810,000 (+24.3%) × 10 pcs",
+        trendNote: "All 14 other units bought at agreed TA price (Rp 16.81M). U21 has no prior violation in 12 weeks.",
+        rootCause: "Trade agreement update from July was omitted from U21 unit master in D365, causing purchase to pull list price.",
+        suggestedAction: "Confirm finding and dispatch PO revision request to Unit 21 Purchasing."
+      },
+      {
+        id: "EXP-02",
+        unit: "U30",
+        region: "Nusa Tenggara",
+        type: "price",
+        issue: "Price above TA",
+        badgeClass: "badge-rose",
+        item: "Drug-Eluting Stent (Kenari)",
+        vendor: "PT Kenari Distribusi",
+        poNumber: "PO-U30-2609-008912",
+        poLine: 1,
+        poDate: "15 Sep 2026",
+        amount: "Rp 35.5M",
+        amountRaw: 35500000,
+        status: "pending",
+        finding: "PO price Rp 20,900,000 vs trade agreement Rp 16,810,000 (+24.3%) × 8 pcs",
+        trendNote: "Identical pattern to U21. Confirms systemic D365 vendor agreement sync failure for peripheral units.",
+        rootCause: "D365 mapping omission for remote units. Same vendor and catalog schedule.",
+        suggestedAction: "Confirm finding for revision and notify Group IT for batch D365 sync."
+      },
+      {
+        id: "EXP-03",
+        unit: "U36",
+        region: "Bali",
+        type: "price",
+        issue: "Price above TA",
+        badgeClass: "badge-rose",
+        item: "Albumin 20% 100ml (Indra)",
+        vendor: "PT Indra Medika",
+        poNumber: "PO-U36-2609-004410",
+        poLine: 4,
+        poDate: "17 Sep 2026",
+        amount: "Rp 22.7M",
+        amountRaw: 22700000,
+        status: "pending",
+        finding: "PO price Rp 2,350,000 vs trade agreement Rp 1,820,000 (+29.1%) × 40 bottles",
+        trendNote: "Second time in 6 weeks for Unit 36. Local buyer manual price override detected.",
+        rootCause: "Local buyer accepted vendor spot quote despite active binding master agreement.",
+        suggestedAction: "Dispatch revision request to U36 Purchasing Lead with contractual price schedule attached."
+      },
+      {
+        id: "EXP-04",
+        unit: "U08",
+        region: "Central Java",
+        type: "formulary",
+        issue: "Non-formulary",
+        badgeClass: "badge-amber",
+        item: "PTCA Balloon (Lombok)",
+        vendor: "PT Lombok Medika",
+        poNumber: "PO-U08-2609-006721",
+        poLine: 1,
+        poDate: "16 Sep 2026",
+        amount: "Rp 18.1M",
+        amountRaw: 18100000,
+        status: "pending",
+        finding: "Purchased off-formulary Lombok PTCA Balloon when Kenari formulary equivalent had 45 units in stock.",
+        trendNote: "Unit had 45 formulary units in central storage at time of order.",
+        rootCause: "Clinician preference override without clinical justification log.",
+        suggestedAction: "Route to Pharmacy Director for clinician review."
+      },
+      {
+        id: "EXP-05",
+        unit: "U14",
+        region: "Sumatra",
+        type: "bpjs",
+        issue: "BPJS non-formulary",
+        badgeClass: "badge-amber",
+        item: "Meropenem Inj 1g (Garuda)",
+        vendor: "PT Garuda Medika",
+        poNumber: "PO-U14-2609-002194",
+        poLine: 3,
+        poDate: "15 Sep 2026",
+        amount: "Rp 9.4M",
+        amountRaw: 9400000,
+        status: "pending",
+        finding: "Brand prescribed for BPJS cohort is outside national insurance formulary schedule.",
+        trendNote: "Carries 100% claim rejection risk upon BPJS verification audit.",
+        rootCause: "Generic BPJS SKU was available; non-formulary brand keyed during night shift.",
+        suggestedAction: "Confirm and alert Pharmacy Lead to substitute before goods administration."
+      },
+      {
+        id: "EXP-06",
+        unit: "U27",
+        region: "East Java",
+        type: "uom",
+        issue: "UOM mismatch",
+        badgeClass: "badge-slate",
+        item: "IV Catheter 20G (Borneo)",
+        vendor: "PT Borneo Medika",
+        poNumber: "PO-U27-2609-001099",
+        poLine: 2,
+        poDate: "14 Sep 2026",
+        amount: "Rp 6.2M",
+        amountRaw: 6200000,
+        status: "false_positive",
+        finding: "Unit of measure entered as BOX (50 pcs) but priced at individual unit rate.",
+        trendNote: "ERP price formula division discrepancy. Vendor invoice is expected to match unit price.",
+        rootCause: "Typographical keying error in UOM field by local clerk.",
+        suggestedAction: "Mark as false positive; notify clerk for UOM field correction in ERP."
+      },
+      {
+        id: "EXP-07",
+        unit: "U18",
+        region: "Kalimantan",
+        type: "price",
+        issue: "Price above TA",
+        badgeClass: "badge-rose",
+        item: "Cefotaxime 1g Inj (Indra)",
+        vendor: "PT Indra Medika",
+        poNumber: "PO-U18-2609-005118",
+        poLine: 1,
+        poDate: "17 Sep 2026",
+        amount: "Rp 5.4M",
+        amountRaw: 5400000,
+        status: "pending",
+        finding: "Unit billed at Rp 48,000 vs contracted group price Rp 41,500 (+15.6%).",
+        trendNote: "Contract renewal took effect 1 Sep; vendor invoiced previous pre-renewal tier.",
+        rootCause: "Vendor billing system lag.",
+        suggestedAction: "Request credit note / revised PO from unit."
+      },
+      {
+        id: "EXP-08",
+        unit: "U05",
+        region: "Yogyakarta",
+        type: "formulary",
+        issue: "Non-formulary",
+        badgeClass: "badge-amber",
+        item: "Disposable Syringe 5ml (Delta)",
+        vendor: "PT Delta Medika",
+        poNumber: "PO-U05-2609-003882",
+        poLine: 5,
+        poDate: "16 Sep 2026",
+        amount: "Rp 4.1M",
+        amountRaw: 4100000,
+        status: "pending",
+        finding: "Purchased non-contract syringe brand at 22% premium over group tier vendor.",
+        trendNote: "Group supplier had 10,000 units in central warehouse with 2-day delivery.",
+        rootCause: "Local spot purchase during minor stock reorder cycle.",
+        suggestedAction: "Route inquiry to Unit Purchasing."
+      }
+    ];
+
+    let selectedId = "EXP-01";
+    let currentCategory = "all";
+    let searchQuery = "";
+
+    function renderTable() {
+      const tbody = document.getElementById("exceptions-tbody");
+      tbody.innerHTML = "";
+
+      const filtered = exceptions.filter(item => {
+        const matchesCat = currentCategory === "all" || item.type === currentCategory;
+        const q = searchQuery.toLowerCase();
+        const matchesSearch = !q || 
+          item.unit.toLowerCase().includes(q) ||
+          item.region.toLowerCase().includes(q) ||
+          item.item.toLowerCase().includes(q) ||
+          item.vendor.toLowerCase().includes(q) ||
+          item.issue.toLowerCase().includes(q);
+        return matchesCat && matchesSearch;
+      });
+
+      document.getElementById("queue-count").textContent = `Showing ${filtered.length} exceptions`;
+
+      filtered.forEach(item => {
+        const tr = document.createElement("tr");
+        if (item.id === selectedId) tr.classList.add("selected");
+        tr.style.cursor = "pointer";
+        tr.onclick = (e) => {
+          if (e.target.tagName !== 'BUTTON') {
+            selectedId = item.id;
+            renderTable();
+            renderEvidence();
+          }
+        };
+
+        const statusHtml = item.status === "approved"
+          ? `<span class="badge badge-emerald">Approved</span>`
+          : item.status === "false_positive"
+          ? `<span class="badge badge-slate">False Positive</span>`
+          : `<div style="display:flex;gap:4px;">
+               <button class="btn btn-primary btn-sm" onclick="approveItem('${item.id}', event)">Approve</button>
+               <button class="btn btn-secondary btn-sm" onclick="rejectItem('${item.id}', event)">Dismiss</button>
+             </div>`;
+
+        tr.innerHTML = `
+          <td>
+            <b>${item.unit}</b>
+            <div style="font-size:11.5px;color:var(--text-muted);">${item.region}</div>
+          </td>
+          <td>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+              <span class="badge ${item.badgeClass}">${item.issue}</span>
+              <span style="font-weight:600;">${item.item}</span>
+            </div>
+            <div style="font-size:11.5px;color:var(--text-muted);">${item.vendor} · ${item.poNumber}</div>
+          </td>
+          <td class="num">
+            <b style="color:${item.amountRaw > 10000000 ? 'var(--rose-text)' : 'inherit'};">${item.amount}</b>
+          </td>
+          <td>
+            ${statusHtml}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      renderEvidence();
+    }
+
+    function renderEvidence() {
+      const item = exceptions.find(e => e.id === selectedId) || exceptions[0];
+      const panel = document.getElementById("evidence-content");
+      if (!item) {
+        panel.innerHTML = "<p class='page-desc'>No exception selected.</p>";
+        return;
+      }
+
+      panel.innerHTML = `
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+          <div>
+            <span class="badge ${item.badgeClass}">${item.issue}</span>
+            <div style="font-size:15px;font-weight:700;margin-top:6px;">${item.item}</div>
+            <div style="font-size:12px;color:var(--text-muted);">${item.unit} (${item.region}) · ${item.poNumber} (Line ${item.poLine})</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:var(--text-muted);">At Stake</div>
+            <div style="font-size:18px;font-weight:700;color:var(--rose-text);">${item.amount}</div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid var(--border-light);margin:12px 0;">
+
+        <dl class="dl-evidence">
+          <dt>Audit Finding</dt>
+          <dd style="background:var(--bg-subtle);padding:8px 10px;border-radius:6px;font-weight:500;">
+            ${item.finding}
+          </dd>
+
+          <dt>Cross-Unit Benchmark (Last 90 Days)</dt>
+          <dd>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">${item.trendNote}</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:11px;font-weight:600;width:75px;">${item.unit} (This PO)</span>
+              <div class="bar-container" style="flex:1;"><div class="bar-fill rose" style="width:95%;"></div></div>
+              <span style="font-size:11.5px;font-weight:700;color:var(--rose-text);width:45px;text-align:right;">High</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:11px;color:var(--text-muted);width:75px;">Group Agree</span>
+              <div class="bar-container" style="flex:1;"><div class="bar-fill emerald" style="width:75%;"></div></div>
+              <span style="font-size:11.5px;font-weight:600;color:var(--emerald-text);width:45px;text-align:right;">Target</span>
+            </div>
+          </dd>
+
+          <dt>Root Cause Analysis</dt>
+          <dd style="line-height:1.45;font-size:12.5px;">${item.rootCause}</dd>
+
+          <dt>Recommended Action</dt>
+          <dd style="line-height:1.45;font-size:12.5px;font-weight:500;color:var(--primary);">${item.suggestedAction}</dd>
+        </dl>
+
+        <div style="margin-top:16px;display:flex;gap:8px;">
+          <button class="btn btn-primary" style="flex:1;" onclick="approveItem('${item.id}', event)">Confirm &amp; Send Request</button>
+          <button class="btn btn-secondary" onclick="rejectItem('${item.id}', event)">Mark False Positive</button>
+        </div>
+      `;
+    }
+
+    function approveItem(id, e) {
+      if (e) e.stopPropagation();
+      const item = exceptions.find(x => x.id === id);
+      if (item) {
+        item.status = "approved";
+        updateBadge();
+        renderTable();
+        showToast(`Approved ${item.item} (${item.unit}) — revision dispatched`);
+      }
+    }
+
+    function rejectItem(id, e) {
+      if (e) e.stopPropagation();
+      const item = exceptions.find(x => x.id === id);
+      if (item) {
+        item.status = "false_positive";
+        updateBadge();
+        renderTable();
+        showToast(`Marked ${item.unit} item as false positive`);
+      }
+    }
+
+    function batchApproveValid() {
+      let count = 0;
+      exceptions.forEach(item => {
+        if (item.status === "pending" && item.type !== "uom") {
+          item.status = "approved";
+          count++;
+        }
+      });
+      updateBadge();
+      renderTable();
+      showToast(`Batch approved ${count} exceptions successfully`);
+    }
+
+    function markAllFalsePositives() {
+      currentCategory = "uom";
+      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+      const uomBtn = Array.from(document.querySelectorAll(".filter-pill")).find(el => el.textContent.includes("UOM"));
+      if (uomBtn) uomBtn.classList.add("active");
+      renderTable();
+    }
+
+    function filterCategory(cat, el) {
+      currentCategory = cat;
+      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+      el.classList.add("active");
+      renderTable();
+    }
+
+    function filterSearch() {
+      searchQuery = document.getElementById("searchInput").value;
+      renderTable();
+    }
+
+    function updateBadge() {
+      const pendingCount = exceptions.filter(e => e.status === "pending").length;
+      document.getElementById("pending-badge").textContent = pendingCount;
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2500);
+    }
+
+    // Initialize
+    renderTable();
+  </script>
+</body>
+</html>
