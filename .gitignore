@@ -3,3 +3,4 @@ dist/
 data/state/
 .env
 *.log
+data/ingest/

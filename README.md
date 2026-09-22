@@ -19,6 +19,29 @@ npm test         # node --test, no dependencies
 
 `npm run seed -- --reset` clears all decisions and returns the queue to untouched.
 
+### Pointing it at real data
+
+Configuration is environment variables only, so the same build runs anywhere:
+
+| Variable | Default | |
+|---|---|---|
+| `SPEND_SOURCE` | `fixture` | `fixture` (committed sample data) or `files` (a CSV drop folder) |
+| `SPEND_DATA_DIR` | `./data/inbox` | Where the `files` source reads exports from |
+| `SPEND_PERIOD` | latest available | Pin a period instead of taking the newest |
+| `PORT` | `3000` | |
+
+```bash
+node scripts/export-csv.js /tmp/inbox          # worked example in the expected layout
+SPEND_SOURCE=files SPEND_DATA_DIR=/tmp/inbox npm start
+```
+
+With a real source, **nothing is scanned until a person accepts it** on the Data Review page —
+the API answers `409` until then. The sample source is allowed to accept itself because every
+page carries a banner saying the data is synthetic. Absence of data never selects the data.
+
+[docs/data-contract.md](docs/data-contract.md) is the column-level specification to hand the
+ERP team; connecting a new system means adding one file under `src/sources/`.
+
 ## How it works
 
 The pipeline is **extract → benchmark → flag → notify**, and it is generic over that pattern:
@@ -27,12 +50,15 @@ ten processes share it, so a new one is a new rule file rather than an edit to e
 ```
 data/masters/      formulary, trade agreements, units, principals
 data/extracts/     the weekly PO lines, rebate ledger, usage lines, price history, request log
-data/state/        analyst decisions and closures (runtime, gitignored)
+data/state/        analyst decisions, closures and the ingest log (runtime, gitignored)
+data/ingest/       staged extracts, immutable and addressed by checksum (runtime, gitignored)
+src/sources/       one adapter per system + the field contract and validator
+src/ingest.js      stage -> validate -> accept, so a person gates what gets scanned
 src/rules/         one file per rule, auto-discovered by registry.js
-src/engine.js      runs every rule over its dataset, owns ids, ordering and money formatting
+src/engine.js      runs every rule over its dataset, owns ids, ordering, coverage and formatting
 src/aggregate.js   turns a run into the KPIs, funnel, leakage and leaderboard the pages render
 src/requests.js    drafts the revision request a confirmed finding produces
-src/api.js         the JSON API the four pages fetch from
+src/api.js         the JSON API the five pages fetch from
 ```
 
 ### Adding a rule
@@ -66,21 +92,33 @@ overstock against usage (usage lines).
 - **Percentages are derived from the sums they label.** Funnel widths *are* their percentages, and
   leakage shares are computed from the same total they sit under.
 - **Achieved savings are never inferred.** `validatedSavings` only moves when a person closes a
-  finding through `POST /api/exceptions/:id/close`.
+  finding through `POST /api/exceptions/close`.
+- **A row that matched nothing is not a clean row.** Every rule resolves codes against the
+  masters, and a miss means `applies()` returns false — the line would produce no finding and
+  no error. Coverage is tracked separately (`rowsRead` vs `rowsAssessed`) and surfaced, so an
+  unmatched code reads as unexamined rather than compliant.
+- **Decisions are keyed to rows, not to rank.** `EXP-NN` is a display label; approvals are
+  stored against the period and the row's content-derived ref, so re-ranking a run or
+  correcting a master price cannot move a decision onto a different finding.
 
 ## API
+
+Findings are addressed by `ref` (e.g. `poLine|L-00341`), never by the `EXP-NN` label.
 
 | Method | Path | |
 |---|---|---|
 | GET | `/api/run/latest`, `/api/kpis`, `/api/settings` | the current scan and its aggregates |
 | POST | `/api/run` | re-run the engine |
 | GET | `/api/exceptions?type=&status=&unit=&q=` | the review queue |
-| GET | `/api/exceptions/:id`, `/api/exceptions/:id/request` | one finding, and its drafted request |
-| POST | `/api/exceptions/:id/decision` | `{decision: "approved" \| "false_positive", actor}` |
-| POST | `/api/exceptions/decisions` | batch `{ids[], decision, actor}` |
-| POST | `/api/exceptions/:id/respond` | the unit's reply `{action, note, actor}` |
-| POST | `/api/exceptions/:id/close` | human gate `{achievedSavingsRaw, actor, note}` |
+| GET | `/api/exceptions/:ref`, `/api/exceptions/:ref/request` | one finding, and its drafted request |
+| POST | `/api/exceptions/decision` | `{ref, decision: "approved" \| "false_positive", actor}` |
+| POST | `/api/exceptions/decisions` | batch `{refs[], decision, actor}` |
+| POST | `/api/exceptions/respond` | the unit's reply `{ref, action, note, actor}` |
+| POST | `/api/exceptions/close` | human gate `{ref, achievedSavingsRaw, actor, note}` |
 | GET | `/api/units`, `/api/units/:id`, `/api/rebates`, `/api/requests?unit=` | page payloads |
+| GET | `/api/provenance` | which source, period and checksum the page is showing |
+| GET | `/api/ingest/sources`, `/api/ingest/latest`, `/api/ingest/history` | the ingest gate |
+| POST | `/api/ingest/stage`, `/api/ingest/accept`, `/api/ingest/reject` | stage and gate an extract |
 
 ## Autonomy
 

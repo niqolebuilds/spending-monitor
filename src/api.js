@@ -1,27 +1,96 @@
 import express from 'express';
-import { loadMasters, loadExtract, loadSettings, AS_OF } from './load.js';
+import { loadSettings } from './load.js';
+import { loadConfig } from './config.js';
+import { resolveSource, SOURCE_IDS } from './sources/index.js';
 import { runEngine } from './engine.js';
 import { buildKpis, buildLeaderboard, buildRebateSummary } from './aggregate.js';
 import { draftRevision } from './requests.js';
 import * as store from './store.js';
+import * as ingest from './ingest.js';
 import { isRef } from './refs.js';
 
 const DECISIONS = new Set(['approved', 'false_positive']);
 
+const config = loadConfig();
+const source = resolveSource(config);
+
+// Keyed by the accepted period and checksum, so accepting a different extract
+// cannot be served from a stale slot.
 let cached = null;
 
+class NoAcceptedData extends Error {
+  constructor(message) {
+    super(message);
+    this.status = 409;
+  }
+}
+
+// Synthetic demo data announces itself on every page, so an explicitly
+// configured fixture source may stage and accept itself. A real source never
+// does: with nothing accepted the app says so rather than scanning an extract
+// no one has reviewed.
+async function ensureAccepted() {
+  const active = ingest.activeIngest(source.id);
+  if (active) return active;
+
+  if (!source.synthetic) {
+    throw new NoAcceptedData(
+      `No ingested data has been accepted for source "${source.id}". Stage an extract on the Data Review page first.`
+    );
+  }
+
+  const periods = await source.listPeriods();
+  const periodId = config.periodId ?? periods[periods.length - 1];
+  if (!periodId) throw new NoAcceptedData(`Source "${source.id}" offers no periods to scan.`);
+  const staged = await ingest.stage(source, periodId, { actor: 'system' });
+  return ingest.accept(staged.periodId, staged.checksum, 'system', 'sample data accepted automatically');
+}
+
 async function state() {
-  if (cached) return cached;
-  const masters = loadMasters();
-  const extract = loadExtract();
+  const active = await ensureAccepted();
+  if (cached && cached.key === `${active.periodId}|${active.checksum}`) return cached;
+
+  const staged = ingest.readStaged(active.periodId, active.checksum);
   const settings = loadSettings();
   const run = await runEngine({
-    masters, extract, settings, asOf: AS_OF,
-    decisions: store.decisionsFor(extract.weekId)
+    masters: staged.masters,
+    extract: staged.extract,
+    settings,
+    asOf: staged.report.asOf,
+    decisions: store.decisionsFor(active.periodId)
   });
-  cached = { masters, extract, settings, run };
+
+  cached = {
+    key: `${active.periodId}|${active.checksum}`,
+    masters: staged.masters,
+    extract: staged.extract,
+    report: staged.report,
+    settings,
+    run,
+    provenance: {
+      sourceId: source.id,
+      sourceLabel: source.describe(),
+      synthetic: source.synthetic,
+      periodId: active.periodId,
+      checksum: active.checksum,
+      acceptedAt: active.at,
+      acceptedBy: active.actor
+    }
+  };
   return cached;
 }
+
+// Express 4 does not catch async throws, so every handler is wrapped. Any of
+// them may hit the 409 raised when nothing has been accepted yet.
+const guard = (handler) => async (req, res) => {
+  try {
+    await handler(req, res);
+  } catch (error) {
+    if (res.headersSent) return;
+    if (error.status === 409) return res.status(409).json({ error: error.message, needsIngest: true });
+    res.status(500).json({ error: error.message });
+  }
+};
 
 // Findings are addressed by their content-derived ref, not the positional
 // EXP-NN label, so a decision cannot land on the wrong row after a re-rank.
@@ -37,29 +106,31 @@ const requestCtx = (settings, run) => ({ asOf: run.asOf, slaDays: settings.slaDa
 
 export function createApiRouter() {
   const router = express.Router();
+  const get = (route, handler) => router.get(route, guard(handler));
+  const post = (route, handler) => router.post(route, guard(handler));
 
-  router.get('/run/latest', async (req, res) => {
+  get('/run/latest', async (req, res) => {
     const { run, masters, extract } = await state();
     res.json({ ...run, kpis: buildKpis(run, masters, extract) });
   });
 
-  router.post('/run', async (req, res) => {
+  post('/run', async (req, res) => {
     invalidate();
     const { run, masters, extract } = await state();
     res.json({ ...run, kpis: buildKpis(run, masters, extract) });
   });
 
-  router.get('/kpis', async (req, res) => {
+  get('/kpis', async (req, res) => {
     const { run, masters, extract } = await state();
     res.json(buildKpis(run, masters, extract));
   });
 
-  router.get('/settings', async (req, res) => {
+  get('/settings', async (req, res) => {
     const { settings } = await state();
     res.json(settings);
   });
 
-  router.get('/exceptions', async (req, res) => {
+  get('/exceptions', async (req, res) => {
     const { run } = await state();
     const { type, status, unit, q } = req.query;
     const needle = typeof q === 'string' ? q.trim().toLowerCase() : '';
@@ -81,7 +152,7 @@ export function createApiRouter() {
     });
   });
 
-  router.post('/exceptions/decisions', async (req, res) => {
+  post('/exceptions/decisions', async (req, res) => {
     const { refs, decision, actor = 'HO Finance' } = req.body ?? {};
     if (!Array.isArray(refs) || !refs.every(isRef)) {
       return res.status(400).json({ error: 'refs must be an array of finding references' });
@@ -102,7 +173,7 @@ export function createApiRouter() {
     });
   });
 
-  router.post('/exceptions/decision', async (req, res) => {
+  post('/exceptions/decision', async (req, res) => {
     const { ref, decision, actor = 'HO Finance' } = req.body ?? {};
     if (!DECISIONS.has(decision)) {
       return res.status(400).json({ error: `decision must be one of ${[...DECISIONS].join(', ')}` });
@@ -124,7 +195,7 @@ export function createApiRouter() {
     });
   });
 
-  router.post('/exceptions/respond', async (req, res) => {
+  post('/exceptions/respond', async (req, res) => {
     const { ref, action, note = '', actor = 'Unit Purchasing' } = req.body ?? {};
     if (typeof action !== 'string' || !action.trim()) {
       return res.status(400).json({ error: 'action is required' });
@@ -142,14 +213,14 @@ export function createApiRouter() {
     res.json({ exception: refreshed.run.exceptions.find((e) => e.ref === ref) });
   });
 
-  router.get('/exceptions/:ref', async (req, res) => {
+  get('/exceptions/:ref', async (req, res) => {
     const { run } = await state();
     const { exception, error } = resolveRef(run, req.params.ref);
     if (error) return res.status(error === 'finding not found' ? 404 : 400).json({ error });
     res.json(exception);
   });
 
-  router.get('/exceptions/:ref/request', async (req, res) => {
+  get('/exceptions/:ref/request', async (req, res) => {
     const { run, settings } = await state();
     const { exception, error } = resolveRef(run, req.params.ref);
     if (error) return res.status(error === 'finding not found' ? 404 : 400).json({ error });
@@ -157,7 +228,7 @@ export function createApiRouter() {
   });
 
   // The human gate that stays: a person validates what was actually banked.
-  router.post('/exceptions/close', async (req, res) => {
+  post('/exceptions/close', async (req, res) => {
     const { ref, achievedSavingsRaw, actor = 'HO Finance', note = '' } = req.body ?? {};
     if (!Number.isFinite(achievedSavingsRaw) || achievedSavingsRaw < 0) {
       return res.status(400).json({ error: 'achievedSavingsRaw must be a non-negative number' });
@@ -176,12 +247,12 @@ export function createApiRouter() {
     });
   });
 
-  router.get('/units', async (req, res) => {
+  get('/units', async (req, res) => {
     const { run, masters, extract } = await state();
     res.json({ units: buildLeaderboard(run, masters, extract) });
   });
 
-  router.get('/units/:id', async (req, res) => {
+  get('/units/:id', async (req, res) => {
     const { run, masters, extract, settings } = await state();
     const scorecard = buildLeaderboard(run, masters, extract).find((u) => u.unit === req.params.id);
     if (!scorecard) return res.status(404).json({ error: 'unit not found' });
@@ -195,12 +266,12 @@ export function createApiRouter() {
     });
   });
 
-  router.get('/rebates', async (req, res) => {
+  get('/rebates', async (req, res) => {
     const { run, masters, extract } = await state();
     res.json(buildRebateSummary(run, masters, extract));
   });
 
-  router.get('/requests', async (req, res) => {
+  get('/requests', async (req, res) => {
     const { run, settings } = await state();
     const { unit } = req.query;
     const source = run.exceptions.filter((e) => {
@@ -208,6 +279,68 @@ export function createApiRouter() {
       return unit ? e.unit === unit : true;
     });
     res.json({ requests: source.map((e) => draftRevision(e, requestCtx(settings, run))) });
+  });
+
+  // --- ingest gate ------------------------------------------------------
+  // Where the data came from, shown on every page so nobody mistakes demo
+  // output for the ERP.
+  get('/provenance', async (req, res) => {
+    const { provenance, report } = await state();
+    res.json({ ...provenance, totals: report.totals, ok: report.ok });
+  });
+
+  get('/ingest/sources', async (req, res) => {
+    res.json({
+      active: source.id,
+      label: source.describe(),
+      synthetic: source.synthetic,
+      known: SOURCE_IDS,
+      periods: await source.listPeriods(),
+      configuredPeriod: config.periodId
+    });
+  });
+
+  get('/ingest/latest', async (req, res) => {
+    const periodId = typeof req.query.period === 'string' ? req.query.period : undefined;
+    const staged = ingest.latestStaged(source.id, periodId);
+    if (!staged) return res.status(404).json({ error: 'nothing has been staged yet' });
+
+    const held = ingest.readStaged(staged.periodId, staged.checksum);
+    const active = ingest.activeIngest(source.id);
+    res.json({
+      ...staged,
+      report: held?.report ?? null,
+      isAccepted: Boolean(active && active.periodId === staged.periodId && active.checksum === staged.checksum)
+    });
+  });
+
+  get('/ingest/history', async (req, res) => res.json({ events: ingest.history() }));
+
+  post('/ingest/stage', async (req, res) => {
+    const periods = await source.listPeriods();
+    const requested = req.body?.periodId ?? config.periodId ?? periods[periods.length - 1];
+    if (!requested) return res.status(400).json({ error: `source "${source.id}" offers no periods` });
+    if (!periods.includes(requested)) {
+      return res.status(404).json({ error: `period "${requested}" not available from source "${source.id}"` });
+    }
+    const staged = await ingest.stage(source, requested, { actor: req.body?.actor ?? config.actor });
+    res.json(staged);
+  });
+
+  post('/ingest/accept', async (req, res) => {
+    const { periodId, checksum, actor = config.actor, note = '' } = req.body ?? {};
+    const accepted = ingest.accept(periodId, checksum, actor, String(note).slice(0, 500));
+    if (!accepted) return res.status(404).json({ error: 'no staged extract with that period and checksum' });
+    invalidate();
+    res.json({ accepted });
+  });
+
+  post('/ingest/reject', async (req, res) => {
+    const { periodId, checksum, actor = config.actor, note = '' } = req.body ?? {};
+    const rejected = ingest.reject(periodId, checksum, actor, String(note).slice(0, 500));
+    if (!rejected) return res.status(404).json({ error: 'no staged extract with that period and checksum' });
+    invalidate();
+    res.json({ rejected });
   });
 
   // Without this a GET to an unknown /api path falls through to the SPA

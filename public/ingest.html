@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Data Review · Spend Compliance &amp; Savings Monitor</title>
+  <meta name="description" content="Review an incoming ERP extract before the weekly scan runs against it.">
+  <meta property="og:title" content="Data Review">
+  <meta property="og:description" content="Review an incoming ERP extract before the weekly scan runs against it.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-icon">◆</div>
+      <div>
+        <div class="brand-title">Spend Compliance &amp; Savings Monitor</div>
+        <div class="brand-subtitle" id="brand-subtitle">Ingest gate</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="badge badge-slate" id="ingest-status">–</span>
+      <span class="user-badge">Head Office Finance · Nicole Celia Wangga</span>
+    </div>
+  </header>
+
+  <!-- Simplified Navigation -->
+  <nav class="app-nav">
+    <a href="index.html" class="nav-item">Dashboard</a>
+    <a href="reviewer.html" class="nav-item">Review Workbench <span class="nav-badge">–</span></a>
+    <a href="unit-inbox.html" class="nav-item">Unit Inbox &amp; Scorecards</a>
+    <a href="rebates.html" class="nav-item">Rebates &amp; Principals</a>
+    <a href="ingest.html" class="nav-item active">Data Review</a>
+  </nav>
+
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Data Review</h1>
+        <p class="page-desc">
+          Check what the ERP actually sent before any rule runs against it. A row that fails to match the
+          formulary, a trade agreement or the unit master reaches no rule at all — it produces no finding
+          and no error, so it has to be caught here.
+        </p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <select id="periodSelect" class="search-input" style="min-width:160px;padding:6px 10px;"></select>
+        <button class="btn btn-secondary" onclick="stage()">Stage extract</button>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card primary">
+        <div class="kpi-label">Rows Read</div>
+        <div class="kpi-value" id="kpi-read">–</div>
+        <div class="kpi-sub" id="kpi-read-sub">&nbsp;</div>
+      </div>
+      <div class="kpi-card emerald">
+        <div class="kpi-label">Rows Accepted</div>
+        <div class="kpi-value" id="kpi-accepted">–</div>
+        <div class="kpi-sub" id="kpi-accepted-sub">&nbsp;</div>
+      </div>
+      <div class="kpi-card rose">
+        <div class="kpi-label">Dropped Rows</div>
+        <div class="kpi-value" id="kpi-rejected">–</div>
+        <div class="kpi-sub alert" id="kpi-rejected-sub">&nbsp;</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">Unmatched Codes</div>
+        <div class="kpi-value" id="kpi-joins">–</div>
+        <div class="kpi-sub" id="kpi-joins-sub">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="alert-banner" id="decision-banner" style="display:none;">
+      <div class="alert-banner-content">
+        <span class="badge badge-amber" style="font-size:12px;" id="decision-badge">Awaiting decision</span>
+        <div>
+          <div class="alert-banner-title" id="decision-title">&nbsp;</div>
+          <div class="alert-banner-sub" id="decision-sub">&nbsp;</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary" onclick="decide('reject')">Reject</button>
+        <button class="btn btn-success" onclick="decide('accept')">Accept and scan</button>
+      </div>
+    </div>
+
+    <div class="grid-2col">
+      <div>
+        <div class="card">
+          <div class="card-title">Per Dataset</div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr><th>Dataset</th><th class="num">Read</th><th class="num">Accepted</th><th class="num">Rejected</th></tr>
+              </thead>
+              <tbody id="dataset-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Unmatched Codes</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:0 0 10px;">
+            These rows load cleanly but resolve against nothing, so no rule can assess them.
+            They are not compliant — they are invisible.
+          </p>
+          <div id="joins"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-title">Dropped Rows</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:0 0 10px;">
+            Rows that could not be parsed, plus duplicates. None of these reach the scan.
+          </p>
+          <div class="table-wrapper scroll-y" id="rejects"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Ingest History</div>
+          <div class="table-wrapper scroll-y" id="history"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    let staged = null;
+
+    async function init() {
+      try {
+        const sources = await fetchJSON('/api/ingest/sources');
+        setText('brand-subtitle', `${sources.label} · ${sources.synthetic ? 'synthetic sample data' : 'live source'}`);
+
+        const select = document.getElementById('periodSelect');
+        select.innerHTML = sources.periods.length
+          ? sources.periods.map(p => `<option value="${p}">${p}</option>`).join('')
+          : '<option value="">no periods available</option>';
+        if (sources.periods.length) select.value = sources.periods[sources.periods.length - 1];
+
+        await loadLatest();
+        await loadHistory();
+      } catch (err) {
+        showToast(`Could not read source: ${err.message}`);
+      }
+    }
+
+    async function loadLatest() {
+      try {
+        staged = await fetchJSON('/api/ingest/latest');
+        render(staged);
+      } catch (err) {
+        staged = null;
+        setText('ingest-status', 'nothing staged');
+        document.getElementById('dataset-body').innerHTML =
+          `<tr><td colspan="4" style="color:var(--text-muted);">Nothing has been staged yet. Pick a period and stage an extract.</td></tr>`;
+      }
+    }
+
+    function render(s) {
+      const r = s.report;
+      const t = r.totals;
+
+      setText('ingest-status', s.isAccepted ? `accepted · ${s.periodId}` : `staged · ${s.periodId}`);
+      setText('kpi-read', t.read.toLocaleString('en-US'));
+      setText('kpi-read-sub', `period ${s.periodId} · checksum ${s.checksum}`);
+      setText('kpi-accepted', t.accepted.toLocaleString('en-US'));
+      setText('kpi-accepted-sub', `as of ${r.asOf ?? '—'}`);
+      setText('kpi-rejected', t.rejected.toLocaleString('en-US'));
+      setText('kpi-rejected-sub', t.rejected ? 'these rows never reach a rule' : 'every row parsed cleanly');
+      setText('kpi-joins', t.joinIssues.toLocaleString('en-US'));
+      setText('kpi-joins-sub', t.joinIssues ? 'codes that resolve against nothing' : 'every code resolved');
+
+      const banner = document.getElementById('decision-banner');
+      banner.style.display = '';
+      setText('decision-badge', s.isAccepted ? 'Accepted' : 'Awaiting decision');
+      setText('decision-title', s.isAccepted
+        ? `This extract is live — the scan is running against ${s.periodId} (${s.checksum})`
+        : `${s.periodId} is staged and has not been accepted`);
+      setText('decision-sub', r.ok
+        ? 'Every row parsed and every code resolved. Nothing was quarantined.'
+        : `${t.rejected} rejected, ${t.joinIssues} unmatched, ${t.duplicates} duplicate. Accepting will scan only the accepted rows.`);
+
+      document.getElementById('dataset-body').innerHTML = Object.entries(r.datasets).map(([key, d]) => `
+        <tr>
+          <td><b>${d.label}</b><div style="font-size:11.5px;color:var(--text-muted);">${key}</div></td>
+          <td class="num">${d.read.toLocaleString('en-US')}</td>
+          <td class="num">${d.accepted.toLocaleString('en-US')}</td>
+          <td class="num" style="${d.rejected ? 'color:var(--rose-text);font-weight:700;' : ''}">${d.rejected}</td>
+        </tr>`).join('');
+
+      const labels = {
+        unknownSku: 'SKU not in the formulary',
+        unknownUnit: 'Unit not in the unit master',
+        unknownVendor: 'Vendor not a known principal',
+        noAgreement: 'No trade agreement for this vendor and SKU'
+      };
+      const joinRows = Object.entries(r.joinCounts).filter(([, count]) => count > 0);
+      document.getElementById('joins').innerHTML = joinRows.length
+        ? joinRows.map(([key, count]) => `
+            <div class="stat-row">
+              <div>
+                <div style="font-weight:600;">${labels[key] ?? key}</div>
+                <div style="font-size:11.5px;color:var(--text-muted);">
+                  ${(r.joins[key] ?? []).slice(0, 4).map(x => x.sku ?? x.vendorId ?? x.unit ?? x.ref).join(', ')}${count > 4 ? ` and ${count - 4} more` : ''}
+                </div>
+              </div>
+              <span class="badge badge-rose">${count}</span>
+            </div>`).join('')
+        : `<p style="font-size:12px;color:var(--emerald-text);margin:0;">Every code in this extract resolved against the masters.</p>`;
+
+      // Duplicates are dropped too, so they belong in the same list as parse
+      // failures — otherwise this table disagrees with the headline count.
+      const dropped = [
+        ...r.rejects.map(x => ({
+          label: x.label,
+          index: x.index,
+          detail: x.problems.map(p => `<b>${p.field}</b>: ${p.reason}`).join('<br>')
+        })),
+        ...r.duplicates.map(d => ({
+          label: r.datasets[d.dataset]?.label ?? d.dataset,
+          index: d.index,
+          detail: `<b>duplicate</b>: ${d.ref} already appeared in this extract`
+        }))
+      ];
+
+      document.getElementById('rejects').innerHTML = dropped.length
+        ? `<table><thead><tr><th>Dataset</th><th class="num">Row</th><th>Why it was dropped</th></tr></thead><tbody>${
+            dropped.map(x => `
+              <tr>
+                <td>${x.label}</td>
+                <td class="num">${x.index}</td>
+                <td style="font-size:11.5px;">${x.detail}</td>
+              </tr>`).join('')
+          }</tbody></table>`
+        : `<p style="font-size:12px;color:var(--emerald-text);margin:0;">No rows were dropped.</p>`;
+    }
+
+    async function loadHistory() {
+      try {
+        const { events } = await fetchJSON('/api/ingest/history');
+        document.getElementById('history').innerHTML = events.length
+          ? `<table><thead><tr><th>When</th><th>Event</th><th>Period</th><th>By</th></tr></thead><tbody>${
+              events.map(e => `
+                <tr>
+                  <td style="font-size:11.5px;">${new Date(e.at).toLocaleString('en-GB')}</td>
+                  <td><span class="badge ${e.type === 'accepted' ? 'badge-emerald' : e.type === 'rejected' ? 'badge-rose' : 'badge-slate'}">${e.type}</span></td>
+                  <td style="font-size:11.5px;">${e.periodId}<div style="color:var(--text-muted);">${e.checksum}</div></td>
+                  <td style="font-size:11.5px;">${e.actor}</td>
+                </tr>`).join('')
+            }</tbody></table>`
+          : `<p style="font-size:12px;color:var(--text-muted);margin:0;">No ingest activity yet.</p>`;
+      } catch (err) {
+        renderError('history', err);
+      }
+    }
+
+    async function stage() {
+      const periodId = document.getElementById('periodSelect').value;
+      if (!periodId) return showToast('This source offers no periods to stage');
+      showToast(`Staging ${periodId}…`);
+      try {
+        await fetchJSON('/api/ingest/stage', { method: 'POST', body: { periodId } });
+        await loadLatest();
+        await loadHistory();
+        showToast(`Staged ${periodId} — review it before accepting`);
+      } catch (err) {
+        showToast(`Staging failed: ${err.message}`);
+      }
+    }
+
+    async function decide(action) {
+      if (!staged) return;
+      try {
+        await fetchJSON(`/api/ingest/${action}`, {
+          method: 'POST',
+          body: { periodId: staged.periodId, checksum: staged.checksum, actor: 'Nicole Celia Wangga' }
+        });
+        await loadLatest();
+        await loadHistory();
+        showToast(action === 'accept' ? 'Accepted — the scan now runs against this extract' : 'Rejected');
+      } catch (err) {
+        showToast(`Could not ${action}: ${err.message}`);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

@@ -42,9 +42,39 @@ async function hydrateNav() {
   }
 }
 
+// Every page states its data's origin. Synthetic sample data is called out in
+// amber; a source with nothing accepted blocks in rose rather than quietly
+// showing something else.
+async function hydrateProvenance() {
+  const bar = document.createElement('div');
+  bar.className = 'provenance-bar';
+  const nav = document.querySelector('.app-nav');
+  if (!nav) return;
+  nav.insertAdjacentElement('afterend', bar);
+
+  try {
+    const p = await fetchJSON('/api/provenance');
+    if (p.synthetic) bar.classList.add('synthetic');
+    bar.innerHTML = `
+      <b>${p.synthetic ? 'Sample data — not from the ERP.' : 'Source:'}</b>
+      <span>${p.sourceLabel}</span>
+      <span>· period <b>${p.periodId}</b></span>
+      <span>· <code>${p.checksum}</code></span>
+      <span>· ${p.totals.accepted} of ${p.totals.read} rows accepted${p.totals.joinIssues ? `, ${p.totals.joinIssues} unmatched` : ''}</span>
+      <a href="ingest.html" style="margin-left:auto;font-weight:600;">Data review →</a>`;
+  } catch (err) {
+    bar.classList.add('blocked');
+    bar.innerHTML = `<b>No data accepted.</b><span>${err.message}</span>
+      <a href="ingest.html" style="margin-left:auto;font-weight:600;">Go to data review →</a>`;
+  }
+}
+
 function renderError(containerId, error) {
   const el = document.getElementById(containerId);
   if (el) el.innerHTML = `<p class="page-desc">Could not load data: ${error.message}</p>`;
 }
 
-document.addEventListener('DOMContentLoaded', hydrateNav);
+document.addEventListener('DOMContentLoaded', () => {
+  hydrateNav();
+  hydrateProvenance();
+});
