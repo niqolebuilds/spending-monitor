@@ -58,6 +58,10 @@
             <b id="sum-lines">–</b>
           </div>
           <div class="stat-row">
+            <span>Rows Assessed</span>
+            <b id="sum-coverage">–</b>
+          </div>
+          <div class="stat-row">
             <span>Total Exceptions</span>
             <span class="badge badge-rose" id="sum-exceptions">–</span>
           </div>
@@ -175,7 +179,9 @@
 
   <script>
     let exceptions = [];
-    let selectedId = null;
+    // Selection tracks the content-derived ref, not the EXP-NN display label,
+    // so it survives a re-rank after any decision.
+    let selectedRef = null;
     let currentCategory = "all";
     let searchQuery = "";
 
@@ -187,7 +193,7 @@
           fetchJSON('/api/settings')
         ]);
         exceptions = data.items;
-        if (!exceptions.some(e => e.id === selectedId)) selectedId = exceptions[0]?.id ?? null;
+        if (!exceptions.some(e => e.ref === selectedRef)) selectedRef = exceptions[0]?.ref ?? null;
         hydrateSummary(kpis, settings);
         renderTable();
       } catch (err) {
@@ -199,6 +205,9 @@
       setText('brand-subtitle', `Automated weekly scan · ${kpis.weekId} · as of ${kpis.asOf} · ${kpis.unitCount} hospital units`);
       setText('header-status', `${kpis.pendingCount} pending review`);
       setText('sum-lines', `${kpis.linesScanned} lines`);
+      const coverageEl = document.getElementById('sum-coverage');
+      coverageEl.textContent = `${kpis.coverage.rowsAssessed} of ${kpis.coverage.rowsRead} (${kpis.coverage.assessedPct}%)`;
+      coverageEl.style.color = kpis.coverage.rowsUnassessed ? 'var(--rose-text)' : 'var(--emerald-text)';
       setText('sum-exceptions', `${kpis.exceptionCount} findings`);
       setText('sum-stake', kpis.valueAtStake);
       setText('sum-savings', kpis.potentialSavings);
@@ -238,11 +247,11 @@
 
       filtered.forEach(item => {
         const tr = document.createElement("tr");
-        if (item.id === selectedId) tr.classList.add("selected");
+        if (item.ref === selectedRef) tr.classList.add("selected");
         tr.style.cursor = "pointer";
         tr.onclick = (e) => {
           if (e.target.tagName !== 'BUTTON') {
-            selectedId = item.id;
+            selectedRef = item.ref;
             renderTable();
           }
         };
@@ -252,8 +261,8 @@
           : item.status === "false_positive"
           ? `<span class="badge badge-slate">Dismissed</span>`
           : `<div style="display:flex;gap:4px;">
-               <button class="btn btn-primary btn-sm" onclick="decide('${item.id}', 'approved', event)">Confirm</button>
-               <button class="btn btn-secondary btn-sm" onclick="decide('${item.id}', 'false_positive', event)">Dismiss</button>
+               <button class="btn btn-primary btn-sm" onclick="decide('${item.ref}', 'approved', event)">Confirm</button>
+               <button class="btn btn-secondary btn-sm" onclick="decide('${item.ref}', 'false_positive', event)">Dismiss</button>
              </div>`;
 
         tr.innerHTML = `
@@ -283,7 +292,7 @@
     }
 
     function renderEvidence() {
-      const item = exceptions.find(e => e.id === selectedId) || exceptions[0];
+      const item = exceptions.find(e => e.ref === selectedRef) || exceptions[0];
       const panel = document.getElementById("evidence-content");
       if (!item) {
         panel.innerHTML = "<p class='page-desc'>No exception selected.</p>";
@@ -305,15 +314,15 @@
 
       const actions = item.status === 'pending'
         ? `<div style="margin-top:16px;display:flex;gap:8px;">
-             <button class="btn btn-primary" style="flex:1;" onclick="decide('${item.id}', 'approved', event)">Confirm &amp; draft request</button>
-             <button class="btn btn-secondary" onclick="decide('${item.id}', 'false_positive', event)">Dismiss</button>
+             <button class="btn btn-primary" style="flex:1;" onclick="decide('${item.ref}', 'approved', event)">Confirm &amp; draft request</button>
+             <button class="btn btn-secondary" onclick="decide('${item.ref}', 'false_positive', event)">Dismiss</button>
            </div>`
         : item.status === 'approved' && !item.closedAt
         ? `<div style="margin-top:16px;">
              <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Human gate · validate what was actually banked</div>
              <div style="display:flex;gap:8px;">
                <input type="number" id="achieved-input" class="search-input" style="flex:1;" placeholder="Achieved savings (Rp)" value="${item.savingsRaw}">
-               <button class="btn btn-success" onclick="closeException('${item.id}')">Verify closure</button>
+               <button class="btn btn-success" onclick="closeException('${item.ref}')">Verify closure</button>
              </div>
            </div>`
         : `<div style="margin-top:16px;" class="badge badge-emerald">Closed · ${item.achievedSavingsRaw !== null ? 'verified ' + item.achievedSavingsRaw.toLocaleString('en-US') : ''}</div>`;
@@ -357,12 +366,12 @@
         <div id="request-preview"></div>
       `;
 
-      if (item.status === 'approved') showRequest(item.id);
+      if (item.status === 'approved') showRequest(item.ref);
     }
 
-    async function showRequest(id) {
+    async function showRequest(ref) {
       try {
-        const request = await fetchJSON(`/api/exceptions/${id}/request`);
+        const request = await fetchJSON(`/api/exceptions/${encodeURIComponent(ref)}/request`);
         const target = document.getElementById('request-preview');
         if (!target) return;
         target.innerHTML = `
@@ -379,14 +388,14 @@
       }
     }
 
-    async function decide(id, decision, event) {
+    async function decide(ref, decision, event) {
       if (event) event.stopPropagation();
       try {
-        const result = await fetchJSON(`/api/exceptions/${id}/decision`, {
+        const result = await fetchJSON('/api/exceptions/decision', {
           method: 'POST',
-          body: { decision, actor: 'Nicole Celia Wangga' }
+          body: { ref, decision, actor: 'Nicole Celia Wangga' }
         });
-        selectedId = id;
+        selectedRef = ref;
         await loadScan();
         showToast(decision === 'approved'
           ? `Confirmed ${result.exception.item} (${result.exception.unit}) — revision request drafted`
@@ -397,12 +406,12 @@
     }
 
     async function batchApproveRecoverable() {
-      const ids = exceptions.filter(e => e.status === 'pending' && e.savingsRaw > 0).map(e => e.id);
-      if (!ids.length) return showToast('No recoverable findings are awaiting confirmation');
+      const refs = exceptions.filter(e => e.status === 'pending' && e.savingsRaw > 0).map(e => e.ref);
+      if (!refs.length) return showToast('No recoverable findings are awaiting confirmation');
       try {
         const result = await fetchJSON('/api/exceptions/decisions', {
           method: 'POST',
-          body: { ids, decision: 'approved', actor: 'Nicole Celia Wangga' }
+          body: { refs, decision: 'approved', actor: 'Nicole Celia Wangga' }
         });
         await loadScan();
         showToast(`Confirmed ${result.updated} findings — revision requests drafted`);
@@ -411,13 +420,13 @@
       }
     }
 
-    async function closeException(id) {
+    async function closeException(ref) {
       const input = document.getElementById('achieved-input');
       const achievedSavingsRaw = Number(input?.value ?? 0);
       try {
-        await fetchJSON(`/api/exceptions/${id}/close`, {
+        await fetchJSON('/api/exceptions/close', {
           method: 'POST',
-          body: { achievedSavingsRaw, actor: 'Nicole Celia Wangga', note: 'Verified against revised PO' }
+          body: { ref, achievedSavingsRaw, actor: 'Nicole Celia Wangga', note: 'Verified against revised PO' }
         });
         await loadScan();
         showToast('Achieved savings verified and booked');

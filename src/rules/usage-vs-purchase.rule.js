@@ -1,6 +1,7 @@
 // Third dataset: 90-day usage against purchasing. Stock bought well ahead of
 // dispensing ties up working capital and carries expiry risk.
 import { formatIDR } from '../money.js';
+import { refFor } from '../refs.js';
 
 const COVER_WEEKS = 4;
 
@@ -18,7 +19,7 @@ export default {
   identity(row, ctx) {
     const sku = ctx.idx.formularyBySku.get(row.sku);
     return {
-      ref: `usage|${row.unit}|${row.sku}`,
+      ref: refFor('usageLines', row),
       unit: row.unit,
       region: ctx.idx.unitById.get(row.unit).region,
       item: sku.name,
@@ -29,13 +30,15 @@ export default {
     };
   },
 
+  // Responsibility only. Whether the row is actually overstocked is decided in
+  // evaluate(), so a healthy row counts as assessed rather than unexamined.
   applies(row, ctx) {
-    if (!ctx.idx.formularyBySku.has(row.sku)) return false;
-    if (row.purchasedQty90d <= 0) return false;
-    return row.dispensedQty90d / row.purchasedQty90d < 0.6;
+    return ctx.idx.formularyBySku.has(row.sku) && row.purchasedQty90d > 0;
   },
 
   evaluate(row, ctx) {
+    if (row.dispensedQty90d / row.purchasedQty90d >= 0.6) return null;
+
     const sku = ctx.idx.formularyBySku.get(row.sku);
     const ta = ctx.idx.taBySku.get(row.sku);
     const unitPrice = ta ? ta.contractPrice : sku.referencePrice;

@@ -1,6 +1,7 @@
 // Same contract, different dataset: the rebate ledger rather than PO lines.
 // Principals trailing a volume tier, with the incremental rebate at stake.
 import { formatIDR } from '../money.js';
+import { refFor } from '../refs.js';
 
 export default {
   id: 'rebate-tier-gap',
@@ -16,7 +17,7 @@ export default {
   identity(row, ctx) {
     const principal = ctx.idx.principalById.get(row.vendorId);
     return {
-      ref: `rebate|${row.vendorId}`,
+      ref: refFor('rebateLedger', row),
       unit: 'GROUP',
       region: 'All units',
       item: `${principal.name} — volume rebate`,
@@ -27,14 +28,16 @@ export default {
     };
   },
 
+  // Responsibility only. A principal that has already secured the top tier is
+  // assessed and fine, not a row this rule failed to understand.
   applies(row, ctx) {
-    const principal = ctx.idx.principalById.get(row.vendorId);
-    if (!principal) return false;
-    return row.ytdPurchaseIDR < principal.tier2TargetIDR;
+    return ctx.idx.principalById.has(row.vendorId);
   },
 
   evaluate(row, ctx) {
     const principal = ctx.idx.principalById.get(row.vendorId);
+    if (row.ytdPurchaseIDR >= principal.tier2TargetIDR) return null;
+
     const { tier1TargetIDR: tier1, tier2TargetIDR: tier2, rebatePct } = principal;
     const atTier1 = row.ytdPurchaseIDR >= tier1;
 

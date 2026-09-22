@@ -27,13 +27,14 @@ const noise = run.exceptions.filter((e) => e.type === 'uom');
 const confirmed = recoverable.slice(0, Math.ceil(recoverable.length * 0.55));
 const dismissed = noise.slice(0, Math.ceil(noise.length * 0.6));
 
-store.applyDecisions(confirmed.map((e) => e.id), 'approved', 'Nicole Celia Wangga');
-store.applyDecisions(dismissed.map((e) => e.id), 'false_positive', 'Nicole Celia Wangga');
+const periodId = run.periodId;
+store.applyDecisions(periodId, confirmed.map((e) => e.ref), 'approved', 'Nicole Celia Wangga');
+store.applyDecisions(periodId, dismissed.map((e) => e.ref), 'false_positive', 'Nicole Celia Wangga');
 
 // Units have replied to roughly two-thirds of what was dispatched.
 const replied = confirmed.filter((_, i) => i % 3 !== 2);
 for (const e of replied) {
-  store.applyResponse(e.id, 'PO revised in D365', 'Revised against current agreement', `${e.unit} Purchasing`);
+  store.applyResponse(periodId, e.ref, 'PO revised in D365', 'Revised against current agreement', `${e.unit} Purchasing`);
 }
 
 // Finance has verified a portion of those, at slightly under the flagged figure.
@@ -41,7 +42,7 @@ const closed = replied.filter((_, i) => i % 2 === 0);
 let banked = 0;
 for (const e of closed) {
   const achieved = Math.round(e.savingsRaw * 0.86);
-  store.markClosed(e.id, achieved, 'Nicole Celia Wangga', 'Verified against revised PO');
+  store.markClosed(periodId, e.ref, achieved, 'Nicole Celia Wangga', 'Verified against revised PO');
   banked += achieved;
 }
 

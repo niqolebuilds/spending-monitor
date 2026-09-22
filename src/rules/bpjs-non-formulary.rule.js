@@ -2,6 +2,7 @@
 // exposure, not a price recovery, so no savings are claimed against it.
 import { formatIDR, formatIDRFull } from '../money.js';
 import { displayDate } from '../normalize.js';
+import { refFor } from '../refs.js';
 
 export default {
   id: 'bpjs-non-formulary',
@@ -17,7 +18,7 @@ export default {
   identity(row, ctx) {
     const sku = ctx.idx.formularyBySku.get(row.sku);
     return {
-      ref: `poLine|${row.lineId}`,
+      ref: refFor('poLines', row),
       unit: row.unit,
       region: ctx.idx.unitById.get(row.unit).region,
       item: sku.name,

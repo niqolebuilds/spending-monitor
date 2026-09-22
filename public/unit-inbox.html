@@ -185,7 +185,7 @@
       // Only confirmed findings have been dispatched; pending ones are still with HO.
       const dispatched = u.exceptions.filter(e => e.status === 'approved');
       const open = dispatched.filter(e => !e.response && !e.closedAt);
-      const due = u.requests.find(r => dispatched.some(e => e.id === r.exceptionId));
+      const due = u.requests.find(r => dispatched.some(e => e.ref === r.ref));
 
       setText('inbox-due', due ? `Reply due: ${due.dueDateDisplay}` : 'No open deadline');
       setText('inbox-title', dispatched.length
@@ -196,13 +196,13 @@
       banner.style.display = dispatched.length ? '' : 'none';
 
       const pending = u.exceptions.filter(e => e.status === 'pending');
-      const requestById = new Map(u.requests.map(r => [r.exceptionId, r]));
+      const requestByRef = new Map(u.requests.map(r => [r.ref, r]));
 
       const cards = dispatched.map(e => {
-        const request = requestById.get(e.id);
+        const request = requestByRef.get(e.ref);
         const answered = e.response || e.closedAt;
         return `
-          <div class="card" id="card-${e.id}" style="border-left:4px solid ${answered ? 'var(--emerald-bar)' : (BORDER[e.type] ?? 'var(--border-focus)')};${answered ? 'opacity:.72;' : ''}">
+          <div class="card" style="border-left:4px solid ${answered ? 'var(--emerald-bar)' : (BORDER[e.type] ?? 'var(--border-focus)')};${answered ? 'opacity:.72;' : ''}">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
               <div>
                 <div style="display:flex;align-items:center;gap:6px;">
@@ -228,9 +228,9 @@
             ${answered
               ? `<div style="margin-top:12px;font-size:12px;font-weight:600;color:var(--emerald-text);">✓ ${e.closedAt ? 'Closed and verified by Head Office' : 'Response recorded: ' + e.response.action}</div>`
               : `<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
-                   <button class="btn btn-primary btn-sm" onclick="respond('${e.id}', 'PO revised in D365')">Mark as revised in D365</button>
-                   <button class="btn btn-secondary btn-sm" onclick="respond('${e.id}', 'Clinical justification submitted')">Submit clinical justification</button>
-                   <button class="btn btn-secondary btn-sm" onclick="respond('${e.id}', 'Goods already received and invoiced')">Goods already received</button>
+                   <button class="btn btn-primary btn-sm" onclick="respond('${e.ref}', 'PO revised in D365')">Mark as revised in D365</button>
+                   <button class="btn btn-secondary btn-sm" onclick="respond('${e.ref}', 'Clinical justification submitted')">Submit clinical justification</button>
+                   <button class="btn btn-secondary btn-sm" onclick="respond('${e.ref}', 'Goods already received and invoiced')">Goods already received</button>
                  </div>`}
           </div>`;
       }).join('');
@@ -250,11 +250,11 @@
         || `<div class="card"><p style="font-size:12.5px;color:var(--text-muted);margin:0;">No findings for this unit this week.</p></div>`;
     }
 
-    async function respond(id, action) {
+    async function respond(ref, action) {
       try {
-        await fetchJSON(`/api/exceptions/${id}/respond`, {
+        await fetchJSON('/api/exceptions/respond', {
           method: 'POST',
-          body: { action, actor: `${current.unit} Purchasing` }
+          body: { ref, action, actor: `${current.unit} Purchasing` }
         });
         await changeUnit();
         showToast(action);

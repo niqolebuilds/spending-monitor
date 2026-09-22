@@ -4,8 +4,8 @@ import { runEngine } from './engine.js';
 import { buildKpis, buildLeaderboard, buildRebateSummary } from './aggregate.js';
 import { draftRevision } from './requests.js';
 import * as store from './store.js';
+import { isRef } from './refs.js';
 
-const EXCEPTION_ID = /^EXP-\d{2,}$/;
 const DECISIONS = new Set(['approved', 'false_positive']);
 
 let cached = null;
@@ -15,9 +15,20 @@ async function state() {
   const masters = loadMasters();
   const extract = loadExtract();
   const settings = loadSettings();
-  const run = await runEngine({ masters, extract, settings, asOf: AS_OF, decisions: store.load() });
+  const run = await runEngine({
+    masters, extract, settings, asOf: AS_OF,
+    decisions: store.decisionsFor(extract.weekId)
+  });
   cached = { masters, extract, settings, run };
   return cached;
+}
+
+// Findings are addressed by their content-derived ref, not the positional
+// EXP-NN label, so a decision cannot land on the wrong row after a re-rank.
+function resolveRef(run, ref) {
+  if (!isRef(ref)) return { error: 'invalid finding reference' };
+  const exception = run.exceptions.find((e) => e.ref === ref);
+  return exception ? { exception } : { error: 'finding not found' };
 }
 
 const invalidate = () => { cached = null; };
@@ -71,17 +82,17 @@ export function createApiRouter() {
   });
 
   router.post('/exceptions/decisions', async (req, res) => {
-    const { ids, decision, actor = 'HO Finance' } = req.body ?? {};
-    if (!Array.isArray(ids) || !ids.every((id) => EXCEPTION_ID.test(id))) {
-      return res.status(400).json({ error: 'ids must be an array of exception ids' });
+    const { refs, decision, actor = 'HO Finance' } = req.body ?? {};
+    if (!Array.isArray(refs) || !refs.every(isRef)) {
+      return res.status(400).json({ error: 'refs must be an array of finding references' });
     }
     if (!DECISIONS.has(decision)) {
       return res.status(400).json({ error: `decision must be one of ${[...DECISIONS].join(', ')}` });
     }
     const { run } = await state();
-    const known = new Set(run.exceptions.map((e) => e.id));
-    const applicable = ids.filter((id) => known.has(id));
-    store.applyDecisions(applicable, decision, actor);
+    const known = new Set(run.exceptions.map((e) => e.ref));
+    const applicable = refs.filter((ref) => known.has(ref));
+    store.applyDecisions(run.periodId, applicable, decision, actor);
     invalidate();
     const refreshed = await state();
     res.json({
@@ -91,34 +102,19 @@ export function createApiRouter() {
     });
   });
 
-  router.get('/exceptions/:id', async (req, res) => {
-    const { run } = await state();
-    const found = run.exceptions.find((e) => e.id === req.params.id);
-    if (!found) return res.status(404).json({ error: 'exception not found' });
-    res.json(found);
-  });
-
-  router.get('/exceptions/:id/request', async (req, res) => {
-    const { run, settings } = await state();
-    const found = run.exceptions.find((e) => e.id === req.params.id);
-    if (!found) return res.status(404).json({ error: 'exception not found' });
-    res.json(draftRevision(found, requestCtx(settings, run)));
-  });
-
-  router.post('/exceptions/:id/decision', async (req, res) => {
-    const { id } = req.params;
-    const { decision, actor = 'HO Finance' } = req.body ?? {};
-    if (!EXCEPTION_ID.test(id)) return res.status(400).json({ error: 'invalid exception id' });
+  router.post('/exceptions/decision', async (req, res) => {
+    const { ref, decision, actor = 'HO Finance' } = req.body ?? {};
     if (!DECISIONS.has(decision)) {
       return res.status(400).json({ error: `decision must be one of ${[...DECISIONS].join(', ')}` });
     }
     const { run } = await state();
-    if (!run.exceptions.some((e) => e.id === id)) return res.status(404).json({ error: 'exception not found' });
+    const { exception, error } = resolveRef(run, ref);
+    if (error) return res.status(error === 'finding not found' ? 404 : 400).json({ error });
 
-    store.applyDecision(id, decision, actor);
+    store.applyDecision(run.periodId, ref, decision, actor);
     invalidate();
     const refreshed = await state();
-    const updated = refreshed.run.exceptions.find((e) => e.id === id);
+    const updated = refreshed.run.exceptions.find((e) => e.ref === ref);
     res.json({
       exception: updated,
       request: decision === 'approved'
@@ -128,35 +124,55 @@ export function createApiRouter() {
     });
   });
 
-  router.post('/exceptions/:id/respond', async (req, res) => {
-    const { id } = req.params;
-    const { action, note = '', actor = 'Unit Purchasing' } = req.body ?? {};
-    if (!EXCEPTION_ID.test(id)) return res.status(400).json({ error: 'invalid exception id' });
+  router.post('/exceptions/respond', async (req, res) => {
+    const { ref, action, note = '', actor = 'Unit Purchasing' } = req.body ?? {};
     if (typeof action !== 'string' || !action.trim()) {
       return res.status(400).json({ error: 'action is required' });
     }
-    const responded = store.applyResponse(id, action.trim().slice(0, 200), String(note).slice(0, 500), actor);
+    const { run } = await state();
+    const { error } = resolveRef(run, ref);
+    if (error) return res.status(error === 'finding not found' ? 404 : 400).json({ error });
+
+    const responded = store.applyResponse(
+      run.periodId, ref, action.trim().slice(0, 200), String(note).slice(0, 500), actor
+    );
     if (!responded) return res.status(409).json({ error: 'a request must be dispatched before a unit can reply' });
     invalidate();
+    const refreshed = await state();
+    res.json({ exception: refreshed.run.exceptions.find((e) => e.ref === ref) });
+  });
+
+  router.get('/exceptions/:ref', async (req, res) => {
     const { run } = await state();
-    res.json({ exception: run.exceptions.find((e) => e.id === id) });
+    const { exception, error } = resolveRef(run, req.params.ref);
+    if (error) return res.status(error === 'finding not found' ? 404 : 400).json({ error });
+    res.json(exception);
+  });
+
+  router.get('/exceptions/:ref/request', async (req, res) => {
+    const { run, settings } = await state();
+    const { exception, error } = resolveRef(run, req.params.ref);
+    if (error) return res.status(error === 'finding not found' ? 404 : 400).json({ error });
+    res.json(draftRevision(exception, requestCtx(settings, run)));
   });
 
   // The human gate that stays: a person validates what was actually banked.
-  router.post('/exceptions/:id/close', async (req, res) => {
-    const { id } = req.params;
-    const { achievedSavingsRaw, actor = 'HO Finance', note = '' } = req.body ?? {};
-    if (!EXCEPTION_ID.test(id)) return res.status(400).json({ error: 'invalid exception id' });
+  router.post('/exceptions/close', async (req, res) => {
+    const { ref, achievedSavingsRaw, actor = 'HO Finance', note = '' } = req.body ?? {};
     if (!Number.isFinite(achievedSavingsRaw) || achievedSavingsRaw < 0) {
       return res.status(400).json({ error: 'achievedSavingsRaw must be a non-negative number' });
     }
-    const closed = store.markClosed(id, Math.round(achievedSavingsRaw), actor, note);
-    if (!closed) return res.status(409).json({ error: 'exception must be approved before it can be closed' });
+    const { run } = await state();
+    const { error } = resolveRef(run, ref);
+    if (error) return res.status(error === 'finding not found' ? 404 : 400).json({ error });
+
+    const closed = store.markClosed(run.periodId, ref, Math.round(achievedSavingsRaw), actor, note);
+    if (!closed) return res.status(409).json({ error: 'finding must be confirmed before it can be closed' });
     invalidate();
-    const { run, masters, extract } = await state();
+    const refreshed = await state();
     res.json({
-      exception: run.exceptions.find((e) => e.id === id),
-      kpis: buildKpis(run, masters, extract)
+      exception: refreshed.run.exceptions.find((e) => e.ref === ref),
+      kpis: buildKpis(refreshed.run, refreshed.masters, refreshed.extract)
     });
   });
 

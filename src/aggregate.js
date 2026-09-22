@@ -67,6 +67,9 @@ export function buildKpis(run, masters, extract) {
     weekId: run.weekId,
     asOf: run.asOf,
     linesScanned: run.linesScanned,
+    // Rows read vs rows a rule actually assessed. A gap means codes did not
+    // resolve against the masters, and those rows are invisible to every rule.
+    coverage: run.coverage,
     unitCount: masters.units.length,
     exceptionCount: counted.length,
     highSeverityCount: counted.filter((e) => e.severity === 'high').length,

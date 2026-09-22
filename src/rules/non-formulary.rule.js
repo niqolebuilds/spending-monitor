@@ -2,6 +2,7 @@
 // Recoverable rupiah = the premium over the equivalent's contracted price.
 import { formatIDR, formatIDRFull, pct } from '../money.js';
 import { displayDate } from '../normalize.js';
+import { refFor } from '../refs.js';
 
 export default {
   id: 'non-formulary',
@@ -17,7 +18,7 @@ export default {
   identity(row, ctx) {
     const sku = ctx.idx.formularyBySku.get(row.sku);
     return {
-      ref: `poLine|${row.lineId}`,
+      ref: refFor('poLines', row),
       unit: row.unit,
       region: ctx.idx.unitById.get(row.unit).region,
       item: sku.name,

@@ -70,6 +70,18 @@
       </div>
     </div>
 
+    <!-- Raised when rows could not be matched to the masters at all -->
+    <div class="alert-banner" id="coverage-banner" style="display:none;border-color:var(--rose-border);background:var(--rose-bg);">
+      <div class="alert-banner-content">
+        <span class="badge badge-rose" style="font-size:12px;">Coverage Gap</span>
+        <div>
+          <div class="alert-banner-title" id="coverage-title">&nbsp;</div>
+          <div class="alert-banner-sub" id="coverage-sub">&nbsp;</div>
+        </div>
+      </div>
+      <a href="ingest.html" class="btn btn-secondary btn-sm">Review data</a>
+    </div>
+
     <!-- Alert Banner for Urgent Queue -->
     <div class="alert-banner" id="alert-banner" style="display:none;">
       <div class="alert-banner-content">
@@ -170,10 +182,20 @@
       setText('kpi-potential-sub', `${kpis.exceptionCount} findings · ${kpis.highSeverityCount} high severity · ${kpis.valueAtStake} at stake`);
 
       setText('kpi-compliance', `${kpis.compliancePct}%`);
-      setText('kpi-compliance-sub', `${kpis.linesScanned} PO lines scanned this week`);
+      setText('kpi-compliance-sub', kpis.coverage.rowsUnassessed
+        ? `${kpis.linesScanned} PO lines read · only ${kpis.coverage.assessedPct}% could be assessed`
+        : `${kpis.linesScanned} PO lines scanned · 100% assessed`);
 
       setText('kpi-pending', `${kpis.pendingCount} items`);
       setText('kpi-pending-sub', `Across ${kpis.unitsAffected} hospital units`);
+
+      // A row no rule could assess is not a clean row — say so loudly, because
+      // it otherwise looks identical to compliance.
+      if (kpis.coverage.rowsUnassessed > 0) {
+        document.getElementById('coverage-banner').style.display = '';
+        setText('coverage-title', `${kpis.coverage.rowsUnassessed} of ${kpis.coverage.rowsRead} rows could not be assessed by any rule`);
+        setText('coverage-sub', 'These rows did not resolve against the formulary, trade agreements or unit master. They are not compliant — they are unexamined, and nothing on this page accounts for them.');
+      }
 
       if (kpis.pendingCount > 0) {
         document.getElementById('alert-banner').style.display = '';

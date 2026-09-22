@@ -70,6 +70,7 @@ export function draftRevision(exception, { asOf, slaDays = 5, weekId = '' } = {}
   return {
     id: `REQ-${exception.id}`,
     exceptionId: exception.id,
+    ref: exception.ref,
     unit: exception.unit,
     to: isGroup ? routing.role : `${exception.unit} ${routing.role}`,
     cc: routing.cc,
